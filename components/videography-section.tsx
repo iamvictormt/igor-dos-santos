@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, ExternalLink } from 'lucide-react';
@@ -47,46 +50,96 @@ const videos = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+};
+
 export function VideographySection() {
   return (
     <section id="videografia" className="py-20 bg-muted">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1">
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-foreground">Videografia</h2>
+        <motion.h2
+          className="text-4xl md:text-5xl font-bold mb-12 text-center text-foreground"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          Videografia
+        </motion.h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {videos.map((video) => (
-                <Card key={video.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <CardContent className="p-0">
-                    <div className="relative overflow-hidden">
-                      <img
-                        src={video.thumbnail || '/placeholder.svg'}
-                        alt={video.title}
-                        className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                        <Play className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-12 w-12" />
-                      </div>
-                      <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
-                        {video.duration}
-                      </div>
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {videos.map((video) => (
+            <motion.div key={video.id} variants={itemVariants}>
+              <Card className="group hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-0">
+                  <motion.div
+                    className="relative overflow-hidden"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <img
+                      src={video.thumbnail || '/placeholder.svg'}
+                      alt={video.title}
+                      className="w-full aspect-video object-cover"
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-black/0 flex items-center justify-center"
+                      whileHover={{ backgroundColor: 'rgba(0,0,0,0.3)' }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileHover={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Play className="text-white h-12 w-12" />
+                      </motion.div>
+                    </motion.div>
+                    <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
+                      {video.duration}
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold mb-2 text-foreground text-sm leading-tight">{video.title}</h3>
+                  </motion.div>
+                  <div className="p-4">
+                    <h3 className="font-semibold mb-2 text-foreground text-sm leading-tight">{video.title}</h3>
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button size="sm" variant="outline" className="w-full bg-transparent" asChild>
                         <a href={video.youtubeUrl} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="mr-2 h-4 w-4" />
                           Assistir no YouTube
                         </a>
                       </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>{' '}
+                    </motion.div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

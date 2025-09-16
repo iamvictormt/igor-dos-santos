@@ -10,33 +10,33 @@ export function PhotoGallery() {
   const photos = [
     {
       id: 1,
-      src: '/elegant-black-and-white-portrait-of-musician-with-.jpg',
+      src: '/tocando-preto-branco.jfif',
       alt: 'Igor dos Santos em performance ao vivo',
       span: 'col-span-2 row-span-2',
     },
     {
       id: 2,
-      src: '/professional-black-and-white-portrait-of-brazilian.jpg',
+      src: '/segurando-instrumento.jpg',
       alt: 'Retrato artístico de Igor dos Santos',
       span: 'col-span-1 row-span-1',
     },
     {
       id: 3,
-      src: '/music-video-thumbnail-black-and-white-aesthetic.jpg',
+      src: '/show-preto-branco.jfif',
       alt: 'Bastidores do novo videoclipe',
       span: 'col-span-1 row-span-1',
     },
     {
       id: 4,
-      src: '/acoustic-performance-video-thumbnail-minimalist.jpg',
+      src: '/praticando-luzes.jpg',
       alt: 'Sessão acústica intimista',
       span: 'col-span-1 row-span-2',
     },
     {
       id: 5,
-      src: '/musician-performing-on-stage-black-and-white.jpg',
+      src: '/tocando-colorido.jpeg',
       alt: 'Igor dos Santos no estúdio',
-      span: 'col-span-1 row-span-1',
+      span: 'col-span-2 row-span-1',
     },
   ];
 
@@ -73,9 +73,18 @@ export function PhotoGallery() {
                 <span className="font-normal">Capturados</span>
               </h2>
             </div>
+            <Link href="/biografia">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300 px-8 py-6 text-base font-medium bg-transparent"
+              >
+                Ver Mais Fotos
+              </Button>
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-3 gap-4 lg:h-[600px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-4 lg:h-[920px]">
             {photos.map((photo, index) => (
               <div
                 key={photo.id}

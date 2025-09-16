@@ -57,7 +57,7 @@ const shows = [
 
 export function AgendaContent() {
   return (
-    <section className="pt-32 pb-24 bg-white">
+    <section className="pt-32 pb-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-8 lg:px-12">
         {/* Professional Header */}
         <div className="mb-20">
@@ -106,14 +106,24 @@ export function AgendaContent() {
 
                   {/* Ticket button */}
                   <div className="md:col-span-3 flex justify-end">
-                    <Button
-                      variant="outline"
-                      className="font-light tracking-wide bg-transparent border-black text-black hover:bg-black hover:text-white"
-                      onClick={() => window.open(show.ticketUrl, '_blank')}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Ingressos
-                    </Button>
+                    {show.status === 'available' ? (
+                      <Button
+                        variant="outline"
+                        className="font-light tracking-wide bg-transparent border-black text-black hover:bg-black hover:text-white"
+                        onClick={() => window.open(show.ticketUrl, '_blank')}
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Ingressos
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        disabled
+                        className="font-light tracking-wide bg-transparent border-gray-300 text-gray-400"
+                      >
+                        Esgotado
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>

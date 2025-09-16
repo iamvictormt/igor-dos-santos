@@ -1,41 +1,41 @@
-'use client';
+"use client"
 
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export function UpcomingShows() {
   const shows = [
     {
       id: 1,
-      date: '15',
-      month: 'FEV',
-      city: 'São Paulo',
-      venue: 'Teatro Municipal',
-      status: 'Ingressos Disponíveis',
-      ticketUrl: '#',
+      date: "15",
+      month: "FEV",
+      city: "São Paulo",
+      venue: "Teatro Municipal",
+      status: "Ingressos Disponíveis",
+      ticketUrl: "#",
     },
     {
       id: 2,
-      date: '22',
-      month: 'FEV',
-      city: 'Rio de Janeiro',
-      venue: 'Cidade das Artes',
-      status: 'Últimos Ingressos',
-      ticketUrl: '#',
+      date: "22",
+      month: "FEV",
+      city: "Rio de Janeiro",
+      venue: "Cidade das Artes",
+      status: "Últimos Ingressos",
+      ticketUrl: "#",
     },
     {
       id: 3,
-      date: '08',
-      month: 'MAR',
-      city: 'Belo Horizonte',
-      venue: 'Palácio das Artes',
-      status: 'Em Breve',
-      ticketUrl: '#',
+      date: "08",
+      month: "MAR",
+      city: "Belo Horizonte",
+      venue: "Palácio das Artes",
+      status: "Em Breve",
+      ticketUrl: "#",
     },
-  ];
+  ]
 
   return (
-    <section className="py-32 px-6 bg-white">
+    <section className="py-32 px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-20 gap-8">
           <div>
@@ -76,18 +76,32 @@ export function UpcomingShows() {
               </div>
 
               <div className="flex items-center gap-6">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-black text-black hover:bg-black hover:text-white transition-all duration-300 bg-transparent"
+                <span
+                  className={`text-sm font-medium px-3 py-1 rounded-full ${
+                    show.status === "Ingressos Disponíveis"
+                      ? "bg-green-100 text-green-700"
+                      : show.status === "Últimos Ingressos"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-gray-100 text-gray-600"
+                  }`}
                 >
-                  Ingressos
-                </Button>
+                  {show.status}
+                </span>
+
+                {show.status !== "Em Breve" && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-black text-black hover:bg-black hover:text-white transition-all duration-300 bg-transparent"
+                  >
+                    Ingressos
+                  </Button>
+                )}
               </div>
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }

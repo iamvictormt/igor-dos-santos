@@ -1,6 +1,6 @@
 export function BiographyContent() {
   return (
-    <section className="pt-32 pb-24 bg-white">
+    <section className="pt-32 pb-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-8 lg:px-12">
         {/* Professional Header */}
         <div className="mb-20">
@@ -22,9 +22,9 @@ export function BiographyContent() {
           <div className="grid lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-5">
               <div className="relative">
-                <div className="aspect-[4/5] bg-gray-100 overflow-hidden">
+                <div className="aspect-[4/6] bg-gray-100 overflow-hidden">
                   <img
-                    src="/professional-black-and-white-portrait-of-brazilian.jpg"
+                    src="/retrato.jpg"
                     alt="Igor dos Santos"
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   />
