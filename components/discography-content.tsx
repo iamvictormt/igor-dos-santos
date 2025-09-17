@@ -1,12 +1,10 @@
 "use client"
 
-import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Play, Pause, Music, Calendar, Clock, Users, Disc, Volume2, X, ExternalLink, ArrowUpDown } from "lucide-react"
+import { Play, Pause, Music, Calendar, Clock, Users, Disc, X, ExternalLink, ArrowUpDown } from "lucide-react"
 
 const albums = [
   {
@@ -28,20 +26,20 @@ const albums = [
       {
         name: "Bem Vindo a Sua Vida",
         duration: "4:15",
-        audioUrl: "/audio-samples/sample-track-1.mp3",
+        audioUrl: "/audio-samples/Bem Vindo a Sua Vida.flac",
         composers: "Igor Delfino / Márcio Ricardo",
       },
       {
         name: "Auto Intitulada Feat. Teco Martins",
         duration: "3:45",
-        audioUrl: "/audio-samples/sample-track-2.mp3",
+        audioUrl: "/audio-samples/Auto Intitulada.flac",
         composers: "Igor Delfino / Teco Martins",
       },
-      { name: "A.C.A.S.O", duration: "4:20", audioUrl: "/audio-samples/sample-track-3.mp3", composers: "Igor Delfino" },
+      { name: "A.C.A.S.O", duration: "4:20", audioUrl: "/audio-samples/Acaso.flac", composers: "Igor Delfino" },
       {
         name: "O Herói Não Resolvido",
         duration: "4:10",
-        audioUrl: "/audio-samples/sample-track-1.mp3",
+        audioUrl: "/audio-samples/O Herói Não Resolvido.flac",
         composers: "Igor Delfino",
       },
     ],
@@ -64,12 +62,13 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Experimental/Indie",
     releaseDate: "07/01/2019",
-    credits: "Voz e Programação de Cordas: Igor Delfino | Guitarras e Vocais: Carlos Henrique 'CH4' | Arte da Capa: Igor Delfino",
+    credits:
+      "Voz e Programação de Cordas: Igor Delfino | Guitarras e Vocais: Carlos Henrique 'CH4' | Arte da Capa: Igor Delfino",
     tracklist: [
       {
         name: "Talvez Nunca Aqui",
         duration: "3:42",
-        audioUrl: "/audio-samples/sample-track-2.mp3",
+        audioUrl: "/audio-samples/Talvez Nunca Aqui.flac",
         composers: "Igor Delfino",
       },
     ],
@@ -92,25 +91,31 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Indie Rock/MPB",
     releaseDate: "05/03/2020",
-    credits: "Voz, Guitarras, Violão e Baixo: Igor Delfino | Bateria e Vocais: Gustavo Simão | Arte da Capa: Igor Delfino",
+    credits:
+      "Voz, Guitarras, Violão e Baixo: Igor Delfino | Bateria e Vocais: Gustavo Simão | Arte da Capa: Igor Delfino",
     tracklist: [
       {
         name: "Longe de Algum Lugar",
         duration: "4:12",
-        audioUrl: "/audio-samples/sample-track-1.mp3",
+        audioUrl: "/audio-samples/Longe de Algum Lugar.flac",
         composers: "Igor Delfino",
       },
-      { name: "Avivar", duration: "3:55", audioUrl: "/audio-samples/sample-track-2.mp3", composers: "Igor Delfino" },
+      {
+        name: "Avivar",
+        duration: "3:55",
+        audioUrl: "/audio-samples/Avivar Gratovolte.flac",
+        composers: "Igor Delfino",
+      },
       {
         name: "Aonde Vai o Tempo?",
         duration: "3:48",
-        audioUrl: "/audio-samples/sample-track-3.mp3",
+        audioUrl: "/audio-samples/Aonde Vai o Tempo.flac",
         composers: "Igor Delfino",
       },
       {
         name: "Tudo o Que Eu Queria Te Dizer",
         duration: "3:53",
-        audioUrl: "/audio-samples/sample-track-1.mp3",
+        audioUrl: "/audio-samples/Tudo o Que Eu Queria Te Dizer.flac",
         composers: "Igor Delfino",
       },
     ],
@@ -132,12 +137,13 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Acústico/Folk",
     releaseDate: "09/09/2020",
-    credits: "Voz, Guitarras e Violão: Igor Delfino | Percussão e Programação de Cordas: Gustavo Simão | Arte da Capa: Igor Delfino / Xaver Xylophon",
+    credits:
+      "Voz, Guitarras e Violão: Igor Delfino | Percussão e Programação de Cordas: Gustavo Simão | Arte da Capa: Igor Delfino / Xaver Xylophon",
     tracklist: [
       {
         name: "Avivar (Acústica)",
         duration: "3:28",
-        audioUrl: "/audio-samples/sample-track-2.mp3",
+        audioUrl: "/audio-samples/Avivar.flac",
         composers: "Igor Delfino",
       },
     ],
@@ -159,12 +165,13 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Folk/MPB",
     releaseDate: "12/11/2020",
-    credits: "Voz, Guitarras e Violão: Igor Delfino | Programação de Acordeão: Gustavo Simão | Arte da Capa: Thayná Marinho",
+    credits:
+      "Voz, Guitarras e Violão: Igor Delfino | Programação de Acordeão: Gustavo Simão | Arte da Capa: Thayná Marinho",
     tracklist: [
       {
         name: "Início de Outono",
         duration: "4:05",
-        audioUrl: "/audio-samples/sample-track-3.mp3",
+        audioUrl: "/audio-samples/Inicio de Outono.flac",
         composers: "Igor Delfino",
       },
     ],
@@ -191,7 +198,7 @@ const albums = [
       {
         name: "Amanhã é um Novo Dia",
         duration: "3:52",
-        audioUrl: "/audio-samples/sample-track-1.mp3",
+        audioUrl: "/audio-samples/Amanhã É um Novo Dia.flac",
         composers: "Antônio Manuel de Medeiros Junior / Oswaldo Vecchione Junior",
       },
     ],
@@ -218,7 +225,7 @@ const albums = [
       {
         name: "Trinta e Um Feat. Janaina França",
         duration: "3:15",
-        audioUrl: "/audio-samples/sample-track-2.mp3",
+        audioUrl: "/audio-samples/Trinta e Um.flac",
         composers: "Igor Delfino",
       },
     ],
@@ -241,12 +248,13 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Rock/Tributo",
     releaseDate: "31/12/2024",
-    credits: "Voz, Guitarras, Violão e Baixo: Igor Delfino | Vocais, Teclados e Bateria: Gustavo Simão | Arte da Capa: Furukawa Drawings",
+    credits:
+      "Voz, Guitarras, Violão e Baixo: Igor Delfino | Vocais, Teclados e Bateria: Gustavo Simão | Arte da Capa: Furukawa Drawings",
     tracklist: [
       {
         name: "Broken Dreams & Hopes",
         duration: "4:22",
-        audioUrl: "/audio-samples/sample-track-3.mp3",
+        audioUrl: "/audio-samples/BROKEN DREAMS MASTER 02 MP3.mp3",
         composers: "Matheus Krempel",
       },
     ],
@@ -269,9 +277,7 @@ const albums = [
     genre: "Minimalista/Indie",
     releaseDate: "06/01/2025",
     credits: "Voz, Violão e Baixo: Igor Delfino | Arte da Capa: Igor Delfino",
-    tracklist: [
-      { name: "Voar", duration: "3:38", audioUrl: "/audio-samples/sample-track-1.mp3", composers: "Igor Delfino" },
-    ],
+    tracklist: [{ name: "Voar", duration: "3:38", audioUrl: "/audio-samples/Voar.mp3", composers: "Igor Delfino" }],
     streamingLinks: {
       spotify: "https://open.spotify.com/track/voar",
       apple: "#",
@@ -296,13 +302,13 @@ const albums = [
       {
         name: "Grito Mudo",
         duration: "3:52",
-        audioUrl: "/audio-samples/sample-track-2.mp3",
+        audioUrl: "/audio-samples/Grito Mudo.mp3",
         composers: "Ennyo Viegas / Igor Delfino / Márcio Ricardo",
       },
       {
         name: "Silêncio Ensurdecedor",
         duration: "3:53",
-        audioUrl: "/audio-samples/sample-track-3.mp3",
+        audioUrl: "/audio-samples/Silencio Ensurdecedor.mp3",
         composers: "Ennyo Viegas / Igor Delfino / Márcio Ricardo",
       },
     ],
@@ -329,7 +335,7 @@ const albums = [
       {
         name: "Tudo o Que Eu Queria Te Dizer (Ao Vivo)",
         duration: "4:18",
-        audioUrl: "/audio-samples/sample-track-1.mp3",
+        audioUrl: "/audio-samples/TQEQTD - VIVO20.wav",
         composers: "Igor Delfino",
       },
     ],
@@ -341,7 +347,7 @@ const albums = [
   },
 ]
 
-function AudioPlayer({
+function MinimalAudioPlayer({
   track,
   isPlaying,
   onPlayPause,
@@ -353,7 +359,6 @@ function AudioPlayer({
   const audioRef = useRef<HTMLAudioElement>(null)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
-  const [volume, setVolume] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -403,67 +408,44 @@ function AudioPlayer({
     return `${minutes}:${seconds.toString().padStart(2, "0")}`
   }
 
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    const newTime = (Number.parseFloat(e.target.value) / 100) * duration
-    audio.currentTime = newTime
-    setCurrentTime(newTime)
-  }
-
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = Number.parseFloat(e.target.value) / 100
-    setVolume(newVolume)
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume
-    }
-  }
+  const progressPercentage = duration ? (currentTime / duration) * 100 : 0
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
+    <div className="bg-background border rounded-lg p-4 space-y-3">
       <audio ref={audioRef} src={track.audioUrl} crossOrigin="anonymous" preload="metadata" />
 
-      <div className="flex items-center justify-between mb-4">
-        <h4 className="font-bold text-lg">{track.name}</h4>
-        <Button onClick={onPlayPause} size="lg" className="rounded-full w-12 h-12 p-0" disabled={isLoading}>
+      <div className="flex items-center justify-between">
+        <div className="flex-1 min-w-0">
+          <h4 className="font-medium text-sm truncate">{track.name}</h4>
+          <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+            <span>{formatTime(currentTime)}</span>
+            <span>/</span>
+            <span>{formatTime(duration)}</span>
+          </div>
+        </div>
+
+        <Button
+          onClick={onPlayPause}
+          size="sm"
+          variant="ghost"
+          className="rounded-full w-8 h-8 p-0 ml-3"
+          disabled={isLoading}
+        >
           {isLoading ? (
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+            <div className="animate-spin rounded-full h-3 w-3 border border-current border-t-transparent"></div>
           ) : isPlaying ? (
-            <Pause className="h-6 w-6" />
+            <Pause className="h-3 w-3" />
           ) : (
-            <Play className="h-6 w-6" />
+            <Play className="h-3 w-3" />
           )}
         </Button>
       </div>
 
-      {isLoading && <div className="text-sm text-muted-foreground mb-2">Carregando áudio...</div>}
-
-      <div className="space-y-4">
-        <div className="flex items-center space-x-2">
-          <span className="text-sm text-muted-foreground">{formatTime(currentTime)}</span>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={duration ? (currentTime / duration) * 100 : 0}
-            onChange={handleSeek}
-            className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-          />
-          <span className="text-sm text-muted-foreground">{formatTime(duration)}</span>
-        </div>
-
-        <div className="flex items-center space-x-2">
-          <Volume2 className="h-4 w-4 text-muted-foreground" />
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={volume * 100}
-            onChange={handleVolumeChange}
-            className="w-24 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-          />
-        </div>
+      <div className="w-full bg-muted rounded-full h-1">
+        <div
+          className="bg-primary h-1 rounded-full transition-all duration-100"
+          style={{ width: `${progressPercentage}%` }}
+        />
       </div>
     </div>
   )
@@ -474,15 +456,57 @@ export function DiscographyContent() {
   const [currentTrack, setCurrentTrack] = useState<number | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest")
+  const globalAudioRef = useRef<HTMLAudioElement | null>(null)
 
   const handleTrackClick = (trackIndex: number) => {
+    console.log("[v0] handleTrackClick called with:", trackIndex, "current:", currentTrack, "playing:", isPlaying)
+
     if (currentTrack === trackIndex) {
+      // Se é a mesma faixa, apenas alternar play/pause
       setIsPlaying(!isPlaying)
+      console.log("[v0] Same track, toggling play/pause to:", !isPlaying)
     } else {
+      // Se é uma faixa diferente, apenas selecionar (pausar se estiver tocando)
+      if (globalAudioRef.current) {
+        globalAudioRef.current.pause()
+        globalAudioRef.current.currentTime = 0
+      }
       setCurrentTrack(trackIndex)
-      setIsPlaying(true)
+      setIsPlaying(false) // Não tocar automaticamente, apenas selecionar
+      console.log("[v0] Different track, switching to:", trackIndex, "and not playing")
     }
   }
+
+  const handleCloseModal = () => {
+    setIsPlaying(false)
+    setCurrentTrack(null)
+    if (globalAudioRef.current) {
+      globalAudioRef.current.pause()
+      globalAudioRef.current.currentTime = 0
+    }
+    setSelectedAlbum(null)
+  }
+
+  const handleAlbumSelect = (album: (typeof albums)[0]) => {
+    setIsPlaying(false)
+    setCurrentTrack(0)
+    if (globalAudioRef.current) {
+      globalAudioRef.current.pause()
+      globalAudioRef.current.currentTime = 0
+    }
+    setSelectedAlbum(album)
+  }
+
+  const handlePlayerPlayPause = () => {
+    setIsPlaying(!isPlaying)
+  }
+
+  useEffect(() => {
+    const audioElements = document.querySelectorAll("audio")
+    if (audioElements.length > 0) {
+      globalAudioRef.current = audioElements[audioElements.length - 1] as HTMLAudioElement
+    }
+  }, [currentTrack, selectedAlbum])
 
   const sortedAlbums = [...albums].sort((a, b) => {
     const dateA = new Date(a.releaseDate.split("/").reverse().join("-"))
@@ -527,7 +551,7 @@ export function DiscographyContent() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {sortedAlbums.map((album, index) => (
-            <div key={album.id} className="group cursor-pointer" onClick={() => setSelectedAlbum(album)}>
+            <div key={album.id} className="group cursor-pointer" onClick={() => handleAlbumSelect(album)}>
               <div className="relative mb-6">
                 <div className="aspect-square overflow-hidden bg-white shadow-lg">
                   <img
@@ -564,7 +588,7 @@ export function DiscographyContent() {
 
         <AnimatePresence>
           {selectedAlbum && (
-            <Dialog open={!!selectedAlbum} onOpenChange={() => setSelectedAlbum(null)}>
+            <Dialog open={!!selectedAlbum} onOpenChange={handleCloseModal}>
               <DialogContent
                 className="w-full max-w-none h-screen max-h-screen m-0 rounded-none overflow-hidden p-0 
                             sm:w-[95vw] sm:max-w-7xl sm:h-[90vh] sm:max-h-[90vh] sm:rounded-lg sm:m-4"
@@ -572,8 +596,9 @@ export function DiscographyContent() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm"
-                  onClick={() => setSelectedAlbum(null)}
+                  className="absolute top-2 right-2 z-50 bg-background/90 backdrop-blur-sm border
+                             sm:top-4 sm:right-4"
+                  onClick={handleCloseModal}
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -587,7 +612,7 @@ export function DiscographyContent() {
                     className="p-4 sm:p-8 min-h-full"
                   >
                     <DialogHeader className="mb-4 sm:mb-8">
-                      <DialogTitle className="text-2xl sm:text-3xl font-bold">
+                      <DialogTitle className="text-xl sm:text-3xl font-bold pr-8">
                         {selectedAlbum.title} ({selectedAlbum.year})
                       </DialogTitle>
                     </DialogHeader>
@@ -597,107 +622,91 @@ export function DiscographyContent() {
                         <img
                           src={selectedAlbum.cover || "/placeholder.svg"}
                           alt={selectedAlbum.title}
-                          className="w-full max-w-sm sm:max-w-lg mx-auto aspect-square object-cover rounded-lg"
+                          className="w-full max-w-xs sm:max-w-lg mx-auto aspect-square object-cover rounded-lg"
                         />
 
-                        {currentTrack !== null && selectedAlbum.tracklist[currentTrack] && (
-                          <div className="w-full">
-                            <AudioPlayer
-                              track={selectedAlbum.tracklist[currentTrack]}
+                        {selectedAlbum.tracklist.length > 0 && (
+                          <div className="w-full max-w-xs sm:max-w-lg mx-auto">
+                            <MinimalAudioPlayer
+                              track={selectedAlbum.tracklist[currentTrack || 0]}
                               isPlaying={isPlaying}
-                              onPlayPause={() => setIsPlaying(!isPlaying)}
+                              onPlayPause={handlePlayerPlayPause}
                             />
                           </div>
                         )}
                       </div>
 
-                      <div className="space-y-6 sm:space-y-8">
-                        <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
+                      <div className="space-y-4 sm:space-y-6">
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                           {selectedAlbum.description}
                         </p>
 
-                        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 sm:p-6">
-                          <h4 className="font-bold mb-3 sm:mb-4 flex items-center text-base sm:text-lg">
-                            <Disc className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                        <div className="bg-muted/50 rounded-lg p-3 sm:p-4">
+                          <h4 className="font-bold mb-2 sm:mb-3 flex items-center text-sm sm:text-base">
+                            <Disc className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                             Ficha Técnica
                           </h4>
-                          <div className="space-y-3 text-sm sm:text-base">
-                            <div className="flex items-start">
-                              <Calendar className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                          <div className="space-y-2 text-xs sm:text-sm">
+                            <div className="flex items-start gap-2">
+                              <Calendar className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Lançamento:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.releaseDate}</span>
+                                <span className="ml-1 font-medium">{selectedAlbum.releaseDate}</span>
                               </div>
                             </div>
-                            <div className="flex items-start">
-                              <Clock className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                            <div className="flex items-start gap-2">
+                              <Clock className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Duração:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.duration}</span>
+                                <span className="ml-1 font-medium">{selectedAlbum.duration}</span>
                               </div>
                             </div>
-                            <div className="flex items-start">
-                              <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                            <div className="flex items-start gap-2">
+                              <Users className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
-                                <span className="text-muted-foreground">Eng. de Som/Mix/Master:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.producer}</span>
+                                <span className="text-muted-foreground">Produção:</span>
+                                <span className="ml-1 font-medium">{selectedAlbum.producer}</span>
                               </div>
                             </div>
-                            <div className="flex items-start">
-                              <Music className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                            <div className="flex items-start gap-2">
+                              <Music className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Gênero:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.genre}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Disc className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Estúdio:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.studio}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Créditos:</span>
-                                <span className="ml-2 font-medium text-sm leading-relaxed">
-                                  {selectedAlbum.credits}
-                                </span>
+                                <span className="ml-1 font-medium">{selectedAlbum.genre}</span>
                               </div>
                             </div>
                           </div>
                         </div>
 
                         <div>
-                          <h4 className="font-bold mb-3 sm:mb-4 text-base sm:text-lg">Faixas:</h4>
-                          <div className="space-y-2 sm:space-y-3">
+                          <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">Faixas:</h4>
+                          <div className="space-y-1 sm:space-y-2">
                             {selectedAlbum.tracklist.map((track, index) => (
                               <div
                                 key={index}
-                                className={`flex justify-between items-center py-2 sm:py-3 px-3 sm:px-4 rounded cursor-pointer transition-colors ${
+                                className={`flex justify-between items-center py-2 px-3 rounded cursor-pointer transition-colors text-sm ${
                                   currentTrack === index
                                     ? "bg-primary/10 border border-primary/20"
-                                    : "bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                    : "bg-muted/30 hover:bg-muted/50"
                                 }`}
                                 onClick={() => handleTrackClick(index)}
                               >
                                 <div className="flex items-center min-w-0 flex-1">
-                                  <div className="mr-3 sm:mr-4 w-6 sm:w-8 flex justify-center flex-shrink-0">
+                                  <div className="mr-2 w-5 flex justify-center flex-shrink-0">
                                     {currentTrack === index && isPlaying ? (
-                                      <Pause className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
+                                      <Pause className="h-3 w-3 text-primary" />
                                     ) : (
-                                      <Play className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
+                                      <Play className="h-3 w-3 text-muted-foreground" />
                                     )}
                                   </div>
                                   <div className="min-w-0 flex-1">
-                                    <div className="text-sm sm:text-base font-medium truncate">{track.name}</div>
+                                    <div className="font-medium truncate">{track.name}</div>
                                     {track.composers && (
                                       <div className="text-xs text-muted-foreground truncate">{track.composers}</div>
                                     )}
                                   </div>
                                 </div>
-                                <span className="text-xs sm:text-sm text-muted-foreground ml-2 flex-shrink-0">
+                                <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">
                                   {track.duration}
                                 </span>
                               </div>
@@ -706,23 +715,23 @@ export function DiscographyContent() {
                         </div>
 
                         <div>
-                          <h4 className="font-bold mb-3 sm:mb-4 text-base sm:text-lg">Ouça em:</h4>
-                          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                            <Button size="sm" variant="outline" asChild className="w-full sm:w-auto bg-transparent">
+                          <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">Ouça em:</h4>
+                          <div className="flex flex-col gap-2">
+                            <Button size="sm" variant="outline" asChild className="w-full justify-start bg-transparent">
                               <a href={selectedAlbum.streamingLinks.spotify} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                                <ExternalLink className="mr-2 h-3 w-3" />
                                 Spotify
                               </a>
                             </Button>
-                            <Button size="sm" variant="outline" asChild className="w-full sm:w-auto bg-transparent">
+                            <Button size="sm" variant="outline" asChild className="w-full justify-start bg-transparent">
                               <a href={selectedAlbum.streamingLinks.apple} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                                <ExternalLink className="mr-2 h-3 w-3" />
                                 Apple Music
                               </a>
                             </Button>
-                            <Button size="sm" variant="outline" asChild className="w-full sm:w-auto bg-transparent">
+                            <Button size="sm" variant="outline" asChild className="w-full justify-start bg-transparent">
                               <a href={selectedAlbum.streamingLinks.youtube} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                                <ExternalLink className="mr-2 h-3 w-3" />
                                 YouTube
                               </a>
                             </Button>
