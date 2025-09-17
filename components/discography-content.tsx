@@ -429,7 +429,6 @@ function MinimalAudioPlayer({
           size="sm"
           variant="ghost"
           className="rounded-full w-8 h-8 p-0 ml-3"
-          disabled={isLoading}
         >
           {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
         </Button>
