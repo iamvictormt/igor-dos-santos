@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ImageLightbox } from './image-lightbox';
+import { Expand, Mouse } from 'lucide-react';
 
 export function PhotoGallery() {
   const photos = [
@@ -73,7 +74,7 @@ export function PhotoGallery() {
                 <span className="font-normal">Capturados</span>
               </h2>
             </div>
-            <Link href="/biografia">
+            {/* <Link href="/biografia">
               <Button
                 variant="outline"
                 size="lg"
@@ -81,23 +82,34 @@ export function PhotoGallery() {
               >
                 Ver Mais Fotos
               </Button>
-            </Link>
+            </Link> */}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-4 lg:h-[920px]">
             {photos.map((photo, index) => (
               <div
                 key={photo.id}
-                className={`lg:${photo.span} col-span-1 row-span-1 relative overflow-hidden group cursor-pointer h-64 lg:h-auto`}
+                className={`lg:${photo.span} relative overflow-hidden group cursor-pointer aspect-[4/3] lg:aspect-auto`}
                 onClick={() => openLightbox(index)}
               >
                 <Image
                   src={photo.src || '/placeholder.svg'}
                   alt={photo.alt}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  placeholder="blur"
+                  blurDataURL="/placeholder-blur.jpg"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
+
+                {/* camada escura no hover */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* ícone expand */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <span className="bg-white/80 text-black rounded-full p-2 shadow-lg">
+                    <Expand className="h-5 w-5" />
+                  </span>
+                </div>
               </div>
             ))}
           </div>

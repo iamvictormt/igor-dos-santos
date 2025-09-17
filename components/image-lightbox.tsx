@@ -62,7 +62,7 @@ export function ImageLightbox({ images, isOpen, currentIndex, onClose, onNext, o
         variant="ghost"
         size="icon"
         onClick={onClose}
-        className="absolute top-6 right-6 z-10 text-white hover:bg-white/10 w-12 h-12"
+        className="absolute top-6 right-6 z-10 text-white hover:bg-white/10 w-12 h-12 hover:text-white"
       >
         <X className="w-6 h-6" />
       </Button>
