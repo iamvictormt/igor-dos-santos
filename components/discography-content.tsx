@@ -1,414 +1,414 @@
-"use client"
+'use client';
 
-import { useState, useRef, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Play, Pause, Music, Calendar, Clock, Users, Disc, X, ExternalLink, ArrowUpDown } from "lucide-react"
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Play, Pause, Music, Calendar, Clock, Users, Disc, X, ExternalLink, ArrowUpDown } from 'lucide-react';
 
 const albums = [
   {
     id: 1,
-    title: "Bem Vindo a Sua Vida",
-    year: "2018",
-    type: "EP",
-    cover: "/bem-vindo-sua-vida-cover.jpg",
+    title: 'Bem Vindo a Sua Vida',
+    year: '2018',
+    type: 'EP',
+    cover: '/bem-vindo-sua-vida-cover.jpg',
     description:
-      "Primeiro lançamento do Igor Delfino, reunindo composições introspectivas e pessoais, já mostrando o direcionamento musical e conceitual do projeto.",
-    duration: "16:30",
+      'Primeiro lançamento do Igor Delfino, reunindo composições introspectivas e pessoais, já mostrando o direcionamento musical e conceitual do projeto.',
+    duration: '16:30',
     producer: "Raphael Mancini / Gustavo 'Big' Simão / Marcelo Trovão",
-    studio: "Lab Mancini / Choque DB / Hangout",
-    genre: "MPB/Indie",
-    releaseDate: "24/05/2018",
+    studio: 'Lab Mancini / Choque DB / Hangout',
+    genre: 'MPB/Indie',
+    releaseDate: '24/05/2018',
     credits:
-      "Voz, Guitarras e Violão: Igor Delfino | Percussão: Márcio Ricardo, Gustavo Simão | Teclado: Tutu Oliveira | Vocais: Márcio Ricardo, Teco Martins | Arte da Capa: Igor Delfino",
+      'Voz, Guitarras e Violão: Igor Delfino | Percussão: Márcio Ricardo, Gustavo Simão | Teclado: Tutu Oliveira | Vocais: Márcio Ricardo, Teco Martins | Arte da Capa: Igor Delfino',
     tracklist: [
       {
-        name: "Bem Vindo a Sua Vida",
-        duration: "4:15",
-        audioUrl: "/audio-samples/Bem Vindo a Sua Vida.flac",
-        composers: "Igor Delfino / Márcio Ricardo",
+        name: 'Bem Vindo a Sua Vida',
+        duration: '4:15',
+        audioUrl: '/audio-samples/Bem Vindo a Sua Vida.flac',
+        composers: 'Igor Delfino / Márcio Ricardo',
       },
       {
-        name: "Auto Intitulada Feat. Teco Martins",
-        duration: "3:45",
-        audioUrl: "/audio-samples/Auto Intitulada.flac",
-        composers: "Igor Delfino / Teco Martins",
+        name: 'Auto Intitulada Feat. Teco Martins',
+        duration: '3:45',
+        audioUrl: '/audio-samples/Auto Intitulada.flac',
+        composers: 'Igor Delfino / Teco Martins',
       },
-      { name: "A.C.A.S.O", duration: "4:20", audioUrl: "/audio-samples/Acaso.flac", composers: "Igor Delfino" },
+      { name: 'A.C.A.S.O', duration: '4:20', audioUrl: '/audio-samples/Acaso.flac', composers: 'Igor Delfino' },
       {
-        name: "O Herói Não Resolvido",
-        duration: "4:10",
-        audioUrl: "/audio-samples/O Herói Não Resolvido.flac",
-        composers: "Igor Delfino",
+        name: 'O Herói Não Resolvido',
+        duration: '4:10',
+        audioUrl: '/audio-samples/O Herói Não Resolvido.flac',
+        composers: 'Igor Delfino',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/album/bemvindo",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/album/bemvindo',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 2,
-    title: "Talvez Nunca Aqui",
-    year: "2019",
-    type: "Single",
-    cover: "/talvez-nunca-aqui-cover.jpg",
+    title: 'Talvez Nunca Aqui',
+    year: '2019',
+    type: 'Single',
+    cover: '/talvez-nunca-aqui-cover.jpg',
     description:
-      "Single experimental que resgata uma composição antiga, dando nova roupagem e mostrando a identidade independente e sem rótulos do Igor Delfino.",
-    duration: "3:42",
+      'Single experimental que resgata uma composição antiga, dando nova roupagem e mostrando a identidade independente e sem rótulos do Igor Delfino.',
+    duration: '3:42',
     producer: "Gustavo 'Big' Simão",
-    studio: "Estúdio Choque DB",
-    genre: "Experimental/Indie",
-    releaseDate: "07/01/2019",
+    studio: 'Estúdio Choque DB',
+    genre: 'Experimental/Indie',
+    releaseDate: '07/01/2019',
     credits:
       "Voz e Programação de Cordas: Igor Delfino | Guitarras e Vocais: Carlos Henrique 'CH4' | Arte da Capa: Igor Delfino",
     tracklist: [
       {
-        name: "Talvez Nunca Aqui",
-        duration: "3:42",
-        audioUrl: "/audio-samples/Talvez Nunca Aqui.flac",
-        composers: "Igor Delfino",
+        name: 'Talvez Nunca Aqui',
+        duration: '3:42',
+        audioUrl: '/audio-samples/Talvez Nunca Aqui.flac',
+        composers: 'Igor Delfino',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/track/talveznunca",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/track/talveznunca',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 3,
-    title: "Gratovolte",
-    year: "2020",
-    type: "EP",
-    cover: "/gratovolte-cover.jpg",
+    title: 'Gratovolte',
+    year: '2020',
+    type: 'EP',
+    cover: '/gratovolte-cover.jpg',
     description:
-      "Primeiro EP totalmente composto para o Igor Delfino, explorando banda completa e temas como saúde mental, relacionamentos e saudades.",
-    duration: "15:48",
+      'Primeiro EP totalmente composto para o Igor Delfino, explorando banda completa e temas como saúde mental, relacionamentos e saudades.',
+    duration: '15:48',
     producer: "Gustavo 'Big' Simão",
-    studio: "Estúdio Choque DB",
-    genre: "Indie Rock/MPB",
-    releaseDate: "05/03/2020",
+    studio: 'Estúdio Choque DB',
+    genre: 'Indie Rock/MPB',
+    releaseDate: '05/03/2020',
     credits:
-      "Voz, Guitarras, Violão e Baixo: Igor Delfino | Bateria e Vocais: Gustavo Simão | Arte da Capa: Igor Delfino",
+      'Voz, Guitarras, Violão e Baixo: Igor Delfino | Bateria e Vocais: Gustavo Simão | Arte da Capa: Igor Delfino',
     tracklist: [
       {
-        name: "Longe de Algum Lugar",
-        duration: "4:12",
-        audioUrl: "/audio-samples/Longe de Algum Lugar.flac",
-        composers: "Igor Delfino",
+        name: 'Longe de Algum Lugar',
+        duration: '4:12',
+        audioUrl: '/audio-samples/Longe de Algum Lugar.flac',
+        composers: 'Igor Delfino',
       },
       {
-        name: "Avivar",
-        duration: "3:55",
-        audioUrl: "/audio-samples/Avivar Gratovolte.flac",
-        composers: "Igor Delfino",
+        name: 'Avivar',
+        duration: '3:55',
+        audioUrl: '/audio-samples/Avivar Gratovolte.flac',
+        composers: 'Igor Delfino',
       },
       {
-        name: "Aonde Vai o Tempo?",
-        duration: "3:48",
-        audioUrl: "/audio-samples/Aonde Vai o Tempo.flac",
-        composers: "Igor Delfino",
+        name: 'Aonde Vai o Tempo?',
+        duration: '3:48',
+        audioUrl: '/audio-samples/Aonde Vai o Tempo.flac',
+        composers: 'Igor Delfino',
       },
       {
-        name: "Tudo o Que Eu Queria Te Dizer",
-        duration: "3:53",
-        audioUrl: "/audio-samples/Tudo o Que Eu Queria Te Dizer.flac",
-        composers: "Igor Delfino",
+        name: 'Tudo o Que Eu Queria Te Dizer',
+        duration: '3:53',
+        audioUrl: '/audio-samples/Tudo o Que Eu Queria Te Dizer.flac',
+        composers: 'Igor Delfino',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/album/gratovolte",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/album/gratovolte',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 4,
-    title: "Avivar (Acústica)",
-    year: "2020",
-    type: "Single",
-    cover: "/avivar-acustica-cover.jpg",
+    title: 'Avivar (Acústica)',
+    year: '2020',
+    type: 'Single',
+    cover: '/avivar-acustica-cover.jpg',
     description: "Versão acústica de 'Avivar', feita para uma campanha de Setembro Amarelo sobre saúde mental.",
-    duration: "3:28",
+    duration: '3:28',
     producer: "Gustavo 'Big' Simão",
-    studio: "Estúdio Choque DB",
-    genre: "Acústico/Folk",
-    releaseDate: "09/09/2020",
+    studio: 'Estúdio Choque DB',
+    genre: 'Acústico/Folk',
+    releaseDate: '09/09/2020',
     credits:
-      "Voz, Guitarras e Violão: Igor Delfino | Percussão e Programação de Cordas: Gustavo Simão | Arte da Capa: Igor Delfino / Xaver Xylophon",
+      'Voz, Guitarras e Violão: Igor Delfino | Percussão e Programação de Cordas: Gustavo Simão | Arte da Capa: Igor Delfino / Xaver Xylophon',
     tracklist: [
       {
-        name: "Avivar (Acústica)",
-        duration: "3:28",
-        audioUrl: "/audio-samples/Avivar.flac",
-        composers: "Igor Delfino",
+        name: 'Avivar (Acústica)',
+        duration: '3:28',
+        audioUrl: '/audio-samples/Avivar.flac',
+        composers: 'Igor Delfino',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/track/avivaracustica",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/track/avivaracustica',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 5,
-    title: "Início de Outono",
-    year: "2020",
-    type: "Single",
-    cover: "/inicio-outono-cover.jpg",
-    description: "Escrita no auge da pandemia, a música transmite esperança de que tudo vai ficar bem.",
-    duration: "4:05",
+    title: 'Início de Outono',
+    year: '2020',
+    type: 'Single',
+    cover: '/inicio-outono-cover.jpg',
+    description: 'Escrita no auge da pandemia, a música transmite esperança de que tudo vai ficar bem.',
+    duration: '4:05',
     producer: "Gustavo 'Big' Simão",
-    studio: "Estúdio Choque DB",
-    genre: "Folk/MPB",
-    releaseDate: "12/11/2020",
+    studio: 'Estúdio Choque DB',
+    genre: 'Folk/MPB',
+    releaseDate: '12/11/2020',
     credits:
-      "Voz, Guitarras e Violão: Igor Delfino | Programação de Acordeão: Gustavo Simão | Arte da Capa: Thayná Marinho",
+      'Voz, Guitarras e Violão: Igor Delfino | Programação de Acordeão: Gustavo Simão | Arte da Capa: Thayná Marinho',
     tracklist: [
       {
-        name: "Início de Outono",
-        duration: "4:05",
-        audioUrl: "/audio-samples/Inicio de Outono.flac",
-        composers: "Igor Delfino",
+        name: 'Início de Outono',
+        duration: '4:05',
+        audioUrl: '/audio-samples/Inicio de Outono.flac',
+        composers: 'Igor Delfino',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/track/iniciooutono",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/track/iniciooutono',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 6,
-    title: "Amanhã é um Novo Dia",
-    year: "2021",
-    type: "Single",
-    cover: "/amanha-novo-dia-cover.jpg",
-    description: "Versão em tributo aos 55 anos da banda Made In Brazil, uma das mais antigas do país.",
-    duration: "3:52",
+    title: 'Amanhã é um Novo Dia',
+    year: '2021',
+    type: 'Single',
+    cover: '/amanha-novo-dia-cover.jpg',
+    description: 'Versão em tributo aos 55 anos da banda Made In Brazil, uma das mais antigas do país.',
+    duration: '3:52',
     producer: "Gustavo 'Big' Simão",
-    studio: "Estúdio Choque DB",
-    genre: "Rock/Tributo",
-    releaseDate: "28/10/2021",
-    credits: "Voz, Guitarras e Violão: Igor Delfino | Vocais: Gustavo Simão | Arte da Capa: Igor Delfino",
+    studio: 'Estúdio Choque DB',
+    genre: 'Rock/Tributo',
+    releaseDate: '28/10/2021',
+    credits: 'Voz, Guitarras e Violão: Igor Delfino | Vocais: Gustavo Simão | Arte da Capa: Igor Delfino',
     tracklist: [
       {
-        name: "Amanhã é um Novo Dia",
-        duration: "3:52",
-        audioUrl: "/audio-samples/Amanhã É um Novo Dia.flac",
-        composers: "Antônio Manuel de Medeiros Junior / Oswaldo Vecchione Junior",
+        name: 'Amanhã é um Novo Dia',
+        duration: '3:52',
+        audioUrl: '/audio-samples/Amanhã É um Novo Dia.flac',
+        composers: 'Antônio Manuel de Medeiros Junior / Oswaldo Vecchione Junior',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/track/amanhanovodia",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/track/amanhanovodia',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 7,
-    title: "Trinta e Um",
-    year: "2022",
-    type: "Single",
-    cover: "/trinta-um-cover.jpg",
-    description: "Canção Lo-Fi intimista, gravada com celular, trazendo simplicidade e parceria na interpretação.",
-    duration: "3:15",
-    producer: "Igor Delfino",
-    studio: "MongaBeach Home Studio",
-    genre: "Lo-Fi/Indie",
-    releaseDate: "16/05/2022",
-    credits: "Voz, Guitarras e Violão: Igor Delfino | Voz: Janaina França | Arte da Capa: Janaina França",
+    title: 'Trinta e Um',
+    year: '2022',
+    type: 'Single',
+    cover: '/trinta-um-cover.jpg',
+    description: 'Canção Lo-Fi intimista, gravada com celular, trazendo simplicidade e parceria na interpretação.',
+    duration: '3:15',
+    producer: 'Igor Delfino',
+    studio: 'MongaBeach Home Studio',
+    genre: 'Lo-Fi/Indie',
+    releaseDate: '16/05/2022',
+    credits: 'Voz, Guitarras e Violão: Igor Delfino | Voz: Janaina França | Arte da Capa: Janaina França',
     tracklist: [
       {
-        name: "Trinta e Um Feat. Janaina França",
-        duration: "3:15",
-        audioUrl: "/audio-samples/Trinta e Um.flac",
-        composers: "Igor Delfino",
+        name: 'Trinta e Um Feat. Janaina França',
+        duration: '3:15',
+        audioUrl: '/audio-samples/Trinta e Um.flac',
+        composers: 'Igor Delfino',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/track/trintaum",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/track/trintaum',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 8,
-    title: "Broken Dreams & Hopes",
-    year: "2024",
-    type: "Single",
-    cover: "/broken-dreams-cover.jpg",
+    title: 'Broken Dreams & Hopes',
+    year: '2024',
+    type: 'Single',
+    cover: '/broken-dreams-cover.jpg',
     description:
-      "Releitura para os 10 anos do álbum All About Love da banda The Bombers, ícone do rock underground nacional.",
-    duration: "4:22",
+      'Releitura para os 10 anos do álbum All About Love da banda The Bombers, ícone do rock underground nacional.',
+    duration: '4:22',
     producer: "Gustavo 'Big' Simão",
-    studio: "Estúdio Choque DB",
-    genre: "Rock/Tributo",
-    releaseDate: "31/12/2024",
+    studio: 'Estúdio Choque DB',
+    genre: 'Rock/Tributo',
+    releaseDate: '31/12/2024',
     credits:
-      "Voz, Guitarras, Violão e Baixo: Igor Delfino | Vocais, Teclados e Bateria: Gustavo Simão | Arte da Capa: Furukawa Drawings",
+      'Voz, Guitarras, Violão e Baixo: Igor Delfino | Vocais, Teclados e Bateria: Gustavo Simão | Arte da Capa: Furukawa Drawings',
     tracklist: [
       {
-        name: "Broken Dreams & Hopes",
-        duration: "4:22",
-        audioUrl: "/audio-samples/BROKEN DREAMS MASTER 02 MP3.mp3",
-        composers: "Matheus Krempel",
+        name: 'Broken Dreams & Hopes',
+        duration: '4:22',
+        audioUrl: '/audio-samples/BROKEN DREAMS MASTER 02 MP3.mp3',
+        composers: 'Matheus Krempel',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/track/0Rx1hjRaaMfmNi6yYmyMBs",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/track/0Rx1hjRaaMfmNi6yYmyMBs',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 9,
-    title: "Voar",
-    year: "2025",
-    type: "Single",
-    cover: "/voar-cover.jpg",
-    description: "Marca a retomada do projeto com uma direção mais minimalista e intimista.",
-    duration: "3:38",
+    title: 'Voar',
+    year: '2025',
+    type: 'Single',
+    cover: '/voar-cover.jpg',
+    description: 'Marca a retomada do projeto com uma direção mais minimalista e intimista.',
+    duration: '3:38',
     producer: "Gustavo 'Big' Simão",
-    studio: "Estúdio Choque DB",
-    genre: "Minimalista/Indie",
-    releaseDate: "06/01/2025",
-    credits: "Voz, Violão e Baixo: Igor Delfino | Arte da Capa: Igor Delfino",
-    tracklist: [{ name: "Voar", duration: "3:38", audioUrl: "/audio-samples/Voar.mp3", composers: "Igor Delfino" }],
+    studio: 'Estúdio Choque DB',
+    genre: 'Minimalista/Indie',
+    releaseDate: '06/01/2025',
+    credits: 'Voz, Violão e Baixo: Igor Delfino | Arte da Capa: Igor Delfino',
+    tracklist: [{ name: 'Voar', duration: '3:38', audioUrl: '/audio-samples/Voar.mp3', composers: 'Igor Delfino' }],
     streamingLinks: {
-      spotify: "https://open.spotify.com/track/voar",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/track/voar',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 10,
-    title: "Grito Mudo / Silêncio Ensurdecedor",
-    year: "2025",
-    type: "Double",
-    cover: "/grito-mudo-cover.jpeg",
-    description: "Duo de canções que exploram a dor da ansiedade em suas formas mais intensas e silenciosas.",
-    duration: "7:45",
+    title: 'Grito Mudo / Silêncio Ensurdecedor',
+    year: '2025',
+    type: 'Double',
+    cover: '/grito-mudo-cover.jpeg',
+    description: 'Duo de canções que exploram a dor da ansiedade em suas formas mais intensas e silenciosas.',
+    duration: '7:45',
     producer: "Gustavo 'Big' Simão",
-    studio: "Estúdio 438",
-    genre: "Indie Rock/Experimental",
-    releaseDate: "17/04/2025",
+    studio: 'Estúdio 438',
+    genre: 'Indie Rock/Experimental',
+    releaseDate: '17/04/2025',
     credits:
-      "Voz e Guitarra: Igor Delfino | Baixo: Ennyo Viegas | Bateria: Márcio Ricardo | Vocais e Guitarra Adicional: Gustavo Simão | Piano: Bruno Piazza | Arte da Capa: Thayna Marinho",
+      'Voz e Guitarra: Igor Delfino | Baixo: Ennyo Viegas | Bateria: Márcio Ricardo | Vocais e Guitarra Adicional: Gustavo Simão | Piano: Bruno Piazza | Arte da Capa: Thayna Marinho',
     tracklist: [
       {
-        name: "Grito Mudo",
-        duration: "3:52",
-        audioUrl: "/audio-samples/Grito Mudo.mp3",
-        composers: "Ennyo Viegas / Igor Delfino / Márcio Ricardo",
+        name: 'Grito Mudo',
+        duration: '3:52',
+        audioUrl: '/audio-samples/Grito Mudo.mp3',
+        composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
       },
       {
-        name: "Silêncio Ensurdecedor",
-        duration: "3:53",
-        audioUrl: "/audio-samples/Silencio Ensurdecedor.mp3",
-        composers: "Ennyo Viegas / Igor Delfino / Márcio Ricardo",
+        name: 'Silêncio Ensurdecedor',
+        duration: '3:53',
+        audioUrl: '/audio-samples/Silencio Ensurdecedor.mp3',
+        composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/album/gritomudo",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/album/gritomudo',
+      apple: '#',
+      youtube: '#',
     },
   },
   {
     id: 11,
-    title: "Tudo o Que Eu Queria Te Dizer (Ao Vivo 20)",
-    year: "2025",
-    type: "Single",
-    cover: "/tudo-que-queria-cover.png",
-    description: "Releitura em comemoração aos 20 anos da canção escrita como declaração de amor.",
-    duration: "4:18",
+    title: 'Tudo o Que Eu Queria Te Dizer (Ao Vivo 20)',
+    year: '2025',
+    type: 'Single',
+    cover: '/tudo-que-queria-cover.png',
+    description: 'Releitura em comemoração aos 20 anos da canção escrita como declaração de amor.',
+    duration: '4:18',
     producer: "Gustavo 'Big' Simão",
-    studio: "Estúdio 438",
-    genre: "Acústico/Ao Vivo",
-    releaseDate: "29/05/2025",
-    credits: "Voz e Guitarra: Igor Delfino | Violino: Silvia Cruz | Arte da Capa: Gui Silva",
+    studio: 'Estúdio 438',
+    genre: 'Acústico/Ao Vivo',
+    releaseDate: '29/05/2025',
+    credits: 'Voz e Guitarra: Igor Delfino | Violino: Silvia Cruz | Arte da Capa: Gui Silva',
     tracklist: [
       {
-        name: "Tudo o Que Eu Queria Te Dizer (Ao Vivo)",
-        duration: "4:18",
-        audioUrl: "/audio-samples/TQEQTD - VIVO20.wav",
-        composers: "Igor Delfino",
+        name: 'Tudo o Que Eu Queria Te Dizer (Ao Vivo)',
+        duration: '4:18',
+        audioUrl: '/audio-samples/TQEQTD - VIVO20.wav',
+        composers: 'Igor Delfino',
       },
     ],
     streamingLinks: {
-      spotify: "https://open.spotify.com/track/tudoquequeria",
-      apple: "#",
-      youtube: "#",
+      spotify: 'https://open.spotify.com/track/tudoquequeria',
+      apple: '#',
+      youtube: '#',
     },
   },
-]
+];
 
 function MinimalAudioPlayer({
   track,
   isPlaying,
   onPlayPause,
 }: {
-  track: { name: string; duration: string; audioUrl: string }
-  isPlaying: boolean
-  onPlayPause: () => void
+  track: { name: string; duration: string; audioUrl: string };
+  isPlaying: boolean;
+  onPlayPause: () => void;
 }) {
-  const audioRef = useRef<HTMLAudioElement>(null)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
+    const audio = audioRef.current;
+    if (!audio) return;
 
-    const updateTime = () => setCurrentTime(audio.currentTime)
-    const updateDuration = () => setDuration(audio.duration)
-    const handleLoadStart = () => setIsLoading(true)
-    const handleCanPlay = () => setIsLoading(false)
-    const handleError = () => setIsLoading(false)
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    const updateDuration = () => setDuration(audio.duration);
+    const handleLoadStart = () => setIsLoading(true);
+    const handleCanPlay = () => setIsLoading(false);
+    const handleError = () => setIsLoading(false);
 
-    audio.addEventListener("timeupdate", updateTime)
-    audio.addEventListener("loadedmetadata", updateDuration)
-    audio.addEventListener("loadstart", handleLoadStart)
-    audio.addEventListener("canplay", handleCanPlay)
-    audio.addEventListener("error", handleError)
+    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener('loadedmetadata', updateDuration);
+    audio.addEventListener('loadstart', handleLoadStart);
+    audio.addEventListener('canplay', handleCanPlay);
+    audio.addEventListener('error', handleError);
 
     return () => {
-      audio.removeEventListener("timeupdate", updateTime)
-      audio.removeEventListener("loadedmetadata", updateDuration)
-      audio.removeEventListener("loadstart", handleLoadStart)
-      audio.removeEventListener("canplay", handleCanPlay)
-      audio.removeEventListener("error", handleError)
-    }
-  }, [track.audioUrl])
+      audio.removeEventListener('timeupdate', updateTime);
+      audio.removeEventListener('loadedmetadata', updateDuration);
+      audio.removeEventListener('loadstart', handleLoadStart);
+      audio.removeEventListener('canplay', handleCanPlay);
+      audio.removeEventListener('error', handleError);
+    };
+  }, [track.audioUrl]);
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
+    const audio = audioRef.current;
+    if (!audio) return;
 
     if (isPlaying) {
-      const playPromise = audio.play()
+      const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          setIsLoading(false)
-        })
+          setIsLoading(false);
+        });
       }
     } else {
-      audio.pause()
+      audio.pause();
     }
-  }, [isPlaying])
+  }, [isPlaying]);
 
   const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60)
-    const seconds = Math.floor(time % 60)
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`
-  }
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
 
-  const progressPercentage = duration ? (currentTime / duration) * 100 : 0
+  const progressPercentage = duration ? (currentTime / duration) * 100 : 0;
 
   return (
     <div className="bg-background border rounded-lg p-4 space-y-3">
@@ -431,13 +431,7 @@ function MinimalAudioPlayer({
           className="rounded-full w-8 h-8 p-0 ml-3"
           disabled={isLoading}
         >
-          {isLoading ? (
-            <div className="animate-spin rounded-full h-3 w-3 border border-current border-t-transparent"></div>
-          ) : isPlaying ? (
-            <Pause className="h-3 w-3" />
-          ) : (
-            <Play className="h-3 w-3" />
-          )}
+          {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
         </Button>
       </div>
 
@@ -448,76 +442,81 @@ function MinimalAudioPlayer({
         />
       </div>
     </div>
-  )
+  );
 }
 
 export function DiscographyContent() {
-  const [selectedAlbum, setSelectedAlbum] = useState<(typeof albums)[0] | null>(null)
-  const [currentTrack, setCurrentTrack] = useState<number | null>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest")
-  const globalAudioRef = useRef<HTMLAudioElement | null>(null)
+  const [selectedAlbum, setSelectedAlbum] = useState<(typeof albums)[0] | null>(null);
+  const [currentTrack, setCurrentTrack] = useState<number | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
+  const globalAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleTrackClick = (trackIndex: number) => {
-    console.log("[v0] handleTrackClick called with:", trackIndex, "current:", currentTrack, "playing:", isPlaying)
-
     if (currentTrack === trackIndex) {
       // Se é a mesma faixa, apenas alternar play/pause
-      setIsPlaying(!isPlaying)
-      console.log("[v0] Same track, toggling play/pause to:", !isPlaying)
+      setIsPlaying(!isPlaying);
     } else {
-      // Se é uma faixa diferente, apenas selecionar (pausar se estiver tocando)
-      if (globalAudioRef.current) {
-        globalAudioRef.current.pause()
-        globalAudioRef.current.currentTime = 0
+      // Se é uma faixa diferente e há música tocando, pausar primeiro
+      if (isPlaying && globalAudioRef.current) {
+        setIsPlaying(false);
+        globalAudioRef.current.pause();
+        globalAudioRef.current.currentTime = 0;
+
+        // Aguardar 1 segundo antes de trocar e tocar a nova música
+        setTimeout(() => {
+          setCurrentTrack(trackIndex);
+          setIsPlaying(true);
+        }, 0);
+      } else {
+        // Se não há música tocando, trocar imediatamente
+        setCurrentTrack(trackIndex);
+        setIsPlaying(true);
       }
-      setCurrentTrack(trackIndex)
-      setIsPlaying(false) // Não tocar automaticamente, apenas selecionar
-      console.log("[v0] Different track, switching to:", trackIndex, "and not playing")
     }
-  }
+  };
 
   const handleCloseModal = () => {
-    setIsPlaying(false)
-    setCurrentTrack(null)
+    setIsPlaying(false);
+    setCurrentTrack(null);
     if (globalAudioRef.current) {
-      globalAudioRef.current.pause()
-      globalAudioRef.current.currentTime = 0
+      globalAudioRef.current.pause();
+      globalAudioRef.current.currentTime = 0;
     }
-    setSelectedAlbum(null)
-  }
+    setSelectedAlbum(null);
+  };
 
   const handleAlbumSelect = (album: (typeof albums)[0]) => {
-    setIsPlaying(false)
-    setCurrentTrack(0)
+    setIsPlaying(false);
+    setCurrentTrack(0);
     if (globalAudioRef.current) {
-      globalAudioRef.current.pause()
-      globalAudioRef.current.currentTime = 0
+      globalAudioRef.current.pause();
+      globalAudioRef.current.currentTime = 0;
     }
-    setSelectedAlbum(album)
-  }
+    setSelectedAlbum(album);
+  };
 
   const handlePlayerPlayPause = () => {
-    setIsPlaying(!isPlaying)
-  }
+    setIsPlaying(!isPlaying);
+  };
 
   useEffect(() => {
-    const audioElements = document.querySelectorAll("audio")
+    const audioElements = document.querySelectorAll('audio');
     if (audioElements.length > 0) {
-      globalAudioRef.current = audioElements[audioElements.length - 1] as HTMLAudioElement
+      globalAudioRef.current = audioElements[audioElements.length - 1] as HTMLAudioElement;
     }
-  }, [currentTrack, selectedAlbum])
+  }, [currentTrack, selectedAlbum]);
 
   const sortedAlbums = [...albums].sort((a, b) => {
-    const dateA = new Date(a.releaseDate.split("/").reverse().join("-"))
-    const dateB = new Date(b.releaseDate.split("/").reverse().join("-"))
+    const dateA = new Date(a.releaseDate.split('/').reverse().join('-'));
+    const dateB = new Date(b.releaseDate.split('/').reverse().join('-'));
 
-    if (sortOrder === "newest") {
-      return dateB.getTime() - dateA.getTime()
+    if (sortOrder === 'newest') {
+      return dateB.getTime() - dateA.getTime();
     } else {
-      return dateA.getTime() - dateB.getTime()
+      return dateA.getTime() - dateB.getTime();
     }
-  })
+  });
 
   return (
     <section className="pt-32 pb-24 bg-gray-50">
@@ -541,11 +540,11 @@ export function DiscographyContent() {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => setSortOrder(sortOrder === "newest" ? "oldest" : "newest")}
+            onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
             className="flex items-center gap-2"
           >
             <ArrowUpDown className="h-4 w-4" />
-            {sortOrder === "newest" ? "Mais Recentes" : "Mais Antigos"}
+            {sortOrder === 'newest' ? 'Mais Recentes' : 'Mais Antigos'}
           </Button>
         </div>
 
@@ -555,7 +554,7 @@ export function DiscographyContent() {
               <div className="relative mb-6">
                 <div className="aspect-square overflow-hidden bg-white shadow-lg">
                   <img
-                    src={album.cover || "/placeholder.svg"}
+                    src={album.cover || '/placeholder.svg'}
                     alt={album.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
@@ -620,7 +619,7 @@ export function DiscographyContent() {
                     <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12">
                       <div className="space-y-4 sm:space-y-6">
                         <img
-                          src={selectedAlbum.cover || "/placeholder.svg"}
+                          src={selectedAlbum.cover || '/placeholder.svg'}
                           alt={selectedAlbum.title}
                           className="w-full max-w-xs sm:max-w-lg mx-auto aspect-square object-cover rounded-lg"
                         />
@@ -686,8 +685,8 @@ export function DiscographyContent() {
                                 key={index}
                                 className={`flex justify-between items-center py-2 px-3 rounded cursor-pointer transition-colors text-sm ${
                                   currentTrack === index
-                                    ? "bg-primary/10 border border-primary/20"
-                                    : "bg-muted/30 hover:bg-muted/50"
+                                    ? 'bg-primary/10 border border-primary/20'
+                                    : 'bg-muted/30 hover:bg-muted/50'
                                 }`}
                                 onClick={() => handleTrackClick(index)}
                               >
@@ -747,5 +746,5 @@ export function DiscographyContent() {
         </AnimatePresence>
       </div>
     </section>
-  )
+  );
 }
