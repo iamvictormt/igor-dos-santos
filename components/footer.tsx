@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 
 export function Footer() {
   return (
@@ -22,7 +22,7 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              © 2024 Igor dos Santos. Todos os direitos reservados.
+              © {new Date().getFullYear()} OHomemSó. Todos os direitos reservados.
             </motion.p>
             <motion.p
               className="text-gray-400 text-xs"
@@ -37,5 +37,5 @@ export function Footer() {
         </motion.div>
       </div>
     </footer>
-  )
+  );
 }

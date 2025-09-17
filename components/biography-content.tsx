@@ -13,7 +13,7 @@ export function BiographyContent() {
             </h1>
           </div>
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
-            A trajetória artística de um músico que transcende fronteiras sonoras
+            Um pouco das minhas paranoias, verdades incompletas e mentiras sinceras.
           </p>
         </div>
 
@@ -38,56 +38,46 @@ export function BiographyContent() {
                 <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Origens</h2>
                 <div className="space-y-6 text-gray-700 leading-relaxed">
                   <p className="text-lg font-light leading-relaxed">
-                    Igor dos Santos nasceu em uma família onde a música sempre esteve presente, desenvolvendo desde cedo
-                    uma sensibilidade especial para os diferentes ritmos que compõem o rico panorama musical brasileiro.
+                    Sou Músico auto didata, crescido na periferia da zona norte de São Paulo, o gosto pela música
+                    iniciou cedo, influenciado pelos pais que sempre foram entusiastas e que conseguiam ter na coleção
+                    de vinil, Roberto Carlos e "Appetite for Destruction" do Guns n Roses lado a lado.
                   </p>
                   <p>
-                    Sua formação eclética abrange desde estudos clássicos até a imersão profunda na música popular
-                    contemporânea, criando uma base sólida que se reflete em suas composições autorais.
+                    Desde 2002 fiz parte de diversas bandas autorais da cidade e já toquei em praticamente todas as
+                    casas de shows underground que nasceram e morreram desde então, assim como já passei todos os
+                    perrengues, ciladas e conquistas também que só o músico independente sabe como é.
+                  </p>
+                  <p>
+                    Guitarrista por opção, Vocalista por necessidade e Compositor por acidente, essa frase é a que
+                    melhor define meu caminho até aqui, crescendo e se formando em meio a música rock popular brasileira
+                    e inspirado por grandes compositores de ontem e de hoje.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Musical Journey Section */}
+          {/* About Igor Delfino Section */}
           <div className="grid lg:grid-cols-12 gap-16 items-start">
-            <div className="lg:col-span-7 lg:col-start-1 space-y-8">
+            <div className="lg:col-span-12 space-y-8">
               <div>
-                <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Trajetória Musical</h2>
+                <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Sobre o Igor Delfino</h2>
                 <div className="space-y-6 text-gray-700 leading-relaxed">
                   <p>
-                    Ao longo de sua carreira, Igor tem se destacado não apenas como intérprete, mas principalmente como
-                    compositor, criando obras que dialogam com diferentes gerações e contextos culturais.
+                    Em 2019 dei inicio a um trabalho 100% próprio com o nome artístico dado pela minha filha Alice que
+                    após ouvir de mim que eu já não tocava com ninguém e não tinha banda nenhuma, ela me intitulou como
+                    "Igor Delfino".
                   </p>
                   <p>
-                    Suas composições refletem uma maturidade artística que transcende sua idade, demonstrando uma
-                    compreensão profunda da linguagem musical e uma capacidade única de conectar tradição e inovação.
+                    Com o inicio do projeto se misturando com a pandemia, restou compor e aprimorar a identidade e o
+                    direcionamento artístico que busca uma abordagem musical intimista e por vezes minimalista, com
+                    composições que convocam a reflexão, usando a empatia como principal ferramenta.
                   </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="bg-gray-50 p-8 space-y-6">
-                <h3 className="text-sm font-mono tracking-[0.2em] uppercase text-gray-500">Marcos da Carreira</h3>
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <div className="text-2xl font-thin text-black">10+</div>
-                    <div className="text-sm text-gray-600">Anos de experiência</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-2xl font-thin text-black">50+</div>
-                    <div className="text-sm text-gray-600">Apresentações</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-2xl font-thin text-black">2</div>
-                    <div className="text-sm text-gray-600">Álbuns lançados</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-2xl font-thin text-black">15+</div>
-                    <div className="text-sm text-gray-600">Composições autorais</div>
-                  </div>
+                  <p>
+                    A simplicidade musical, aliada à busca do refrão fácil, fazendo minhas emoções e experiências
+                    compartilhadas além de servir como um diário perfeito para deixar as minhas filhas entenderem as
+                    fases e desafios da vida quando eu não mais estiver aqui.
+                  </p>
                 </div>
               </div>
             </div>
@@ -98,22 +88,33 @@ export function BiographyContent() {
             <div className="grid lg:grid-cols-3 gap-12">
               <div>
                 <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Influências</h2>
-                <p className="text-gray-700 leading-relaxed">
-                  Sua sonoridade é influenciada por grandes nomes da MPB, do jazz brasileiro e da música instrumental,
-                  criando um estilo próprio que honra as tradições enquanto explora novos territórios sonoros.
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Entusiasta da música fácil e popular bebi muito da fonte do rock nacional 80/90/00s, no entanto também
+                  não é difícil encontrar as influências de diversos "Singers-Songwriters" no meu trabalho.
+                </p>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Como Noel Gallagher, Dallas Green, Bob e Jakob Dylan, Lenine, Humberto Gessinger, Nando Reis, Rodrigo
+                  Suricato, Neil Young, Samuel Rosa, Cazuza, Renato Russo, Herbert Vianna, Leoni, Koala, Gabriel Zander,
+                  Capilé, Rodrigo Amarante, Bola Zimbra, Leo Ramos, Teco Martins, Tim Bernardes, Ale Sater e muitos
+                  outros.
                 </p>
               </div>
 
               <div>
                 <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Estilo Musical</h2>
                 <p className="text-gray-700 leading-relaxed">
-                  Igor desenvolve uma linguagem musical que transita entre a intimidade das baladas e a energia dos
-                  ritmos brasileiros, sempre com arranjos cuidadosos e letras que tocam questões universais.
+                  Dado o caráter intimista do projeto, grande parte das composições se sustentam no violão ou na
+                  guitarra elétrica, alguns momentos acompanhados de banda completa outros não, depende do que a música
+                  pedir.
+                </p>
+                <p className="text-sm text-gray-600 mt-4">
+                  Diria que um Indie/Folk/Pop-Rock seria a melhor maneira de descrever o objetivo e identidade do
+                  projeto.
                 </p>
               </div>
 
               <div>
-                <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Visão Artística</h2>
+                <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Filosofia</h2>
                 <p className="text-gray-700 leading-relaxed">
                   Acredita na música como ferramenta de conexão humana, buscando sempre criar obras que ressoem
                   emocionalmente com o público e contribuam para o panorama cultural brasileiro contemporâneo.
@@ -122,25 +123,19 @@ export function BiographyContent() {
             </div>
           </div>
 
-          {/* Current Projects Section */}
+          {/* Vision and Mission Section - Black Box */}
           <div className="bg-black text-white p-12 lg:p-16">
             <div className="max-w-4xl">
-              <h2 className="text-2xl font-thin tracking-wide mb-8">Projetos Atuais</h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-lg font-light mb-4">Novo Álbum</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    Atualmente trabalhando em seu terceiro álbum de estúdio, explorando sonoridades que mesclam
-                    elementos eletrônicos com instrumentação orgânica.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-light mb-4">Colaborações</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    Desenvolvendo parcerias com outros artistas da cena independente brasileira, criando pontes entre
-                    diferentes estilos e gerações musicais.
-                  </p>
-                </div>
+              <h2 className="text-2xl font-thin tracking-wide mb-8">Visão e Missão Artística</h2>
+              <div className="space-y-6">
+                <p className="text-lg font-light leading-relaxed text-gray-100">
+                  A música é um emissor e receptor de emoções, toda mensagem e linha que escrevo é imaginando um dia no
+                  futuro onde não estarei mais no mesmo plano que as minhas filhas mas que através das minhas músicas,
+                  letras e melodias elas possam encontrar respostas e conforto para os seus futuros problemas.
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  E se mais pessoas se identificarem com tudo isso no meio do caminho, porque não?
+                </p>
               </div>
             </div>
           </div>

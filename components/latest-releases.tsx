@@ -49,7 +49,7 @@ export function LatestReleases() {
                 </h2>
               </div>
               <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md">
-                Explore os mais recentes lançamentos de Igor dos Santos, cada obra carregada de emoção e autenticidade.
+                Explore os mais recentes lançamentos de Igor Delfino, cada obra carregada de emoção e autenticidade.
               </p>
               <Link href="/discografia">
                 <Button

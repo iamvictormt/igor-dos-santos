@@ -7,7 +7,7 @@ export function NewsSection() {
     {
       id: 1,
       date: "15 Jan 2024",
-      title: "Igor dos Santos anuncia nova turnê nacional",
+      title: "Igor Delfino anuncia nova turnê nacional",
       excerpt:
         "O artista percorrerá 12 cidades brasileiras com o show 'Reflexões', apresentando seu mais recente trabalho.",
       category: "Turnê",
@@ -25,7 +25,7 @@ export function NewsSection() {
       date: "22 Dez 2023",
       title: "Participação especial no Festival de Inverno",
       excerpt:
-        "Igor dos Santos foi convidado especial do renomado festival, apresentando versões acústicas de seus maiores sucessos.",
+        "Igor Delfino foi convidado especial do renomado festival, apresentando versões acústicas de seus maiores sucessos.",
       category: "Evento",
     },
   ]

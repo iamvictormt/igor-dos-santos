@@ -16,7 +16,7 @@ export function PageTransition({ children }: PageTransitionProps) {
     const scrollToTop = () => {
       const startPosition = window.pageYOffset
       const distance = -startPosition
-      const duration = 800
+      const duration = 400
       let start: number | null = null
 
       const step = (timestamp: number) => {

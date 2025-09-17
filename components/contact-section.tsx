@@ -182,7 +182,7 @@ export function ContactSection() {
                     transition={{ duration: 0.2 }}
                   >
                     <Youtube className="h-5 w-5" />
-                    Igor dos Santos
+                    Igor Delfino
                   </motion.a>
                 </CardContent>
               </Card>

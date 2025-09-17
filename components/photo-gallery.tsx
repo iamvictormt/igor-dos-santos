@@ -11,13 +11,13 @@ export function PhotoGallery() {
     {
       id: 1,
       src: '/tocando-preto-branco.jfif',
-      alt: 'Igor dos Santos em performance ao vivo',
+      alt: 'Igor Delfino em performance ao vivo',
       span: 'col-span-2 row-span-2',
     },
     {
       id: 2,
       src: '/segurando-instrumento.jpg',
-      alt: 'Retrato artístico de Igor dos Santos',
+      alt: 'Retrato artístico de Igor Delfino',
       span: 'col-span-1 row-span-1',
     },
     {
@@ -35,7 +35,7 @@ export function PhotoGallery() {
     {
       id: 5,
       src: '/tocando-colorido.jpeg',
-      alt: 'Igor dos Santos no estúdio',
+      alt: 'Igor Delfino no estúdio',
       span: 'col-span-2 row-span-1',
     },
   ];

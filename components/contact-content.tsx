@@ -51,11 +51,11 @@ export function ContactContent() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700">YouTube</span>
-                    <span className="text-sm text-gray-500">Igor dos Santos</span>
+                    <span className="text-sm text-gray-500">Igor Delfino</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700">Spotify</span>
-                    <span className="text-sm text-gray-500">Igor dos Santos</span>
+                    <span className="text-sm text-gray-500">Igor Delfino</span>
                   </div>
                 </div>
               </div>

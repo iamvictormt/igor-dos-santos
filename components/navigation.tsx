@@ -75,15 +75,9 @@ export function Navigation() {
                   shouldUseDarkTheme ? "text-black" : "text-white"
                 }`}
               >
-                Igor dos Santos
+                OHomemSó
               </div>
-              <div
-                className={`text-[10px] font-handwriting tracking-[0.3em] uppercase mt-1 transition-all duration-300 ${
-                  shouldUseDarkTheme ? "text-gray-600" : "text-gray-200"
-                }`}
-              >
-                Músico
-              </div>
+
             </motion.div>
           </Link>
 

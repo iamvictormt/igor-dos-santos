@@ -37,7 +37,7 @@ export function BiographySection() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                Igor dos Santos é um músico brasileiro que iniciou sua carreira artística ainda jovem, desenvolvendo um
+                Igor Delfino é um músico brasileiro que iniciou sua carreira artística ainda jovem, desenvolvendo um
                 estilo único que mescla influências da música popular brasileira com elementos contemporâneos.
               </motion.p>
               <motion.p
@@ -70,7 +70,7 @@ export function BiographySection() {
             <Card className="overflow-hidden">
               <motion.img
                 src="/placeholder-k17qs.png"
-                alt="Igor dos Santos"
+                alt="Igor Delfino"
                 className="w-full h-auto object-cover"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}

@@ -16,14 +16,14 @@ const albums = [
     type: "EP",
     cover: "/bem-vindo-sua-vida-cover.jpg",
     description:
-      "Primeiro lançamento do OHomemSó, reunindo composições introspectivas e pessoais, já mostrando o direcionamento musical e conceitual do projeto.",
+      "Primeiro lançamento do Igor Delfino, reunindo composições introspectivas e pessoais, já mostrando o direcionamento musical e conceitual do projeto.",
     duration: "16:30",
     producer: "Raphael Mancini / Gustavo 'Big' Simão / Marcelo Trovão",
     studio: "Lab Mancini / Choque DB / Hangout",
     genre: "MPB/Indie",
     releaseDate: "24/05/2018",
     credits:
-      "Voz, Guitarras e Violão: Igor Delfino | Percussão: Márcio Ricardo, Gustavo Simão | Teclado: Tutu Oliveira | Vocais: Márcio Ricardo, Teco Martins",
+      "Voz, Guitarras e Violão: Igor Delfino | Percussão: Márcio Ricardo, Gustavo Simão | Teclado: Tutu Oliveira | Vocais: Márcio Ricardo, Teco Martins | Arte da Capa: Igor Delfino",
     tracklist: [
       {
         name: "Bem Vindo a Sua Vida",
@@ -58,13 +58,13 @@ const albums = [
     type: "Single",
     cover: "/talvez-nunca-aqui-cover.jpg",
     description:
-      "Single experimental que resgata uma composição antiga, dando nova roupagem e mostrando a identidade independente e sem rótulos do OHomemSó.",
+      "Single experimental que resgata uma composição antiga, dando nova roupagem e mostrando a identidade independente e sem rótulos do Igor Delfino.",
     duration: "3:42",
     producer: "Gustavo 'Big' Simão",
     studio: "Estúdio Choque DB",
     genre: "Experimental/Indie",
     releaseDate: "07/01/2019",
-    credits: "Voz e Programação de Cordas: Igor Delfino | Guitarras e Vocais: Carlos Henrique 'CH4'",
+    credits: "Voz e Programação de Cordas: Igor Delfino | Guitarras e Vocais: Carlos Henrique 'CH4' | Arte da Capa: Igor Delfino",
     tracklist: [
       {
         name: "Talvez Nunca Aqui",
@@ -86,13 +86,13 @@ const albums = [
     type: "EP",
     cover: "/gratovolte-cover.jpg",
     description:
-      "Primeiro EP totalmente composto para o OHomemSó, explorando banda completa e temas como saúde mental, relacionamentos e saudades.",
+      "Primeiro EP totalmente composto para o Igor Delfino, explorando banda completa e temas como saúde mental, relacionamentos e saudades.",
     duration: "15:48",
     producer: "Gustavo 'Big' Simão",
     studio: "Estúdio Choque DB",
     genre: "Indie Rock/MPB",
     releaseDate: "05/03/2020",
-    credits: "Voz, Guitarras, Violão e Baixo: Igor Delfino | Bateria e Vocais: Gustavo Simão",
+    credits: "Voz, Guitarras, Violão e Baixo: Igor Delfino | Bateria e Vocais: Gustavo Simão | Arte da Capa: Igor Delfino",
     tracklist: [
       {
         name: "Longe de Algum Lugar",
@@ -132,7 +132,7 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Acústico/Folk",
     releaseDate: "09/09/2020",
-    credits: "Voz, Guitarras e Violão: Igor Delfino | Percussão e Programação de Cordas: Gustavo Simão",
+    credits: "Voz, Guitarras e Violão: Igor Delfino | Percussão e Programação de Cordas: Gustavo Simão | Arte da Capa: Igor Delfino / Xaver Xylophon",
     tracklist: [
       {
         name: "Avivar (Acústica)",
@@ -159,7 +159,7 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Folk/MPB",
     releaseDate: "12/11/2020",
-    credits: "Voz, Guitarras e Violão: Igor Delfino | Programação de Acordeão: Gustavo Simão",
+    credits: "Voz, Guitarras e Violão: Igor Delfino | Programação de Acordeão: Gustavo Simão | Arte da Capa: Thayná Marinho",
     tracklist: [
       {
         name: "Início de Outono",
@@ -186,7 +186,7 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Rock/Tributo",
     releaseDate: "28/10/2021",
-    credits: "Voz, Guitarras e Violão: Igor Delfino | Vocais: Gustavo Simão",
+    credits: "Voz, Guitarras e Violão: Igor Delfino | Vocais: Gustavo Simão | Arte da Capa: Igor Delfino",
     tracklist: [
       {
         name: "Amanhã é um Novo Dia",
@@ -213,7 +213,7 @@ const albums = [
     studio: "MongaBeach Home Studio",
     genre: "Lo-Fi/Indie",
     releaseDate: "16/05/2022",
-    credits: "Voz, Guitarras e Violão: Igor Delfino | Voz: Janaina França",
+    credits: "Voz, Guitarras e Violão: Igor Delfino | Voz: Janaina França | Arte da Capa: Janaina França",
     tracklist: [
       {
         name: "Trinta e Um Feat. Janaina França",
@@ -241,7 +241,7 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Rock/Tributo",
     releaseDate: "31/12/2024",
-    credits: "Voz, Guitarras, Violão e Baixo: Igor Delfino | Vocais, Teclados e Bateria: Gustavo Simão",
+    credits: "Voz, Guitarras, Violão e Baixo: Igor Delfino | Vocais, Teclados e Bateria: Gustavo Simão | Arte da Capa: Furukawa Drawings",
     tracklist: [
       {
         name: "Broken Dreams & Hopes",
@@ -268,7 +268,7 @@ const albums = [
     studio: "Estúdio Choque DB",
     genre: "Minimalista/Indie",
     releaseDate: "06/01/2025",
-    credits: "Voz, Violão e Baixo: Igor Delfino",
+    credits: "Voz, Violão e Baixo: Igor Delfino | Arte da Capa: Igor Delfino",
     tracklist: [
       { name: "Voar", duration: "3:38", audioUrl: "/audio-samples/sample-track-1.mp3", composers: "Igor Delfino" },
     ],
@@ -291,7 +291,7 @@ const albums = [
     genre: "Indie Rock/Experimental",
     releaseDate: "17/04/2025",
     credits:
-      "Voz e Guitarra: Igor Delfino | Baixo: Ennyo Viegas | Bateria: Márcio Ricardo | Vocais e Guitarra Adicional: Gustavo Simão | Piano: Bruno Piazza",
+      "Voz e Guitarra: Igor Delfino | Baixo: Ennyo Viegas | Bateria: Márcio Ricardo | Vocais e Guitarra Adicional: Gustavo Simão | Piano: Bruno Piazza | Arte da Capa: Thayna Marinho",
     tracklist: [
       {
         name: "Grito Mudo",
@@ -324,7 +324,7 @@ const albums = [
     studio: "Estúdio 438",
     genre: "Acústico/Ao Vivo",
     releaseDate: "29/05/2025",
-    credits: "Voz e Guitarra: Igor Delfino | Violino: Silvia Cruz",
+    credits: "Voz e Guitarra: Igor Delfino | Violino: Silvia Cruz | Arte da Capa: Gui Silva",
     tracklist: [
       {
         name: "Tudo o Que Eu Queria Te Dizer (Ao Vivo)",
@@ -639,7 +639,7 @@ export function DiscographyContent() {
                             <div className="flex items-start">
                               <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
-                                <span className="text-muted-foreground">Produtor:</span>
+                                <span className="text-muted-foreground">Eng. de Som/Mix/Master:</span>
                                 <span className="ml-2 font-medium">{selectedAlbum.producer}</span>
                               </div>
                             </div>
