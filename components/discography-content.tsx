@@ -424,12 +424,7 @@ function MinimalAudioPlayer({
           </div>
         </div>
 
-        <Button
-          onClick={onPlayPause}
-          size="sm"
-          variant="ghost"
-          className="rounded-full w-8 h-8 p-0 ml-3"
-        >
+        <Button onClick={onPlayPause} size="sm" variant="ghost" className="rounded-full w-8 h-8 p-0 ml-3">
           {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
         </Button>
       </div>
@@ -634,43 +629,59 @@ export function DiscographyContent() {
                         )}
                       </div>
 
-                      <div className="space-y-4 sm:space-y-6">
-                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                      <div className="space-y-6 sm:space-y-8">
+                        <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
                           {selectedAlbum.description}
                         </p>
 
-                        <div className="bg-muted/50 rounded-lg p-3 sm:p-4">
-                          <h4 className="font-bold mb-2 sm:mb-3 flex items-center text-sm sm:text-base">
-                            <Disc className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 sm:p-6">
+                          <h4 className="font-bold mb-3 sm:mb-4 flex items-center text-base sm:text-lg">
+                            <Disc className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                             Ficha Técnica
                           </h4>
-                          <div className="space-y-2 text-xs sm:text-sm">
-                            <div className="flex items-start gap-2">
-                              <Calendar className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-0.5" />
+                          <div className="space-y-3 text-sm sm:text-base">
+                            <div className="flex items-start">
+                              <Calendar className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Lançamento:</span>
-                                <span className="ml-1 font-medium">{selectedAlbum.releaseDate}</span>
+                                <span className="ml-2 font-medium">{selectedAlbum.releaseDate}</span>
                               </div>
                             </div>
-                            <div className="flex items-start gap-2">
-                              <Clock className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-0.5" />
+                            <div className="flex items-start">
+                              <Clock className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Duração:</span>
-                                <span className="ml-1 font-medium">{selectedAlbum.duration}</span>
+                                <span className="ml-2 font-medium">{selectedAlbum.duration}</span>
                               </div>
                             </div>
-                            <div className="flex items-start gap-2">
-                              <Users className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-0.5" />
+                            <div className="flex items-start">
+                              <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
-                                <span className="text-muted-foreground">Produção:</span>
-                                <span className="ml-1 font-medium">{selectedAlbum.producer}</span>
+                                <span className="text-muted-foreground">Eng. de Som/Mix/Master:</span>
+                                <span className="ml-2 font-medium">{selectedAlbum.producer}</span>
                               </div>
                             </div>
-                            <div className="flex items-start gap-2">
-                              <Music className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-0.5" />
+                            <div className="flex items-start">
+                              <Music className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Gênero:</span>
-                                <span className="ml-1 font-medium">{selectedAlbum.genre}</span>
+                                <span className="ml-2 font-medium">{selectedAlbum.genre}</span>
+                              </div>
+                            </div>
+                            <div className="flex items-start">
+                              <Disc className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                              <div>
+                                <span className="text-muted-foreground">Estúdio:</span>
+                                <span className="ml-2 font-medium">{selectedAlbum.studio}</span>
+                              </div>
+                            </div>
+                            <div className="flex items-start">
+                              <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                              <div>
+                                <span className="text-muted-foreground">Créditos:</span>
+                                <span className="ml-2 font-medium text-sm leading-relaxed">
+                                  {selectedAlbum.credits}
+                                </span>
                               </div>
                             </div>
                           </div>
