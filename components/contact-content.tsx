@@ -2,7 +2,7 @@ import { Instagram, Youtube, Music } from 'lucide-react';
 
 export function ContactContent() {
   return (
-    <section className="pt-32 pb-24 bg-gray-50">
+    <section className="pt-32 pb-24 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-8 lg:px-12">
         <div className="mb-20">
           <div className="mb-8">
