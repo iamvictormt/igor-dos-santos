@@ -55,7 +55,7 @@ export function LatestReleases() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-2 border-black text-black hover:bg-black hover:text-white transition-all duration-300 px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-medium bg-transparent"
+                  className="px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-medium bg-black hover:bg-black/80 text-white hover:text-white"
                 >
                   Ver Discografia Completa
                 </Button>

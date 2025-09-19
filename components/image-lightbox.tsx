@@ -73,7 +73,7 @@ export function ImageLightbox({ images, isOpen, currentIndex, onClose, onNext, o
             variant="ghost"
             size="icon"
             onClick={onPrevious}
-            className="absolute left-6 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 w-12 h-12"
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 w-12 h-12 hover:text-white"
           >
             <ChevronLeft className="w-6 h-6" />
           </Button>
@@ -81,14 +81,14 @@ export function ImageLightbox({ images, isOpen, currentIndex, onClose, onNext, o
             variant="ghost"
             size="icon"
             onClick={onNext}
-            className="absolute right-6 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 w-12 h-12"
+            className="absolute right-6 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 w-12 h-12 hover:text-white"
           >
             <ChevronRight className="w-6 h-6" />
           </Button>
         </>
       )}
 
-      <div className="flex items-center justify-center w-full h-full p-6 cursor-pointer" onClick={onClose}>
+      <div className="flex items-center justify-center w-full h-full p-6" onClick={onClose}>
         <div className="relative max-w-7xl max-h-full w-full h-full" onClick={(e) => e.stopPropagation()}>
           <Image
             src={currentImage.src || "/placeholder.svg"}

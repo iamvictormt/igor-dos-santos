@@ -576,9 +576,9 @@ export function DiscographyContent() {
         <div className="mb-8 flex justify-end">
           <Button
             variant="outline"
-            size="sm"
+            size="lg"
             onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 bg-black hover:bg-black/80 text-white hover:text-white"
           >
             <ArrowUpDown className="h-4 w-4" />
             {sortOrder === 'newest' ? 'Mais Recentes' : 'Mais Antigos'}

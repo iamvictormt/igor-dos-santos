@@ -50,7 +50,7 @@ export function UpcomingShows() {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-black text-black hover:bg-black hover:text-white transition-all duration-300 px-8 py-6 text-base font-medium bg-transparent"
+              className="transition-all duration-300 px-8 py-6 text-base font-medium bg-black hover:bg-black/80 text-white hover:text-white"
             >
               Ver Agenda Completa
             </Button>
