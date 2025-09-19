@@ -74,13 +74,18 @@ export function AgendaContent() {
           </p>
         </div>
 
-        {/* Shows list */}
-        <div className="space-y-6">
+          {/* Call to Action Section */}
+          <div className="bg-black text-white p-12 lg:p-16">
+            <div className="max-w-4xl">
+              <h2 className="text-2xl font-thin tracking-wide mb-8">Em 2026, aguardem...</h2>
+            </div>
+          </div>
+
+        {/* <div className="space-y-6">
           {shows.map((show) => (
             <Card key={show.id} className="border-0 bg-gray-50 hover:bg-gray-100 transition-all duration-300">
               <div className="p-8">
                 <div className="grid md:grid-cols-12 gap-8 items-center">
-                  {/* Date */}
                   <div className="md:col-span-2 text-center">
                     <div className="space-y-1">
                       <div className="text-3xl font-light text-black">{show.date}</div>
@@ -89,7 +94,6 @@ export function AgendaContent() {
                     </div>
                   </div>
 
-                  {/* Event details */}
                   <div className="md:col-span-7 space-y-3">
                     <h3 className="text-xl font-light tracking-wide text-black">{show.title}</h3>
                     <div className="space-y-2 text-sm text-gray-600">
@@ -104,7 +108,6 @@ export function AgendaContent() {
                     </div>
                   </div>
 
-                  {/* Ticket button */}
                   <div className="md:col-span-3 flex justify-end">
                     {show.status === 'available' ? (
                       <Button
@@ -129,11 +132,11 @@ export function AgendaContent() {
               </div>
             </Card>
           ))}
-        </div>
+        </div> */}
 
         {/* Contact for bookings */}
-        <div className="mt-20 text-center">
-          <div className="border-t border-gray-200 pt-12">
+        {/* <div className="mt-20 text-center">
+          <div className="pt-12">
             <p className="text-sm text-gray-600 font-light mb-6">Para contratações e informações sobre shows</p>
             <Button
               variant="outline"
@@ -143,7 +146,7 @@ export function AgendaContent() {
               Entrar em Contato
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
