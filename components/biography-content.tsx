@@ -26,7 +26,7 @@ export function BiographyContent() {
                   <img
                     src="/retrato.jpg"
                     alt="Igor dos Santos"
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-full h-full border border-gray-200 -z-10"></div>
@@ -61,12 +61,12 @@ export function BiographyContent() {
           <div className="grid lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-12 space-y-8">
               <div>
-                <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Sobre o Igor Delfino</h2>
+                <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Sobre OHomemSó</h2>
                 <div className="space-y-6 text-gray-700 leading-relaxed">
                   <p>
                     Em 2019 dei inicio a um trabalho 100% próprio com o nome artístico dado pela minha filha Alice que
                     após ouvir de mim que eu já não tocava com ninguém e não tinha banda nenhuma, ela me intitulou como
-                    "Igor Delfino".
+                    "OHomemSó".
                   </p>
                   <p>
                     Com o inicio do projeto se misturando com a pandemia, restou compor e aprimorar a identidade e o

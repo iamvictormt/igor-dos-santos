@@ -28,26 +28,46 @@ const albums = [
         duration: '4:15',
         audioUrl: '/audio-samples/Bem Vindo a Sua Vida.flac',
         composers: 'Igor Delfino / Márcio Ricardo',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/5nL0QWI8lyNEgAs09SI25p?si=5ff21f2f7fb44835',
+          apple: 'https://music.apple.com/br/song/bem-vindo-a-sua-vida/1390862121',
+          youtube: 'https://youtu.be/VKGK59I-bps?si=Q64uZypSdsTYyT7W',
+        },
       },
       {
         name: 'Auto Intitulada Feat. Teco Martins',
         duration: '3:45',
         audioUrl: '/audio-samples/Auto Intitulada.flac',
         composers: 'Igor Delfino / Teco Martins',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/6VDHXAHeSBSP3Pe0jPW68i?si=01e933213d0f4160',
+          apple: 'https://music.apple.com/br/song/auto-intitulada-feat-teco-martins/1390862123',
+          youtube: 'https://youtu.be/xMrRriRhO_U?si=9JxUSefMiHgBWV1O',
+        },
       },
-      { name: 'A.C.A.S.O', duration: '4:20', audioUrl: '/audio-samples/Acaso.flac', composers: 'Igor Delfino' },
+      {
+        name: 'A.C.A.S.O',
+        duration: '4:20',
+        audioUrl: '/audio-samples/Acaso.flac',
+        composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/2ePJTnK6I06IQX5Fv9hs40?si=4703ef6bd5d94d73',
+          apple: 'https://music.apple.com/br/song/acaso/1390862124',
+          youtube: 'https://youtu.be/4sZgljD4Oms?si=v8W30qHO5bzuC6TP',
+        },
+      },
       {
         name: 'O Herói Não Resolvido',
         duration: '4:10',
         audioUrl: '/audio-samples/O Herói Não Resolvido.flac',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/4tFlz4gwnC3137sIpbNGRj?si=997c483791bb458b',
+          apple: 'https://music.apple.com/br/song/o-her%C3%B4i-n%C3%A3o-resolvido/1390862125',
+          youtube: 'https://youtu.be/1cmROgqxchg?si=elyVISLBMVt7i87j',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/album/bemvindo',
-      apple: '#',
-      youtube: '#',
-    },
   },
   {
     id: 2,
@@ -70,13 +90,13 @@ const albums = [
         duration: '3:42',
         audioUrl: '/audio-samples/Talvez Nunca Aqui.flac',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/4YnHeq5P0SM0SmE8AcQHly?si=0af02277c29a4ca2',
+          apple: 'https://music.apple.com/br/song/talvez-nunca-aqui/1448738983',
+          youtube: 'https://youtu.be/CbQymIN_0Vw?si=mvnrrNNeaLLQVNJT',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/track/talveznunca',
-      apple: '#',
-      youtube: '#',
-    },
   },
   {
     id: 3,
@@ -99,31 +119,46 @@ const albums = [
         duration: '4:12',
         audioUrl: '/audio-samples/Longe de Algum Lugar.flac',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/7fALoQe5CcaU1Fpore1e73?si=2594fd6d02cf4ebb',
+          apple: 'https://music.apple.com/br/song/longe-de-algum-lugar/1500159656',
+          youtube: 'https://youtu.be/rm91iYvTjpc?si=gF2bkE2FcvRQrWDA',
+        },
       },
       {
         name: 'Avivar',
         duration: '3:55',
         audioUrl: '/audio-samples/Avivar Gratovolte.flac',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/6ZR6qPFA8iLGKNlP6C5Hbu?si=da1a46767a97432a',
+          apple: 'https://music.apple.com/br/song/avivar/1500159657',
+          youtube: 'https://youtu.be/ImYsxY7tbSM?si=Btd7a16EgEb6Ap1z',
+        },
       },
       {
         name: 'Aonde Vai o Tempo?',
         duration: '3:48',
         audioUrl: '/audio-samples/Aonde Vai o Tempo.flac',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/0ULIOcUoT223oNcprHCQOi?si=21be5f69126847e2',
+          apple: 'https://music.apple.com/br/song/aonde-vai-o-tempo/1500159658',
+          youtube: 'https://youtu.be/G4dZtnoxkLE?si=uNUrs6eHrOj1B_gA',
+        },
       },
       {
         name: 'Tudo o Que Eu Queria Te Dizer',
         duration: '3:53',
         audioUrl: '/audio-samples/Tudo o Que Eu Queria Te Dizer.flac',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/3NQr9o5JnNYvFlDqouAsV0?si=22fe0dde33ab4e83',
+          apple: 'https://music.apple.com/br/song/tudo-o-que-eu-queria-te-dizer/1500159659',
+          youtube: 'https://youtu.be/RPsuMkZ-ho0?si=rF45h1hMjRQhUTqJ',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/album/gratovolte',
-      apple: '#',
-      youtube: '#',
-    },
   },
   {
     id: 4,
@@ -145,13 +180,13 @@ const albums = [
         duration: '3:28',
         audioUrl: '/audio-samples/Avivar.flac',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/79iZvFH7v0U3Ihdn1whTwQ?si=a5ce0f50e2744e84',
+          apple: 'https://music.apple.com/br/song/avivar/1532735884',
+          youtube: 'https://youtu.be/ImYsxY7tbSM?si=Btd7a16EgEb6Ap1z',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/track/avivaracustica',
-      apple: '#',
-      youtube: '#',
-    },
   },
   {
     id: 5,
@@ -173,13 +208,13 @@ const albums = [
         duration: '4:05',
         audioUrl: '/audio-samples/Inicio de Outono.flac',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/4kOKVpLprtQFQNYEJcVyaS?si=2d153ec52c3b4518',
+          apple: 'https://music.apple.com/br/song/inicio-de-outono/1540381749',
+          youtube: 'https://youtu.be/Y6jRrusxY3E?si=Jp_HyyvsJ-SNOMFj',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/track/iniciooutono',
-      apple: '#',
-      youtube: '#',
-    },
   },
   {
     id: 6,
@@ -200,13 +235,13 @@ const albums = [
         duration: '3:52',
         audioUrl: '/audio-samples/Amanhã É um Novo Dia.flac',
         composers: 'Antônio Manuel de Medeiros Junior / Oswaldo Vecchione Junior',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/1SPwhQM2CEfm7oBAEckx5f?si=b8159446dc3d44b6',
+          apple: 'https://music.apple.com/br/song/amanh%C3%A3-%C3%A9-um-novo-dia-cover/1593038041',
+          youtube: 'https://youtu.be/nrLCteUhKnk?si=gVkfiWN00K7MIOOZ',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/track/amanhanovodia',
-      apple: '#',
-      youtube: '#',
-    },
   },
   {
     id: 7,
@@ -227,13 +262,13 @@ const albums = [
         duration: '3:15',
         audioUrl: '/audio-samples/Trinta e Um.flac',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/3fICJtukGApzaSKo7KJp2q?si=483d074544194f89',
+          apple: 'https://music.apple.com/br/song/trinta-e-um-feat-janaina-fran%C3%A7a/1687177294',
+          youtube: 'https://youtu.be/1YJnQ41PcVE?si=L_cvFm4cuOaTGx06',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/track/trintaum',
-      apple: '#',
-      youtube: '#',
-    },
   },
   {
     id: 8,
@@ -256,13 +291,13 @@ const albums = [
         duration: '4:22',
         audioUrl: '/audio-samples/BROKEN DREAMS MASTER 02 MP3.mp3',
         composers: 'Matheus Krempel',
+        streamingLinks: {
+          spotify: '#',
+          apple: '#',
+          youtube: 'https://youtu.be/pUOboWnkxgI?si=q4OwWHfogyNJo-6J',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/track/0Rx1hjRaaMfmNi6yYmyMBs',
-      apple: '#',
-      youtube: '#',
-    },
   },
   {
     id: 9,
@@ -277,12 +312,19 @@ const albums = [
     genre: 'Minimalista/Indie',
     releaseDate: '06/01/2025',
     credits: 'Voz, Violão e Baixo: Igor Delfino | Arte da Capa: Igor Delfino',
-    tracklist: [{ name: 'Voar', duration: '3:38', audioUrl: '/audio-samples/Voar.mp3', composers: 'Igor Delfino' }],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/track/voar',
-      apple: '#',
-      youtube: '#',
-    },
+    tracklist: [
+      {
+        name: 'Voar',
+        duration: '3:38',
+        audioUrl: '/audio-samples/Voar.mp3',
+        composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/05R8En6Qioewa5Hq3U8hta?si=1a03474c3b784277',
+          apple: 'https://music.apple.com/br/song/voar/1790093749',
+          youtube: 'https://youtu.be/YD1hsoXfhM0?si=NonVvJ7fF15aNM31',
+        },
+      },
+    ],
   },
   {
     id: 10,
@@ -304,19 +346,24 @@ const albums = [
         duration: '3:52',
         audioUrl: '/audio-samples/Grito Mudo.mp3',
         composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/0otgZMiII8QImebUdU29gM?si=0c05bebfb7844685',
+          apple: 'https://music.apple.com/br/song/grito-mudo/1808352231',
+          youtube: 'https://youtu.be/1L54FO3z8-s?si=JU1BSqG0rrYYcxuL',
+        },
       },
       {
         name: 'Silêncio Ensurdecedor',
         duration: '3:53',
         audioUrl: '/audio-samples/Silencio Ensurdecedor.mp3',
         composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/5ixe11RDnsD01eFjkiO6Vh?si=58b9999deffa4b8f',
+          apple: 'https://music.apple.com/br/song/sil%C3%AAncio-ensudecedor/1808352232',
+          youtube: 'https://youtu.be/cXOcWDQU1H8?si=NxUjR66Ib0o21hBA',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/album/gritomudo',
-      apple: '#',
-      youtube: '#',
-    },
   },
   {
     id: 11,
@@ -337,13 +384,13 @@ const albums = [
         duration: '4:18',
         audioUrl: '/audio-samples/TQEQTD - VIVO20.wav',
         composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: 'https://open.spotify.com/intl-pt/track/1fDJc4wJ7EvP2HGuMR1uXo?si=47da613e511b4c9b',
+          apple: 'https://music.apple.com/br/song/tudo-o-que-eu-queria-te-dizer-ao-vivo/1817956731',
+          youtube: 'https://youtu.be/0AwFbg8XMxY?si=0nkTz13aXfBX2u-l',
+        },
       },
     ],
-    streamingLinks: {
-      spotify: 'https://open.spotify.com/track/tudoquequeria',
-      apple: '#',
-      youtube: '#',
-    },
   },
 ];
 
@@ -524,10 +571,6 @@ export function DiscographyContent() {
               <span className="font-normal">Trabalhos</span>
             </h1>
           </div>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
-            Uma jornada sonora através de composições que exploram as nuances da experiência humana, traduzidas em
-            melodias e harmonias contemporâneas.
-          </p>
         </div>
 
         <div className="mb-8 flex justify-end">
@@ -555,7 +598,7 @@ export function DiscographyContent() {
                 </div>
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="w-16 h-16 border border-white rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 border border-white rounded-full flex items-center justify-center cursor-pointer">
                       <Play className="w-6 h-6 text-white ml-1" />
                     </div>
                   </div>
@@ -726,24 +769,61 @@ export function DiscographyContent() {
                         <div>
                           <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">Ouça em:</h4>
                           <div className="flex flex-col gap-2">
-                            <Button size="sm" variant="outline" asChild className="w-full justify-start bg-transparent">
-                              <a href={selectedAlbum.streamingLinks.spotify} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-3 w-3" />
-                                Spotify
-                              </a>
-                            </Button>
-                            <Button size="sm" variant="outline" asChild className="w-full justify-start bg-transparent">
-                              <a href={selectedAlbum.streamingLinks.apple} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-3 w-3" />
-                                Apple Music
-                              </a>
-                            </Button>
-                            <Button size="sm" variant="outline" asChild className="w-full justify-start bg-transparent">
-                              <a href={selectedAlbum.streamingLinks.youtube} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-3 w-3" />
-                                YouTube
-                              </a>
-                            </Button>
+                            {selectedAlbum.tracklist[currentTrack || 0]?.streamingLinks && (
+                              <>
+                                {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify !== '#' && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    asChild
+                                    className="w-full justify-start bg-transparent"
+                                  >
+                                    <a
+                                      href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <ExternalLink className="mr-2 h-3 w-3" />
+                                      Spotify
+                                    </a>
+                                  </Button>
+                                )}
+                                {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple !== '#' && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    asChild
+                                    className="w-full justify-start bg-transparent"
+                                  >
+                                    <a
+                                      href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <ExternalLink className="mr-2 h-3 w-3" />
+                                      Apple Music
+                                    </a>
+                                  </Button>
+                                )}
+                                {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube !== '#' && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    asChild
+                                    className="w-full justify-start bg-transparent"
+                                  >
+                                    <a
+                                      href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <ExternalLink className="mr-2 h-3 w-3" />
+                                      YouTube
+                                    </a>
+                                  </Button>
+                                )}
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
