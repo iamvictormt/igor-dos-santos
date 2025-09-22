@@ -1,38 +1,40 @@
-"use client"
+'use client';
 
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Calendar } from 'lucide-react';
 
 export function UpcomingShows() {
   const shows = [
     {
       id: 1,
-      date: "15",
-      month: "FEV",
-      city: "São Paulo",
-      venue: "Teatro Municipal",
-      status: "Ingressos Disponíveis",
-      ticketUrl: "#",
+      date: '15',
+      month: 'FEV',
+      city: 'São Paulo',
+      venue: 'Teatro Municipal',
+      status: 'Ingressos Disponíveis',
+      ticketUrl: '#',
     },
     {
       id: 2,
-      date: "22",
-      month: "FEV",
-      city: "Rio de Janeiro",
-      venue: "Cidade das Artes",
-      status: "Últimos Ingressos",
-      ticketUrl: "#",
+      date: '22',
+      month: 'FEV',
+      city: 'Rio de Janeiro',
+      venue: 'Cidade das Artes',
+      status: 'Últimos Ingressos',
+      ticketUrl: '#',
     },
     {
       id: 3,
-      date: "08",
-      month: "MAR",
-      city: "Belo Horizonte",
-      venue: "Palácio das Artes",
-      status: "Em Breve",
-      ticketUrl: "#",
+      date: '08',
+      month: 'MAR',
+      city: 'Belo Horizonte',
+      venue: 'Palácio das Artes',
+      status: 'Em Breve',
+      ticketUrl: '#',
     },
-  ]
+  ];
 
   return (
     <section className="py-32 px-6 bg-gray-50">
@@ -47,17 +49,26 @@ export function UpcomingShows() {
             </h2>
           </div>
           <Link href="/agenda">
-            <Button
-              variant="outline"
-              size="lg"
-              className="transition-all duration-300 px-8 py-6 text-base font-medium bg-black hover:bg-black/80 text-white hover:text-white"
-            >
-              Ver Agenda Completa
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                variant="outline"
+                size="lg"
+                className="bg-black hover:bg-black/80 text-white hover:text-white font-light tracking-[0.1em] px-12 py-4 text-xs uppercase border-0 shadow-2xl transition-all duration-300"
+              >
+                <Calendar className="mr-3 h-4 w-4" />
+                Ver Agenda Completa
+              </Button>
+            </motion.div>
           </Link>
         </div>
 
-        <div className="space-y-6">
+        <div className="bg-black text-white p-12 lg:p-16">
+          <div className="max-w-4xl">
+            <h2 className="text-2xl font-thin tracking-wide mb-8">Em 2026, aguardem...</h2>
+          </div>
+        </div>
+
+        {/*  <div className="space-y-6">
           {shows.map((show, index) => (
             <div
               key={show.id}
@@ -100,8 +111,8 @@ export function UpcomingShows() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
-  )
+  );
 }

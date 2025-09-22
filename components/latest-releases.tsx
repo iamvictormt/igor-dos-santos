@@ -3,6 +3,8 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { Disc } from 'lucide-react';
 
 export function LatestReleases() {
   const releases = [
@@ -12,8 +14,7 @@ export function LatestReleases() {
       type: 'Double',
       year: '2025.2',
       image: '/grito-mudo-cover.jpeg',
-      description:
-        'Duas versões de uma mesma dor que mergulham fundo na experiência da ansiedade em suas formas mais intensas e silenciosas.',
+      description: 'Duo de canções que exploram a dor da ansiedade em suas formas mais intensas e silenciosas.',
     },
     {
       id: 2,
@@ -21,16 +22,15 @@ export function LatestReleases() {
       type: 'Single',
       year: '2025.3',
       image: '/tudo-que-queria-cover.png',
-      description:
-        'Releitura de uma canção de 20 anos atrás, celebrando uma história de amor que se transformou em família.',
+      description: 'Releitura em comemoração aos 20 anos da canção escrita como declaração de amor.',
     },
     {
       id: 3,
-      title: 'Broken Dreams and Hopes',
+      title: 'Voar',
       type: 'Single',
-      year: '2024',
-      image: '/broken-dreams-cover.jpg',
-      description: "Releitura completa para comemoração de 10 anos do álbum 'All About Love' da banda The Bombers.",
+      year: '2025',
+      image: '/voar-cover.jpg',
+      description: 'Marca a retomada do projeto com uma direção mais minimalista e intimista.',
     },
   ];
 
@@ -39,7 +39,7 @@ export function LatestReleases() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-16 items-start lg:items-center">
           <div className="w-full lg:col-span-5">
-            <div className="space-y-6 md:space-y-8">
+            <div className="space-y-6 md:space-y-8 text-center md:text-left">
               <div>
                 <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Lançamentos</p>
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
@@ -48,17 +48,17 @@ export function LatestReleases() {
                   <span className="font-normal">Trabalhos</span>
                 </h2>
               </div>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md">
-                Explore os mais recentes lançamentos de Igor Delfino, cada obra carregada de emoção e autenticidade.
-              </p>
               <Link href="/discografia">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-medium bg-black hover:bg-black/80 text-white hover:text-white"
-                >
-                  Ver Discografia Completa
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="bg-black hover:bg-black/80 text-white hover:text-white font-light tracking-[0.1em] px-12 py-4 text-xs uppercase border-0 shadow-2xl transition-all duration-300"
+                  >
+                    <Disc className="mr-3 h-4 w-4" />
+                    Ver Discografia Completa
+                  </Button>
+                </motion.div>
               </Link>
             </div>
           </div>

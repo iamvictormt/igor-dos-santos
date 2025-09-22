@@ -574,15 +574,17 @@ export function DiscographyContent() {
         </div>
 
         <div className="mb-8 flex justify-end">
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
-            className="flex items-center gap-2 bg-black hover:bg-black/80 text-white hover:text-white"
-          >
-            <ArrowUpDown className="h-4 w-4" />
-            {sortOrder === 'newest' ? 'Mais Recentes' : 'Mais Antigos'}
-          </Button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
+              className="flex items-center gap-2 bg-black hover:bg-black/80 text-white hover:text-white font-light tracking-[0.1em] px-12 py-4 text-xs uppercase border-0 shadow-2xl transition-all duration-300"
+            >
+              <ArrowUpDown className="mr-3 h-4 w-4" />
+              {sortOrder === 'newest' ? 'Mais Recentes' : 'Mais Antigos'}
+            </Button>
+          </motion.div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
