@@ -23,11 +23,7 @@ export function BiographyContent() {
             <div className="lg:col-span-5">
               <div className="relative">
                 <div className="aspect-[4/6] bg-gray-100 overflow-hidden">
-                  <img
-                    src="/retrato.jpg"
-                    alt="Igor dos Santos"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src="/retrato.jpg" alt="Igor dos Santos" className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-full h-full border border-gray-200 -z-10"></div>
               </div>
@@ -42,12 +38,12 @@ export function BiographyContent() {
                     iniciou cedo, influenciado pelos pais que sempre foram entusiastas e que conseguiam ter na coleção
                     de vinil, Roberto Carlos e "Appetite for Destruction" do Guns n Roses lado a lado.
                   </p>
-                  <p>
+                  <p className="text-lg font-light leading-relaxed">
                     Desde 2002 fiz parte de diversas bandas autorais da cidade e já toquei em praticamente todas as
                     casas de shows underground que nasceram e morreram desde então, assim como já passei todos os
                     perrengues, ciladas e conquistas também que só o músico independente sabe como é.
                   </p>
-                  <p>
+                  <p className="text-lg font-light leading-relaxed">
                     Guitarrista por opção, Vocalista por necessidade e Compositor por acidente, essa frase é a que
                     melhor define meu caminho até aqui, crescendo e se formando em meio a música rock popular brasileira
                     e inspirado por grandes compositores de ontem e de hoje.
@@ -63,17 +59,17 @@ export function BiographyContent() {
               <div>
                 <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Sobre OHomemSó</h2>
                 <div className="space-y-6 text-gray-700 leading-relaxed">
-                  <p>
+                  <p className="text-lg font-light leading-relaxed">
                     Em 2019 dei inicio a um trabalho 100% próprio com o nome artístico dado pela minha filha Alice que
                     após ouvir de mim que eu já não tocava com ninguém e não tinha banda nenhuma, ela me intitulou como
                     "OHomemSó".
                   </p>
-                  <p>
+                  <p className="text-lg font-light leading-relaxed">
                     Com o inicio do projeto se misturando com a pandemia, restou compor e aprimorar a identidade e o
                     direcionamento artístico que busca uma abordagem musical intimista e por vezes minimalista, com
                     composições que convocam a reflexão, usando a empatia como principal ferramenta.
                   </p>
-                  <p>
+                  <p className="text-lg font-light leading-relaxed">
                     A simplicidade musical, aliada à busca do refrão fácil, fazendo minhas emoções e experiências
                     compartilhadas além de servir como um diário perfeito para deixar as minhas filhas entenderem as
                     fases e desafios da vida quando eu não mais estiver aqui.
@@ -88,11 +84,11 @@ export function BiographyContent() {
             <div className="grid lg:grid-cols-3 gap-12">
               <div>
                 <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Influências</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
+                <p className="text-lg font-light leading-relaxed mb-4">
                   Entusiasta da música fácil e popular bebi muito da fonte do rock nacional 80/90/00s, no entanto também
                   não é difícil encontrar as influências de diversos "Singers-Songwriters" no meu trabalho.
                 </p>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-lg font-light leading-relaxed mb-4">
                   Como Noel Gallagher, Dallas Green, Bob e Jakob Dylan, Lenine, Humberto Gessinger, Nando Reis, Rodrigo
                   Suricato, Neil Young, Samuel Rosa, Cazuza, Renato Russo, Herbert Vianna, Leoni, Koala, Gabriel Zander,
                   Capilé, Rodrigo Amarante, Bola Zimbra, Leo Ramos, Teco Martins, Tim Bernardes, Ale Sater e muitos
@@ -102,12 +98,12 @@ export function BiographyContent() {
 
               <div>
                 <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Estilo Musical</h2>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-lg font-light leading-relaxed">
                   Dado o caráter intimista do projeto, grande parte das composições se sustentam no violão ou na
                   guitarra elétrica, alguns momentos acompanhados de banda completa outros não, depende do que a música
                   pedir.
                 </p>
-                <p className="text-sm text-gray-600 mt-4">
+                <p className="text-lg font-light leading-relaxed mt-4">
                   Diria que um Indie/Folk/Pop-Rock seria a melhor maneira de descrever o objetivo e identidade do
                   projeto.
                 </p>
@@ -115,7 +111,7 @@ export function BiographyContent() {
 
               <div>
                 <h2 className="text-2xl font-thin tracking-wide text-black mb-6">Filosofia</h2>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-lg font-light leading-relaxed">
                   Acredita na música como ferramenta de conexão humana, buscando sempre criar obras que ressoem
                   emocionalmente com o público e contribuam para o panorama cultural brasileiro contemporâneo.
                 </p>
@@ -133,7 +129,7 @@ export function BiographyContent() {
                   futuro onde não estarei mais no mesmo plano que as minhas filhas mas que através das minhas músicas,
                   letras e melodias elas possam encontrar respostas e conforto para os seus futuros problemas.
                 </p>
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-lg font-light leading-relaxed text-gray-300">
                   E se mais pessoas se identificarem com tudo isso no meio do caminho, porque não?
                 </p>
               </div>
