@@ -15,7 +15,7 @@ const albums = [
     cover: '/bem-vindo-sua-vida-cover.jpg',
     description:
       'Primeiro lançamento do Igor Delfino, reunindo composições introspectivas e pessoais, já mostrando o direcionamento musical e conceitual do projeto.',
-    duration: '16:30',
+    duration: '14:59',
     producer: "Raphael Mancini / Gustavo 'Big' Simão / Marcelo Trovão",
     studio: 'Lab Mancini / Choque DB / Hangout',
     genre: 'MPB/Indie',
@@ -25,7 +25,7 @@ const albums = [
     tracklist: [
       {
         name: 'Bem Vindo a Sua Vida',
-        duration: '4:15',
+        duration: '3:44',
         audioUrl: '/audio-samples/Bem Vindo a Sua Vida.flac',
         composers: 'Igor Delfino / Márcio Ricardo',
         streamingLinks: {
@@ -36,7 +36,7 @@ const albums = [
       },
       {
         name: 'Auto Intitulada Feat. Teco Martins',
-        duration: '3:45',
+        duration: '3:38',
         audioUrl: '/audio-samples/Auto Intitulada.flac',
         composers: 'Igor Delfino / Teco Martins',
         streamingLinks: {
@@ -47,7 +47,7 @@ const albums = [
       },
       {
         name: 'A.C.A.S.O',
-        duration: '4:20',
+        duration: '3:25',
         audioUrl: '/audio-samples/Acaso.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -58,7 +58,7 @@ const albums = [
       },
       {
         name: 'O Herói Não Resolvido',
-        duration: '4:10',
+        duration: '4:12',
         audioUrl: '/audio-samples/O Herói Não Resolvido.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -77,7 +77,7 @@ const albums = [
     cover: '/talvez-nunca-aqui-cover.jpg',
     description:
       'Single experimental que resgata uma composição antiga, dando nova roupagem e mostrando a identidade independente e sem rótulos do Igor Delfino.',
-    duration: '3:42',
+    duration: '3:25',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio Choque DB',
     genre: 'Experimental/Indie',
@@ -87,7 +87,7 @@ const albums = [
     tracklist: [
       {
         name: 'Talvez Nunca Aqui',
-        duration: '3:42',
+        duration: '3:25',
         audioUrl: '/audio-samples/Talvez Nunca Aqui.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -106,7 +106,7 @@ const albums = [
     cover: '/gratovolte-cover.jpg',
     description:
       'Primeiro EP totalmente composto para o Igor Delfino, explorando banda completa e temas como saúde mental, relacionamentos e saudades.',
-    duration: '15:48',
+    duration: '12:20',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio Choque DB',
     genre: 'Indie Rock/MPB',
@@ -116,7 +116,7 @@ const albums = [
     tracklist: [
       {
         name: 'Longe de Algum Lugar',
-        duration: '4:12',
+        duration: '3:03',
         audioUrl: '/audio-samples/Longe de Algum Lugar.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -127,7 +127,7 @@ const albums = [
       },
       {
         name: 'Avivar',
-        duration: '3:55',
+        duration: '2:40',
         audioUrl: '/audio-samples/Avivar Gratovolte.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -138,7 +138,7 @@ const albums = [
       },
       {
         name: 'Aonde Vai o Tempo?',
-        duration: '3:48',
+        duration: '2:49',
         audioUrl: '/audio-samples/Aonde Vai o Tempo.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -149,7 +149,7 @@ const albums = [
       },
       {
         name: 'Tudo o Que Eu Queria Te Dizer',
-        duration: '3:53',
+        duration: '3:48',
         audioUrl: '/audio-samples/Tudo o Que Eu Queria Te Dizer.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -167,7 +167,7 @@ const albums = [
     type: 'Single',
     cover: '/avivar-acustica-cover.jpg',
     description: "Versão acústica de 'Avivar', feita para uma campanha de Setembro Amarelo sobre saúde mental.",
-    duration: '3:28',
+    duration: '2:44',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio Choque DB',
     genre: 'Acústico/Folk',
@@ -177,7 +177,7 @@ const albums = [
     tracklist: [
       {
         name: 'Avivar (Acústica)',
-        duration: '3:28',
+        duration: '2:44',
         audioUrl: '/audio-samples/Avivar.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -195,7 +195,7 @@ const albums = [
     type: 'Single',
     cover: '/inicio-outono-cover.jpg',
     description: 'Escrita no auge da pandemia, a música transmite esperança de que tudo vai ficar bem.',
-    duration: '4:05',
+    duration: '3:03',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio Choque DB',
     genre: 'Folk/MPB',
@@ -205,7 +205,7 @@ const albums = [
     tracklist: [
       {
         name: 'Início de Outono',
-        duration: '4:05',
+        duration: '3:03',
         audioUrl: '/audio-samples/Inicio de Outono.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -223,7 +223,7 @@ const albums = [
     type: 'Single',
     cover: '/amanha-novo-dia-cover.jpg',
     description: 'Versão em tributo aos 55 anos da banda Made In Brazil, uma das mais antigas do país.',
-    duration: '3:52',
+    duration: '3:16',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio Choque DB',
     genre: 'Rock/Tributo',
@@ -232,7 +232,7 @@ const albums = [
     tracklist: [
       {
         name: 'Amanhã é um Novo Dia',
-        duration: '3:52',
+        duration: '3:16',
         audioUrl: '/audio-samples/Amanhã É um Novo Dia.flac',
         composers: 'Antônio Manuel de Medeiros Junior / Oswaldo Vecchione Junior',
         streamingLinks: {
@@ -250,7 +250,7 @@ const albums = [
     type: 'Single',
     cover: '/trinta-um-cover.jpg',
     description: 'Canção Lo-Fi intimista, gravada com celular, trazendo simplicidade e parceria na interpretação.',
-    duration: '3:15',
+    duration: '2:53',
     producer: 'Igor Delfino',
     studio: 'MongaBeach Home Studio',
     genre: 'Lo-Fi/Indie',
@@ -259,7 +259,7 @@ const albums = [
     tracklist: [
       {
         name: 'Trinta e Um Feat. Janaina França',
-        duration: '3:15',
+        duration: '2:53',
         audioUrl: '/audio-samples/Trinta e Um.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -278,7 +278,7 @@ const albums = [
     cover: '/broken-dreams-cover.jpg',
     description:
       'Releitura para os 10 anos do álbum All About Love da banda The Bombers, ícone do rock underground nacional.',
-    duration: '4:22',
+    duration: '4:07',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio Choque DB',
     genre: 'Rock/Tributo',
@@ -288,7 +288,7 @@ const albums = [
     tracklist: [
       {
         name: 'Broken Dreams & Hopes',
-        duration: '4:22',
+        duration: '4:07',
         audioUrl: '/audio-samples/BROKEN DREAMS MASTER 02 MP3.mp3',
         composers: 'Matheus Krempel',
         streamingLinks: {
@@ -306,7 +306,7 @@ const albums = [
     type: 'Single',
     cover: '/voar-cover.jpg',
     description: 'Marca a retomada do projeto com uma direção mais minimalista e intimista.',
-    duration: '3:38',
+    duration: '1:21',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio Choque DB',
     genre: 'Minimalista/Indie',
@@ -315,7 +315,7 @@ const albums = [
     tracklist: [
       {
         name: 'Voar',
-        duration: '3:38',
+        duration: '1:21',
         audioUrl: '/audio-samples/Voar.mp3',
         composers: 'Igor Delfino',
         streamingLinks: {
@@ -333,7 +333,7 @@ const albums = [
     type: 'Double',
     cover: '/grito-mudo-cover.jpeg',
     description: 'Duo de canções que exploram a dor da ansiedade em suas formas mais intensas e silenciosas.',
-    duration: '7:45',
+    duration: '8:59',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio 438',
     genre: 'Indie Rock/Experimental',
@@ -343,7 +343,7 @@ const albums = [
     tracklist: [
       {
         name: 'Grito Mudo',
-        duration: '3:52',
+        duration: '4:21',
         audioUrl: '/audio-samples/Grito Mudo.mp3',
         composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
         streamingLinks: {
@@ -354,7 +354,7 @@ const albums = [
       },
       {
         name: 'Silêncio Ensurdecedor',
-        duration: '3:53',
+        duration: '4:38',
         audioUrl: '/audio-samples/Silencio Ensurdecedor.mp3',
         composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
         streamingLinks: {
@@ -372,7 +372,7 @@ const albums = [
     type: 'Single',
     cover: '/tudo-que-queria-cover.png',
     description: 'Releitura em comemoração aos 20 anos da canção escrita como declaração de amor.',
-    duration: '4:18',
+    duration: '3:32',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio 438',
     genre: 'Acústico/Ao Vivo',
@@ -381,7 +381,7 @@ const albums = [
     tracklist: [
       {
         name: 'Tudo o Que Eu Queria Te Dizer (Ao Vivo)',
-        duration: '4:18',
+        duration: '3:32',
         audioUrl: '/audio-samples/TQEQTD - VIVO20.wav',
         composers: 'Igor Delfino',
         streamingLinks: {
