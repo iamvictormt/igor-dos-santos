@@ -65,7 +65,7 @@ export function UpcomingShows() {
           {shows.length === 0 ? (
             <div className="bg-black text-white p-12 lg:p-16">
               <div className="max-w-4xl">
-                <h2 className="text-2xl font-thin tracking-wide mb-8">Em 2026, aguardem...</h2>
+                <h2 className="text-2xl font-thin tracking-wide mb-8">Em breve...</h2>
               </div>
             </div>
           ) : (
