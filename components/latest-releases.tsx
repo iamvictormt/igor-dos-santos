@@ -9,30 +9,42 @@ import { Disc } from 'lucide-react';
 export function LatestReleases() {
   const releases = [
     {
-      id: 1,
-      title: 'Grito Mudo / Silêncio Ensurdecedor',
-      type: 'Double',
-      year: '2025.2',
-      image: '/grito-mudo-cover.jpeg',
-      description: 'Duo de canções que exploram a dor da ansiedade em suas formas mais intensas e silenciosas.',
+      id: 0,
+      title: 'Tamanho de um Rei & Outras Histórias',
+      type: 'EP',
+      year: '2026',
+      releaseDate: '2026-06-26',
+      image: '/tamanho-de-um-rei-cover.jpg',
+      description: 'Conjunto de canções pessoais e intimistas, com 4 releituras ao vivo.',
     },
     {
       id: 2,
       title: 'Tudo o Que Queria Te Dizer',
       type: 'Single',
-      year: '2025.3',
+      year: '2025',
+      releaseDate: '2025-05-29',
       image: '/tudo-que-queria-cover.png',
       description: 'Releitura em comemoração aos 20 anos da canção escrita como declaração de amor.',
+    },
+    {
+      id: 1,
+      title: 'Grito Mudo / Silêncio Ensurdecedor',
+      type: 'Double',
+      year: '2025',
+      releaseDate: '2025-04-17',
+      image: '/grito-mudo-cover.jpeg',
+      description: 'Duo de canções que exploram a dor da ansiedade em suas formas mais intensas e silenciosas.',
     },
     {
       id: 3,
       title: 'Voar',
       type: 'Single',
       year: '2025',
+      releaseDate: '2025-01-06',
       image: '/voar-cover.jpg',
       description: 'Marca a retomada do projeto com uma direção mais minimalista e intimista.',
     },
-  ];
+  ].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate));
 
   return (
     <section className="py-16 md:py-32 px-4 md:px-6 bg-gray-50 overflow-hidden">

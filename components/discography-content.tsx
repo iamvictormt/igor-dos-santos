@@ -392,6 +392,79 @@ const albums = [
       },
     ],
   },
+  {
+    id: 12,
+    title: 'Tamanho de um Rei & Outras Histórias',
+    year: '2026',
+    type: 'EP',
+    cover: '/tamanho-de-um-rei-cover.jpg',
+    description: 'Conjunto de canções pessoais e intimistas, com 4 releituras ao vivo.',
+    duration: '17:00',
+    producer: 'Igor Delfino',
+    studio:
+      'Faixa 1 - Estúdio ChoqueDB, Pompéia | São Paulo/SP; Faixas 2 a 5 - Estúdio Viva o Som, Pirituba | São Paulo/SP',
+    genre: 'Indie-Folk Rock',
+    releaseDate: '26/06/2026',
+    credits:
+      'Voz, Violão & Guitarra: Igor Delfino | Teclados na Faixa 1: Bruno Piazza | Eng. Som / Mix / Master: Faixa 1 – Gustavo “Big” Simão; Faixas 2 a 5 – Pedro Caio / Isac Gabs',
+    tracklist: [
+      {
+        name: 'Tamanho de Um Rei',
+        duration: '3:45',
+        audioUrl: '/audio-samples/TAMANHO DE UM REI.mp3',
+        composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: '#',
+          apple: '#',
+          youtube: '#',
+        },
+      },
+      {
+        name: 'A.C.A.S.O',
+        duration: '3:26',
+        audioUrl: '/audio-samples/ACASO - Live Session.mp3',
+        composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: '#',
+          apple: '#',
+          youtube: '#',
+        },
+      },
+      {
+        name: 'Bem Vindo a Sua Vida',
+        duration: '3:32',
+        audioUrl: '/audio-samples/BEM VINDO A SUA VIDA - Live Session.mp3',
+        composers: 'Igor Delfino / Marcio Ricardo',
+        streamingLinks: {
+          spotify: '#',
+          apple: '#',
+          youtube: '#',
+        },
+      },
+      {
+        name: 'Auto Intitulada',
+        duration: '3:18',
+        audioUrl: '/audio-samples/AUTO INTITULADA - Live Session.mp3',
+        composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: '#',
+          apple: '#',
+          youtube: '#',
+        },
+      },
+      {
+        name: 'Inicio de Outono',
+        duration: '3:19',
+        audioUrl: '/audio-samples/INICIO DE OUTONO - Live Session.mp3',
+        composers: 'Igor Delfino',
+        streamingLinks: {
+          spotify: '#',
+          apple: '#',
+          youtube: '#',
+        },
+      },
+    ],
+  },
 ];
 
 function MinimalAudioPlayer({
