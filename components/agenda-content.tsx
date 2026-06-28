@@ -1,169 +1,133 @@
-'use client';
+"use client"
 
-import { useEffect, useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { MapPin, Clock, ExternalLink, Calendar } from 'lucide-react';
-import type { Show } from '@/types/show';
-import { motion } from 'framer-motion';
+import { Button } from "@/components/ui/button"
+import type { Show } from "@/types/show"
+import { motion } from "framer-motion"
+import { Calendar, Clock, ExternalLink, MapPin } from "lucide-react"
+import { useEffect, useState } from "react"
+
+function getTicketStatus(showDate: string, ticketUrl: string) {
+  const currentDate = new Date()
+  const eventDate = new Date(showDate)
+  const timeDiff = eventDate.getTime() - currentDate.getTime()
+  const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24))
+
+  if ((ticketUrl === "#" || !ticketUrl || ticketUrl.trim() === "") && daysDiff > 0) return "Em breve"
+  if (daysDiff <= 7 && daysDiff > 0) return "Últimos ingressos"
+  if (daysDiff > 0) return "Ingressos disponíveis"
+
+  return "Encerrado"
+}
+
+function formatShowDate(dateString: string) {
+  const date = new Date(dateString)
+
+  return {
+    day: date.getDate().toString().padStart(2, "0"),
+    month: date.toLocaleDateString("pt-BR", { month: "long" }),
+    weekday: date.toLocaleDateString("pt-BR", { weekday: "long" }),
+    year: date.getFullYear(),
+  }
+}
 
 export function AgendaContent() {
-  const [shows, setShows] = useState<Show[]>([]);
-
-  const getTicketStatus = (showDate: string, ticketUrl: string) => {
-    const currentDate = new Date();
-    const eventDate = new Date(showDate);
-    const timeDiff = eventDate.getTime() - currentDate.getTime();
-    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-    if ((ticketUrl === '#' || !ticketUrl || ticketUrl.trim() === '') && daysDiff > 0) {
-      return 'Em Breve';
-    } else if (daysDiff <= 7 && daysDiff > 0) {
-      return 'Últimos Ingressos';
-    } else if (daysDiff > 0) {
-      return 'Ingressos Disponíveis';
-    } else {
-      return 'Encerrado';
-    }
-  };
+  const [shows, setShows] = useState<Show[]>([])
 
   useEffect(() => {
-    fetch('/api/shows')
+    fetch("/api/shows")
       .then((res) => res.json())
       .then((data) => setShows(data))
-      .catch((err) => console.error('Erro ao buscar shows:', err));
-  }, []);
+      .catch((err) => console.error("Erro ao buscar shows:", err))
+  }, [])
 
   return (
-    <section className="pt-32 pb-24 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className="mb-20">
-          <div className="mb-8">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">PRÓXIMOS SHOWS</p>
-            <h1 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
-              Agenda <br /> <span className="font-normal">Musical</span>
+    <section className="bg-background pt-32">
+      <div className="section-shell pb-24">
+        <div className="grid gap-12 border-b border-border pb-14">
+          <div>
+            <p className="section-eyebrow">Agenda</p>
+            <h1 className="section-heading mt-4">
+              Datas ao vivo
             </h1>
+            <p className="handwritten-note mt-5 text-4xl text-accent md:text-5xl">
+              onde a canção encontra gente
+            </p>
           </div>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
-            Acompanhe os próximos shows e apresentações ao vivo
-          </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="py-12">
           {shows.length === 0 ? (
-            <div className="bg-black text-white p-12 lg:p-16">
-              <div className="max-w-4xl">
-                <h2 className="text-2xl font-thin tracking-wide mb-8">Em breve...</h2>
+            <div className="stage-panel grid gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:p-12">
+              <div>
+                <p className="section-eyebrow text-white/52">Sem datas abertas</p>
+                <h2 className="display-title mt-5 max-w-3xl text-4xl leading-none text-white md:text-6xl">
+                  Novos shows serão anunciados em breve.
+                </h2>
+                <p className="mt-6 max-w-xl leading-8 text-white/64">
+                  Para convites, eventos e booking, envie as informações pela página de contato.
+                </p>
               </div>
             </div>
           ) : (
-            shows?.map((show, index) => {
-              const ticketStatus = getTicketStatus(show.date, show.ticketUrl || '#');
+            <div className="grid gap-5">
+              {shows.map((show, index) => {
+                const status = getTicketStatus(show.date, show.ticketUrl || "#")
+                const date = formatShowDate(show.date)
+                const canBuy = status === "Ingressos disponíveis" || status === "Últimos ingressos"
 
-              return (
-                <motion.div
-                  key={show.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="border-0 bg-white hover:bg-gray-50/50 transition-all duration-500 shadow-lg hover:shadow-xl rounded-2xl overflow-hidden group">
-                    <div className="p-10 grid md:grid-cols-12 gap-8 items-center">
-                      <div className="md:col-span-2">
-                        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 text-center border border-gray-100 group-hover:shadow-md transition-all duration-300">
-                          <div className="flex items-center justify-center mb-3">
-                            <Calendar className="h-5 w-5 text-gray-400" />
-                          </div>
-                          <div className="text-4xl font-extralight text-black mb-2 tracking-tight">
-                            {new Date(show.date).getDate()}
-                          </div>
-                          <div className="text-sm font-semibold tracking-[0.15em] text-gray-600 mb-1">
-                            {new Date(show.date).toLocaleDateString('pt-BR', { month: 'short' }).toUpperCase()}
-                          </div>
-                          <div className="text-xs text-gray-400 font-light">{new Date(show.date).getFullYear()}</div>
-                        </div>
+                return (
+                  <motion.article
+                    key={show.id}
+                    className="analog-panel grid gap-6 p-5 md:grid-cols-[10rem_1fr_auto] md:items-center md:p-7"
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.06, duration: 0.42, ease: "easeOut" }}
+                  >
+                    <div className="border-b border-border pb-5 md:border-b-0 md:border-r md:pb-0 md:pr-7">
+                      <div className="display-title text-7xl font-medium leading-none text-foreground">{date.day}</div>
+                      <div className="mt-2 font-mono text-xs uppercase text-muted-foreground">{date.month}</div>
+                      <div className="mt-1 text-sm text-muted-foreground">{date.weekday}, {date.year}</div>
+                    </div>
+
+                    <div>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="meta-line text-accent">{status}</span>
+                        <span className="h-1.5 w-1.5 bg-accent" />
+                        <span className="meta-line">{show.city}</span>
                       </div>
-
-                      <div className="md:col-span-7 space-y-5">
-                        <h3 className="text-3xl font-extralight tracking-wide text-black leading-tight group-hover:text-gray-800 transition-colors duration-300">
-                          {show.title}
-                        </h3>
-                        <div className="grid md:grid-cols-2 gap-6">
-                          <div className="flex items-start space-x-4">
-                            <div className="bg-gray-100 rounded-xl p-3 mt-1">
-                              <MapPin className="h-5 w-5 text-gray-600" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="font-semibold text-gray-900 text-lg leading-tight">{show.venue}</div>
-                              <div className="text-gray-600 mt-1">{show.city}</div>
-                            </div>
-                          </div>
-
-                          <div className="flex items-start space-x-4">
-                            <div className="bg-gray-100 rounded-xl p-3 mt-1">
-                              <Clock className="h-5 w-5 text-gray-600" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="font-semibold text-gray-900 text-lg leading-tight">Horário de início</div>
-                              <div className="text-gray-600 mt-1">{show.time}</div>
-                            </div>
-                          </div>
+                      <h2 className="mt-3 text-3xl font-medium leading-tight text-foreground">{show.title}</h2>
+                      <div className="mt-5 grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
+                        <div className="flex items-start gap-3">
+                          <MapPin className="mt-0.5 h-4 w-4 text-accent" />
+                          <span>{show.venue}</span>
                         </div>
-                      </div>
-
-                      <div className="md:col-span-3 flex flex-col items-end gap-4">
-                        <span
-                          className={`text-xs font-semibold px-4 py-2 rounded-full tracking-[0.1em] uppercase shadow-sm border ${
-                            ticketStatus === 'Ingressos Disponíveis'
-                              ? 'bg-green-50 text-green-700 border-green-200'
-                              : ticketStatus === 'Últimos Ingressos'
-                              ? 'bg-amber-50 text-amber-700 border-amber-200'
-                              : ticketStatus === 'Em Breve'
-                              ? 'bg-gray-50 text-gray-600 border-gray-200'
-                              : 'bg-red-50 text-red-700 border-red-200'
-                          }`}
-                        >
-                          {ticketStatus}
-                        </span>
-
-                        {ticketStatus === 'Ingressos Disponíveis' || ticketStatus === 'Últimos Ingressos' ? (
-                          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full">
-                            <Button
-                              variant="outline"
-                              className="w-full bg-black hover:bg-gray-800 text-white hover:text-white font-medium tracking-[0.15em] px-8 py-4 text-xs uppercase border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
-                              onClick={() => window.open(show.ticketUrl, '_blank')}
-                            >
-                              <ExternalLink className="mr-2 h-4 w-4" />
-                              Ingressos
-                            </Button>
-                          </motion.div>
-                        ) : null}
+                        <div className="flex items-start gap-3">
+                          <Clock className="mt-0.5 h-4 w-4 text-accent" />
+                          <span>{show.time}</span>
+                        </div>
                       </div>
                     </div>
-                  </Card>
-                </motion.div>
-              );
-            })
+
+                    {canBuy ? (
+                      <Button
+                        className="h-11 bg-primary px-5 text-primary-foreground hover:bg-primary/88"
+                        onClick={() => window.open(show.ticketUrl, "_blank")}
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Ingressos
+                      </Button>
+                    ) : (
+                      <span className="w-fit border border-border px-4 py-3 font-mono text-[0.68rem] uppercase text-muted-foreground">
+                        {status}
+                      </span>
+                    )}
+                  </motion.article>
+                )
+              })}
+            </div>
           )}
         </div>
-
-        {/* <div className="mt-20 text-center">
-          <div className="bg-white rounded-xl border border-gray-200 p-12 shadow-sm">
-            <h3 className="text-2xl font-light text-black mb-4">Contratação de Shows</h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed">
-              Interessado em contratar OHomemSó para seu evento? Entre em contato para discutir disponibilidade e
-              condições.
-            </p>
-            <Button
-              variant="outline"
-              className="font-medium tracking-wide bg-white border-2 border-black text-black hover:bg-black hover:text-white transition-all duration-200 px-8 py-3 rounded-lg"
-              onClick={() => (window.location.href = '/contato')}
-            >
-              Entre em Contato
-            </Button>
-          </div>
-        </div> */}
       </div>
     </section>
-  );
+  )
 }

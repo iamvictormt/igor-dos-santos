@@ -16,8 +16,17 @@ const nothingYouCouldDo = Nothing_You_Could_Do({
 });
 
 export const metadata: Metadata = {
-  title: 'OHomemSó',
-  description: 'Site oficial do músico e compositor OHomemSó. Discografia, agenda de shows, biografia e contato.',
+  title: 'OHomemSó | Música, discografia e shows',
+  description:
+    'Site oficial do músico e compositor OHomemSó. Ouça lançamentos, acompanhe agenda de shows, videografia, biografia e contato.',
+  openGraph: {
+    title: 'OHomemSó | Música, discografia e shows',
+    description:
+      'Site oficial do músico e compositor OHomemSó. Ouça lançamentos, acompanhe agenda de shows, videografia, biografia e contato.',
+    siteName: 'OHomemSó',
+    locale: 'pt_BR',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -33,7 +42,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className={`font-handwriting ${GeistSans.variable} ${GeistMono.variable} ${nothingYouCouldDo.variable}`}>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${nothingYouCouldDo.variable}`}>
         <Suspense fallback={null}>
           <PageTransition>{children}</PageTransition>
         </Suspense>

@@ -399,7 +399,7 @@ const albums = [
     type: 'EP',
     cover: '/tamanho-de-um-rei-cover.jpg',
     description: 'Conjunto de canções pessoais e intimistas, com 4 releituras ao vivo.',
-    duration: '17:00',
+    duration: '17:20      ',
     producer: 'Igor Delfino',
     studio:
       'Faixa 1 - Estúdio ChoqueDB, Pompéia | São Paulo/SP; Faixas 2 a 5 - Estúdio Viva o Som, Pirituba | São Paulo/SP',
@@ -531,27 +531,28 @@ function MinimalAudioPlayer({
   const progressPercentage = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="bg-background border rounded-lg p-4 space-y-3">
+    <div className="stage-panel border border-white/12 p-4">
       <audio ref={audioRef} src={track.audioUrl} crossOrigin="anonymous" preload="metadata" />
 
-      <div className="flex items-center justify-between">
-        <div className="flex-1 min-w-0">
-          <h4 className="font-medium text-sm truncate">{track.name}</h4>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+      <div className="flex items-center justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <p className="meta-line text-white/46">{isLoading ? 'Carregando' : 'Tocando agora'}</p>
+          <h4 className="mt-1 truncate text-base font-medium text-white">{track.name}</h4>
+          <div className="mt-2 flex items-center gap-2 font-mono text-xs text-white/50">
             <span>{formatTime(currentTime)}</span>
             <span>/</span>
             <span>{formatTime(duration)}</span>
           </div>
         </div>
 
-        <Button onClick={onPlayPause} size="sm" variant="ghost" className="rounded-full w-8 h-8 p-0 ml-3">
-          {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
+        <Button onClick={onPlayPause} size="icon" className="h-11 w-11 bg-white text-black hover:bg-white/86">
+          {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4 fill-current" />}
         </Button>
       </div>
 
-      <div className="w-full bg-muted rounded-full h-1">
+      <div className="mt-4 h-1 w-full bg-white/12">
         <div
-          className="bg-primary h-1 rounded-full transition-all duration-100"
+          className="h-1 bg-[color:var(--tone-rust)] transition-all duration-100"
           style={{ width: `${progressPercentage}%` }}
         />
       </div>
@@ -633,275 +634,238 @@ export function DiscographyContent() {
   });
 
   return (
-    <section className="pt-32 pb-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className="mb-20">
-          <div className="mb-8">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Discografia</p>
-            <h1 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
-              Meus
-              <br />
-              <span className="font-normal">Trabalhos</span>
+    <section className="bg-background pt-32">
+      <div className="section-shell pb-24">
+        <div className="grid gap-12 border-b border-border pb-14">
+          <div>
+            <p className="section-eyebrow">Discografia</p>
+            <h1 className="section-heading mt-4">
+              Obras gravadas
             </h1>
+            <p className="handwritten-note mt-5 text-4xl text-accent md:text-5xl">
+              cada capa guarda uma fase
+            </p>
           </div>
         </div>
 
-        <div className="mb-8 flex justify-end">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <div className="flex justify-end py-8">
+          <motion.div whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }}>
             <Button
               variant="outline"
               size="lg"
               onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
-              className="flex items-center gap-2 bg-black hover:bg-black/80 text-white hover:text-white font-light tracking-[0.1em] px-12 py-4 text-xs uppercase border-0 shadow-2xl transition-all duration-300"
+              className="h-12 border-border bg-transparent px-6 text-foreground hover:bg-secondary"
             >
-              <ArrowUpDown className="mr-3 h-4 w-4" />
-              {sortOrder === 'newest' ? 'Mais Recentes' : 'Mais Antigos'}
+              <ArrowUpDown className="mr-2 h-4 w-4" />
+              {sortOrder === 'newest' ? 'Mais recentes' : 'Mais antigos'}
             </Button>
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {sortedAlbums.map((album, index) => (
-            <div key={album.id} className="group cursor-pointer" onClick={() => handleAlbumSelect(album)}>
-              <div className="relative mb-6">
-                <div className="aspect-square overflow-hidden bg-white shadow-lg">
+            <motion.article
+              key={album.id}
+              className="group cursor-pointer"
+              onClick={() => handleAlbumSelect(album)}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.035, duration: 0.4, ease: 'easeOut' }}
+            >
+              <div className="relative overflow-hidden border border-border bg-card">
+                <div className="aspect-square overflow-hidden">
                   <img
                     src={album.cover || '/placeholder.svg'}
                     alt={album.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="w-16 h-16 border border-white rounded-full flex items-center justify-center cursor-pointer">
-                      <Play className="w-6 h-6 text-white ml-1" />
-                    </div>
-                  </div>
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-500 group-hover:bg-black/38">
+                  <span className="flex h-14 w-14 scale-95 items-center justify-center border border-white/50 bg-black/20 text-white opacity-0 backdrop-blur transition-all duration-300 group-hover:scale-100 group-hover:opacity-100">
+                    <Play className="ml-1 h-5 w-5 fill-current" />
+                  </span>
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <div className="flex items-baseline justify-between">
-                  <h3 className="text-xl font-light tracking-wide text-black group-hover:text-gray-600 transition-colors duration-300">
-                    {album.title}
-                  </h3>
-                  <span className="text-sm font-mono text-gray-500">{album.year}</span>
+              <div className="border-x border-b border-border bg-card p-5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="meta-line">{album.type}</span>
+                  <span className="h-1 w-1 bg-accent" />
+                  <span className="meta-line">{album.year}</span>
                 </div>
-                <div className="text-xs font-mono tracking-[0.1em] uppercase text-gray-400">{album.type}</div>
-                <p className="text-gray-600 leading-relaxed text-sm line-clamp-2">{album.description}</p>
-                <div className="text-xs font-mono tracking-[0.1em] uppercase text-gray-400 group-hover:text-black transition-colors duration-300">
-                  Clique para explorar →
-                </div>
+                <h3 className="mt-3 text-2xl font-medium leading-tight text-foreground transition-colors group-hover:text-accent">
+                  {album.title}
+                </h3>
+                <p className="mt-3 line-clamp-2 text-sm leading-6 text-muted-foreground">{album.description}</p>
+                <p className="mt-5 font-mono text-[0.68rem] uppercase text-muted-foreground group-hover:text-foreground">
+                  Abrir encarte
+                </p>
               </div>
-            </div>
+            </motion.article>
           ))}
         </div>
 
         <AnimatePresence>
           {selectedAlbum && (
             <Dialog open={!!selectedAlbum} onOpenChange={handleCloseModal}>
-              <DialogContent
-                className="w-full max-w-none h-screen max-h-screen m-0 rounded-none overflow-hidden p-0 
-                            sm:w-[95vw] sm:max-w-7xl sm:h-[90vh] sm:max-h-[90vh] sm:rounded-lg sm:m-4"
-              >
+              <DialogContent className="h-screen max-h-screen w-full max-w-none overflow-hidden rounded-none border-0 bg-background p-0 sm:h-[92vh] sm:max-w-6xl sm:border sm:border-border">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute top-2 right-2 z-50 bg-background/90 backdrop-blur-sm border
-                             sm:top-4 sm:right-4"
+                  className="absolute right-3 top-3 z-50 h-10 w-10 border border-border bg-background/90 backdrop-blur hover:bg-secondary"
                   onClick={handleCloseModal}
+                  aria-label="Fechar encarte"
                 >
                   <X className="h-4 w-4" />
                 </Button>
 
                 <div className="h-full overflow-y-auto">
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3 }}
-                    className="p-4 sm:p-8 min-h-full"
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 18 }}
+                    transition={{ duration: 0.28, ease: 'easeOut' }}
+                    className="grid min-h-full lg:grid-cols-[0.92fr_1.08fr]"
                   >
-                    <DialogHeader className="mb-4 sm:mb-8">
-                      <DialogTitle className="text-xl sm:text-3xl font-bold pr-8">
-                        {selectedAlbum.title} ({selectedAlbum.year})
-                      </DialogTitle>
-                    </DialogHeader>
-
-                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12">
-                      <div className="space-y-4 sm:space-y-6">
-                        <img
-                          src={selectedAlbum.cover || '/placeholder.svg'}
-                          alt={selectedAlbum.title}
-                          className="w-full max-w-xs sm:max-w-lg mx-auto aspect-square object-cover rounded-lg"
-                        />
+                    <div className="stage-panel p-5 md:p-8">
+                      <div className="sticky top-0 space-y-5">
+                        <div className="relative aspect-square overflow-hidden border border-white/12 bg-black">
+                          <img
+                            src={selectedAlbum.cover || '/placeholder.svg'}
+                            alt={selectedAlbum.title}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
 
                         {selectedAlbum.tracklist.length > 0 && (
-                          <div className="w-full max-w-xs sm:max-w-lg mx-auto">
-                            <MinimalAudioPlayer
-                              track={selectedAlbum.tracklist[currentTrack || 0]}
-                              isPlaying={isPlaying}
-                              onPlayPause={handlePlayerPlayPause}
-                            />
-                          </div>
+                          <MinimalAudioPlayer
+                            track={selectedAlbum.tracklist[currentTrack || 0]}
+                            isPlaying={isPlaying}
+                            onPlayPause={handlePlayerPlayPause}
+                          />
                         )}
                       </div>
+                    </div>
 
-                      <div className="space-y-6 sm:space-y-8">
-                        <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
+                    <div className="p-5 md:p-8 lg:p-10">
+                      <div className="pr-12">
+                        <p className="meta-line text-accent">
+                          {selectedAlbum.type} - {selectedAlbum.year}
+                        </p>
+                        <h2 className="display-title mt-4 text-4xl font-medium leading-none text-foreground md:text-6xl">
+                          {selectedAlbum.title}
+                        </h2>
+                        <p className="handwritten-note mt-5 text-3xl text-accent md:text-4xl">encarte aberto</p>
+                        <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground">
                           {selectedAlbum.description}
                         </p>
+                      </div>
 
-                        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 sm:p-6">
-                          <h4 className="font-bold mb-3 sm:mb-4 flex items-center text-base sm:text-lg">
-                            <Disc className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                            Ficha Técnica
-                          </h4>
-                          <div className="space-y-3 text-sm sm:text-base">
-                            <div className="flex items-start">
-                              <Calendar className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Lançamento:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.releaseDate}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Clock className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Duração:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.duration}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Eng. de Som/Mix/Master:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.producer}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Music className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Gênero:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.genre}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Disc className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Estúdio:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.studio}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Créditos:</span>
-                                <span className="ml-2 font-medium text-sm leading-relaxed">
-                                  {selectedAlbum.credits}
-                                </span>
-                              </div>
-                            </div>
+                      <div className="mt-9 grid gap-3 border-y border-border py-5 sm:grid-cols-2">
+                        <div className="flex gap-3">
+                          <Calendar className="mt-1 h-4 w-4 text-accent" />
+                          <div>
+                            <p className="meta-line">Lançamento</p>
+                            <p className="mt-1 text-sm text-foreground">{selectedAlbum.releaseDate}</p>
                           </div>
                         </div>
-
-                        <div>
-                          <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">Faixas:</h4>
-                          <div className="space-y-1 sm:space-y-2">
-                            {selectedAlbum.tracklist.map((track, index) => (
-                              <div
-                                key={index}
-                                className={`flex justify-between items-center py-2 px-3 rounded cursor-pointer transition-colors text-sm ${
-                                  currentTrack === index
-                                    ? 'bg-primary/10 border border-primary/20'
-                                    : 'bg-muted/30 hover:bg-muted/50'
-                                }`}
-                                onClick={() => handleTrackClick(index)}
-                              >
-                                <div className="flex items-center min-w-0 flex-1">
-                                  <div className="mr-2 w-5 flex justify-center flex-shrink-0">
-                                    {currentTrack === index && isPlaying ? (
-                                      <Pause className="h-3 w-3 text-primary" />
-                                    ) : (
-                                      <Play className="h-3 w-3 text-muted-foreground" />
-                                    )}
-                                  </div>
-                                  <div className="min-w-0 flex-1">
-                                    <div className="font-medium truncate">{track.name}</div>
-                                    {track.composers && (
-                                      <div className="text-xs text-muted-foreground truncate">{track.composers}</div>
-                                    )}
-                                  </div>
-                                </div>
-                                <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">
-                                  {track.duration}
-                                </span>
-                              </div>
-                            ))}
+                        <div className="flex gap-3">
+                          <Clock className="mt-1 h-4 w-4 text-accent" />
+                          <div>
+                            <p className="meta-line">Duração</p>
+                            <p className="mt-1 text-sm text-foreground">{selectedAlbum.duration}</p>
                           </div>
                         </div>
+                        <div className="flex gap-3">
+                          <Music className="mt-1 h-4 w-4 text-accent" />
+                          <div>
+                            <p className="meta-line">Gênero</p>
+                            <p className="mt-1 text-sm text-foreground">{selectedAlbum.genre}</p>
+                          </div>
+                        </div>
+                        <div className="flex gap-3">
+                          <Disc className="mt-1 h-4 w-4 text-accent" />
+                          <div>
+                            <p className="meta-line">Estúdio</p>
+                            <p className="mt-1 text-sm text-foreground">{selectedAlbum.studio}</p>
+                          </div>
+                        </div>
+                      </div>
 
-                        <div>
-                          <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">Ouça em:</h4>
-                          <div className="flex flex-col gap-2">
-                            {selectedAlbum.tracklist[currentTrack || 0]?.streamingLinks && (
-                              <>
-                                {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify !== '#' && (
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    asChild
-                                    className="w-full justify-start bg-transparent"
-                                  >
-                                    <a
-                                      href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      <ExternalLink className="mr-2 h-3 w-3" />
-                                      Spotify
-                                    </a>
-                                  </Button>
+                      <div className="mt-8">
+                        <p className="meta-line">Ficha técnica</p>
+                        <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                          <span className="text-foreground">Eng. de som / mix / master:</span> {selectedAlbum.producer}
+                        </p>
+                        <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                          <span className="text-foreground">Créditos:</span> {selectedAlbum.credits}
+                        </p>
+                      </div>
+
+                      <div className="mt-9">
+                        <p className="meta-line">Faixas</p>
+                        <div className="mt-4 grid gap-2">
+                          {selectedAlbum.tracklist.map((track, index) => (
+                            <button
+                              key={index}
+                              type="button"
+                              className={`grid grid-cols-[auto_1fr_auto] items-center gap-3 border p-3 text-left transition-colors ${
+                                currentTrack === index
+                                  ? 'border-accent bg-secondary'
+                                  : 'border-border bg-card hover:border-accent/60'
+                              }`}
+                              onClick={() => handleTrackClick(index)}
+                            >
+                              <span className="flex h-8 w-8 items-center justify-center bg-primary text-primary-foreground">
+                                {currentTrack === index && isPlaying ? (
+                                  <Pause className="h-3.5 w-3.5" />
+                                ) : (
+                                  <Play className="ml-0.5 h-3.5 w-3.5 fill-current" />
                                 )}
-                                {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple !== '#' && (
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    asChild
-                                    className="w-full justify-start bg-transparent"
-                                  >
-                                    <a
-                                      href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      <ExternalLink className="mr-2 h-3 w-3" />
-                                      Apple Music
-                                    </a>
-                                  </Button>
+                              </span>
+                              <span className="min-w-0">
+                                <span className="block truncate text-sm font-medium text-foreground">{track.name}</span>
+                                {track.composers && (
+                                  <span className="mt-1 block truncate text-xs text-muted-foreground">{track.composers}</span>
                                 )}
-                                {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube !== '#' && (
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    asChild
-                                    className="w-full justify-start bg-transparent"
-                                  >
-                                    <a
-                                      href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      <ExternalLink className="mr-2 h-3 w-3" />
-                                      YouTube
-                                    </a>
-                                  </Button>
-                                )}
-                              </>
+                              </span>
+                              <span className="font-mono text-xs text-muted-foreground">{track.duration}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {selectedAlbum.tracklist[currentTrack || 0]?.streamingLinks && (
+                        <div className="mt-9">
+                          <p className="meta-line">Ouça em</p>
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify !== '#' && (
+                              <Button size="sm" variant="outline" asChild className="bg-transparent">
+                                <a href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify} target="_blank" rel="noopener noreferrer">
+                                  <ExternalLink className="mr-2 h-3 w-3" />
+                                  Spotify
+                                </a>
+                              </Button>
+                            )}
+                            {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple !== '#' && (
+                              <Button size="sm" variant="outline" asChild className="bg-transparent">
+                                <a href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple} target="_blank" rel="noopener noreferrer">
+                                  <ExternalLink className="mr-2 h-3 w-3" />
+                                  Apple Music
+                                </a>
+                              </Button>
+                            )}
+                            {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube !== '#' && (
+                              <Button size="sm" variant="outline" asChild className="bg-transparent">
+                                <a href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube} target="_blank" rel="noopener noreferrer">
+                                  <ExternalLink className="mr-2 h-3 w-3" />
+                                  YouTube
+                                </a>
+                              </Button>
                             )}
                           </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </motion.div>
                 </div>

@@ -1,13 +1,14 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Button } from "@/components/ui/button"
 
 const navItems = [
-  { name: "Home", href: "/" },
+  { name: "Início", href: "/" },
   { name: "Biografia", href: "/biografia" },
   { name: "Discografia", href: "/discografia" },
   { name: "Videografia", href: "/videografia" },
@@ -25,180 +26,137 @@ export function Navigation() {
     setMounted(true)
   }, [])
 
-  const isHomePage = pathname === "/"
-  const shouldUseDarkTheme = !isHomePage || scrolled
-
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 72)
 
-    if (typeof window !== "undefined") {
-      setScrolled(window.scrollY > 100)
-      window.addEventListener("scroll", handleScroll)
-    }
+    handleScroll()
+    window.addEventListener("scroll", handleScroll)
 
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("scroll", handleScroll)
-      }
-    }
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  if (!mounted) {
-    return null
-  }
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
+
+  if (!mounted) return null
+
+  const isHomePage = pathname === "/"
+  const transparent = isHomePage && !scrolled && !isOpen
 
   return (
     <motion.nav
-      className={`fixed top-0 w-full z-50 transition-all duration-700 ${
-        shouldUseDarkTheme
-          ? "bg-white/95 backdrop-blur-xl border-none shadow-lg"
-          : "bg-black/60 backdrop-blur-xl"
-      }`}
-      initial={{ y: -100, opacity: 0 }}
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
+        transparent
+          ? "border-transparent bg-black/18 text-white"
+          : "border-border/70 bg-background/92 text-foreground shadow-[0_10px_40px_rgb(35_26_18/0.08)] backdrop-blur-xl"
+      } border-b`}
+      initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className="flex justify-between items-center h-24">
-          {/* Logo with Professional Typography */}
-          <Link href="/" className="group">
-            <motion.div
-              className="flex flex-col"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <div
-                className={`font-handwriting text-2xl transition-all duration-300 ${
-                  shouldUseDarkTheme ? "text-black" : "text-white"
+      <div className="section-shell">
+        <div className="flex h-20 items-center justify-between gap-6">
+          <Link href="/" className="group flex items-center gap-4" aria-label="Ir para a página inicial">
+            <span
+              className={`h-8 w-px transition-colors duration-300 ${
+                transparent ? "bg-white/55" : "bg-accent"
+              }`}
+            />
+            <span className="flex flex-col">
+              <span className="brand-mark text-2xl leading-none">OHomemSó</span>
+              <span
+                className={`mt-1 font-mono text-[0.62rem] uppercase transition-colors duration-300 ${
+                  transparent ? "text-white/62" : "text-muted-foreground"
                 }`}
               >
-                OHomemSó
-              </div>
-
-            </motion.div>
+                músico e compositor
+              </span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation with Sophisticated Spacing */}
-          <div className="hidden lg:flex items-center space-x-16">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
-              >
+          <div className="hidden items-center gap-1 lg:flex">
+            {navItems.map((item) => {
+              const active = pathname === item.href
+
+              return (
                 <Link
+                  key={item.href}
                   href={item.href}
-                  className={`relative group text-xs font-light tracking-[0.15em] uppercase transition-all duration-300 ${
-                    shouldUseDarkTheme
-                      ? pathname === item.href
-                        ? "text-black"
-                        : "text-gray-600 hover:text-black"
-                      : pathname === item.href
-                        ? "text-gray-200"
-                        : "text-gray-300 hover:text-gray-200"
+                  className={`group relative px-4 py-3 font-mono text-[0.68rem] uppercase transition-colors duration-300 ${
+                    transparent
+                      ? active
+                        ? "text-white"
+                        : "text-white/68 hover:text-white"
+                      : active
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item.name}
-                  {/* Elegant Active Indicator */}
-                  {pathname === item.href && (
-                    <motion.div
-                      className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 rotate-45 ${
-                        shouldUseDarkTheme ? "bg-black" : "bg-gray-200"
-                      }`}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                  {/* Hover Effect */}
-                  <motion.div
-                    className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 h-px ${
-                      shouldUseDarkTheme ? "bg-black/30" : "bg-gray-200/30"
-                    }`}
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
+                  <span
+                    className={`absolute inset-x-4 bottom-2 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
+                      transparent ? "bg-white/70" : "bg-accent"
+                    } ${active ? "scale-x-100" : ""}`}
                   />
                 </Link>
-              </motion.div>
-            ))}
+              )
+            })}
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+          <Button
+            variant="ghost"
+            size="icon"
+            className={`h-11 w-11 lg:hidden ${
+              transparent ? "text-white hover:bg-white/10 hover:text-white" : "hover:bg-secondary"
+            }`}
+            onClick={() => setIsOpen((value) => !value)}
+            aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isOpen}
           >
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`lg:hidden p-2 transition-all duration-300 ${
-                shouldUseDarkTheme ? "text-black hover:bg-gray-100" : "text-gray-200 hover:bg-white/10"
-              }`}
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <div className="relative w-5 h-5">
-                <motion.span
-                  className={`absolute top-1 left-0 w-5 h-px ${shouldUseDarkTheme ? "bg-black" : "bg-gray-200"}`}
-                  animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.span
-                  className={`absolute top-2 left-0 w-5 h-px ${shouldUseDarkTheme ? "bg-black" : "bg-gray-200"}`}
-                  animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.span
-                  className={`absolute top-3 left-0 w-5 h-px ${shouldUseDarkTheme ? "bg-black" : "bg-gray-200"}`}
-                  animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-            </Button>
-          </motion.div>
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
-
-        {/* Mobile Menu with Professional Design */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              className="lg:hidden bg-white/98 backdrop-blur-xl border-t border-gray-100 shadow-xl"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="px-8 py-8 space-y-6">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.3 }}
-                  >
-                    <Link
-                      href={item.href}
-                      className={`block text-sm font-light tracking-[0.1em] uppercase transition-all duration-300 ${
-                        pathname === item.href
-                          ? "text-black border-l-2 border-black pl-4"
-                          : "text-gray-600 hover:text-black hover:pl-2"
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="border-t border-border/70 bg-background text-foreground lg:hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+          >
+            <div className="section-shell py-4">
+              <div className="grid gap-1">
+                {navItems.map((item, index) => {
+                  const active = pathname === item.href
+
+                  return (
+                    <motion.div
+                      key={item.href}
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.035, duration: 0.2 }}
+                    >
+                      <Link
+                        href={item.href}
+                        className={`flex items-center justify-between border-b border-border/50 px-1 py-4 text-base ${
+                          active ? "text-foreground" : "text-muted-foreground"
+                        }`}
+                      >
+                        <span>{item.name}</span>
+                        <span className={`h-2 w-2 ${active ? "bg-accent" : "bg-border"}`} />
+                      </Link>
+                    </motion.div>
+                  )
+                })}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }
