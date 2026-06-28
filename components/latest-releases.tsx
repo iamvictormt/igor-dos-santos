@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Disc } from 'lucide-react';
+import { Disc, ArrowRight } from 'lucide-react';
 
 export function LatestReleases() {
   const releases = [
@@ -46,64 +46,103 @@ export function LatestReleases() {
     },
   ].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate));
 
-  return (
-    <section className="py-16 md:py-32 px-4 md:px-6 bg-gray-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-16 items-start lg:items-center">
-          <div className="w-full lg:col-span-5">
-            <div className="space-y-6 md:space-y-8 text-center md:text-left">
-              <div>
-                <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Lançamentos</p>
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
-                  Novos
-                  <br />
-                  <span className="font-normal">Trabalhos</span>
-                </h2>
-              </div>
-              <Link href="/discografia">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="bg-black hover:bg-black/80 text-white hover:text-white font-light tracking-[0.1em] px-12 py-4 text-xs uppercase border-0 shadow-2xl transition-all duration-300"
-                  >
-                    <Disc className="mr-3 h-4 w-4" />
-                    Ver Discografia Completa
-                  </Button>
-                </motion.div>
-              </Link>
-            </div>
-          </div>
+  const featured = releases[0];
+  const sideReleases = releases.slice(1);
 
-          <div className="w-full lg:col-span-7">
-            <div className="grid gap-4 md:gap-8">
-              {releases.map((release, index) => (
-                <div
-                  key={release.id}
-                  className="group flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 p-4 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-500 hover:shadow-lg"
-                >
-                  <div className="flex-shrink-0 self-center sm:self-start">
-                    <div className="w-20 h-20 md:w-32 md:h-32 relative overflow-hidden">
-                      <Image
-                        src={release.image || '/placeholder.svg'}
-                        alt={release.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex-1 space-y-2 md:space-y-3 text-center sm:text-left">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                      <h3 className="flex-[0.7] text-xl md:text-2xl font-light text-black truncate">{release.title}</h3>
-                      <span className="flex-[0.3] text-xs md:text-sm text-gray-500 font-medium text-center md:text-right">
-                        {release.type} • {release.year}
-                      </span>
-                    </div>
-                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">{release.description}</p>
+  return (
+    <section className="py-16 md:py-28 px-4 md:px-6 bg-background overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        {/* Section header — editorial style */}
+        <div className="flex items-end gap-4 mb-12 md:mb-16">
+          <span className="section-number hidden md:block">01</span>
+          <div>
+            <span className="editorial-tag mb-4 inline-block">Discografia</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight text-foreground">
+              Últimos <span className="font-normal">Lançamentos</span>
+            </h2>
+          </div>
+        </div>
+
+        {/* Editorial layout: Feature + Sidebar */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+          {/* Feature album — takes 7 cols */}
+          <div className="lg:col-span-7">
+            <motion.div
+              className="group relative"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Link href="/discografia" className="block">
+                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                  <Image
+                    src={featured.image}
+                    alt={featured.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  {/* Overlay content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                    <span className="editorial-tag mb-3">{featured.type} • {featured.year}</span>
+                    <h3 className="font-serif text-2xl md:text-4xl font-light text-white mt-3 leading-tight">
+                      {featured.title}
+                    </h3>
+                    <p className="font-sans text-sm md:text-base text-white/70 mt-3 max-w-lg leading-relaxed">
+                      {featured.description}
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Sidebar — takes 5 cols */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            {sideReleases.map((release, index) => (
+              <motion.div
+                key={release.id}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                viewport={{ once: true }}
+              >
+                <Link href="/discografia" className="group flex gap-4 items-start p-4 border-b border-border hover:border-[#C41E3A] transition-colors duration-300">
+                  <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden bg-muted">
+                    <Image
+                      src={release.image}
+                      alt={release.title}
+                      fill
+                      className="object-cover"
+                      sizes="80px"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-xs font-sans font-semibold uppercase tracking-wider text-muted-foreground">
+                      {release.type} • {release.year}
+                    </span>
+                    <h4 className="font-serif text-lg font-light text-foreground mt-1 group-hover:text-[#C41E3A] transition-colors truncate">
+                      {release.title}
+                    </h4>
+                    <p className="font-sans text-sm text-muted-foreground mt-1 line-clamp-2">
+                      {release.description}
+                    </p>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+
+            <Link href="/discografia" className="group mt-auto">
+              <Button
+                variant="outline"
+                className="w-full font-serif text-sm tracking-wide border-foreground/20 text-foreground hover:bg-[#C41E3A] hover:text-white hover:border-[#C41E3A] transition-all duration-300"
+              >
+                Ver Discografia Completa
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

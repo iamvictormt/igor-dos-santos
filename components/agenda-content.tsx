@@ -1,31 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Card } from '@/components/ui/card';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, ExternalLink, Calendar } from 'lucide-react';
+import { MapPin, Clock, Ticket, ArrowRight } from 'lucide-react';
 import type { Show } from '@/types/show';
 import { motion } from 'framer-motion';
 
+const statusConfig = {
+  available: { label: 'Disponível', bg: 'bg-[#C41E3A]', text: 'text-white' },
+  last_tickets: { label: 'Últimos', bg: 'bg-[#C41E3A]', text: 'text-white' },
+  sold_out: { label: 'Esgotado', bg: 'bg-foreground', text: 'text-[#F8F6F1]' },
+  coming_soon: { label: 'Em breve', bg: 'bg-muted', text: 'text-muted-foreground' },
+};
+
 export function AgendaContent() {
   const [shows, setShows] = useState<Show[]>([]);
-
-  const getTicketStatus = (showDate: string, ticketUrl: string) => {
-    const currentDate = new Date();
-    const eventDate = new Date(showDate);
-    const timeDiff = eventDate.getTime() - currentDate.getTime();
-    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-    if ((ticketUrl === '#' || !ticketUrl || ticketUrl.trim() === '') && daysDiff > 0) {
-      return 'Em Breve';
-    } else if (daysDiff <= 7 && daysDiff > 0) {
-      return 'Últimos Ingressos';
-    } else if (daysDiff > 0) {
-      return 'Ingressos Disponíveis';
-    } else {
-      return 'Encerrado';
-    }
-  };
 
   useEffect(() => {
     fetch('/api/shows')
@@ -34,135 +24,120 @@ export function AgendaContent() {
       .catch((err) => console.error('Erro ao buscar shows:', err));
   }, []);
 
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return {
+      day: date.getDate().toString().padStart(2, '0'),
+      month: date.toLocaleDateString('pt-BR', { month: 'short' }).toUpperCase(),
+      weekday: date.toLocaleDateString('pt-BR', { weekday: 'short' }).replace('.', '').toUpperCase(),
+    };
+  };
+
   return (
-    <section className="pt-32 pb-24 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className="mb-20">
-          <div className="mb-8">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">PRÓXIMOS SHOWS</p>
-            <h1 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
-              Agenda <br /> <span className="font-normal">Musical</span>
+    <section className="py-16 md:py-32 px-4 md:px-6 bg-background overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        {/* Editorial page header */}
+        <div className="flex items-end gap-4 mb-12 md:mb-16">
+          <span className="section-number hidden md:block">03</span>
+          <div>
+            <span className="editorial-tag mb-4 inline-block">Agenda</span>
+            <h1 className="font-serif text-5xl md:text-5xl font-light tracking-tight text-foreground">
+              Agenda
             </h1>
           </div>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
-            Acompanhe os próximos shows e apresentações ao vivo
-          </p>
         </div>
 
-        <div className="space-y-6">
-          {shows.length === 0 ? (
-            <div className="bg-black text-white p-12 lg:p-16">
-              <div className="max-w-4xl">
-                <h2 className="text-2xl font-thin tracking-wide mb-8">Em breve...</h2>
-              </div>
-            </div>
-          ) : (
-            shows?.map((show, index) => {
-              const ticketStatus = getTicketStatus(show.date, show.ticketUrl || '#');
+        {shows.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="border border-border p-8 md:p-12"
+          >
+            <p className="font-serif italic text-xl text-muted-foreground">
+              Em breve, novos shows serão anunciados.
+            </p>
+            <div className="w-12 h-0.5 bg-[#C41E3A] mt-4" />
+          </motion.div>
+        ) : (
+          <div className="space-y-4">
+            {shows.map((show, index) => {
+              const { day, month, weekday } = formatDate(show.date);
+              const status = show.ticketStatus || 'coming_soon';
+              const config = statusConfig[status];
 
               return (
                 <motion.div
                   key={show.id}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  <Card className="border-0 bg-white hover:bg-gray-50/50 transition-all duration-500 shadow-lg hover:shadow-xl rounded-2xl overflow-hidden group">
-                    <div className="p-10 grid md:grid-cols-12 gap-8 items-center">
-                      <div className="md:col-span-2">
-                        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 text-center border border-gray-100 group-hover:shadow-md transition-all duration-300">
-                          <div className="flex items-center justify-center mb-3">
-                            <Calendar className="h-5 w-5 text-gray-400" />
-                          </div>
-                          <div className="text-4xl font-extralight text-black mb-2 tracking-tight">
-                            {new Date(show.date).getDate()}
-                          </div>
-                          <div className="text-sm font-semibold tracking-[0.15em] text-gray-600 mb-1">
-                            {new Date(show.date).toLocaleDateString('pt-BR', { month: 'short' }).toUpperCase()}
-                          </div>
-                          <div className="text-xs text-gray-400 font-light">{new Date(show.date).getFullYear()}</div>
+                  {/* Ticket-style card */}
+                  <div className="ticket-card bg-card overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+                    <div className="grid md:grid-cols-12 gap-0">
+                      {/* Date badge — left section */}
+                      <div className="md:col-span-2 flex items-center justify-center border-b md:border-b-0 md:border-r border-border py-4 md:py-0">
+                        <div className="text-center">
+                          <span className="font-mono text-xs text-muted-foreground block">{weekday}</span>
+                          <span className="font-serif text-4xl font-light text-foreground block leading-none">{day}</span>
+                          <span className="font-sans text-xs font-semibold uppercase tracking-wider text-[#C41E3A] block">{month}</span>
                         </div>
                       </div>
 
-                      <div className="md:col-span-7 space-y-5">
-                        <h3 className="text-3xl font-extralight tracking-wide text-black leading-tight group-hover:text-gray-800 transition-colors duration-300">
-                          {show.title}
-                        </h3>
-                        <div className="grid md:grid-cols-2 gap-6">
-                          <div className="flex items-start space-x-4">
-                            <div className="bg-gray-100 rounded-xl p-3 mt-1">
-                              <MapPin className="h-5 w-5 text-gray-600" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="font-semibold text-gray-900 text-lg leading-tight">{show.venue}</div>
-                              <div className="text-gray-600 mt-1">{show.city}</div>
-                            </div>
-                          </div>
-
-                          <div className="flex items-start space-x-4">
-                            <div className="bg-gray-100 rounded-xl p-3 mt-1">
-                              <Clock className="h-5 w-5 text-gray-600" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="font-semibold text-gray-900 text-lg leading-tight">Horário de início</div>
-                              <div className="text-gray-600 mt-1">{show.time}</div>
-                            </div>
+                      {/* Info section */}
+                      <div className="md:col-span-8 p-4 md:p-6 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+                        <div className="flex-1">
+                          <h3 className="font-serif text-xl font-light text-foreground group-hover:text-[#C41E3A] transition-colors">
+                            {show.title}
+                          </h3>
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2">
+                            <span className="font-sans text-sm text-muted-foreground flex items-center gap-1">
+                              <MapPin className="h-3 w-3" /> {show.venue}, {show.city}
+                            </span>
+                            <span className="font-sans text-sm text-muted-foreground flex items-center gap-1">
+                              <Clock className="h-3 w-3" /> {show.time}
+                            </span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="md:col-span-3 flex flex-col items-end gap-4">
-                        <span
-                          className={`text-xs font-semibold px-4 py-2 rounded-full tracking-[0.1em] uppercase shadow-sm border ${
-                            ticketStatus === 'Ingressos Disponíveis'
-                              ? 'bg-green-50 text-green-700 border-green-200'
-                              : ticketStatus === 'Últimos Ingressos'
-                              ? 'bg-amber-50 text-amber-700 border-amber-200'
-                              : ticketStatus === 'Em Breve'
-                              ? 'bg-gray-50 text-gray-600 border-gray-200'
-                              : 'bg-red-50 text-red-700 border-red-200'
-                          }`}
-                        >
-                          {ticketStatus}
+                      {/* Action section — right of dashed line */}
+                      <div className="md:col-span-2 p-4 md:p-6 flex flex-col items-center justify-center gap-2">
+                        <span className={`text-xs font-semibold px-2 py-1 ${config.bg} ${config.text}`}>
+                          {config.label}
                         </span>
-
-                        {ticketStatus === 'Ingressos Disponíveis' || ticketStatus === 'Últimos Ingressos' ? (
-                          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full">
-                            <Button
-                              variant="outline"
-                              className="w-full bg-black hover:bg-gray-800 text-white hover:text-white font-medium tracking-[0.15em] px-8 py-4 text-xs uppercase border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
-                              onClick={() => window.open(show.ticketUrl, '_blank')}
-                            >
-                              <ExternalLink className="mr-2 h-4 w-4" />
-                              Ingressos
-                            </Button>
-                          </motion.div>
-                        ) : null}
+                        {show.ticketUrl && status !== 'sold_out' && (
+                          <a
+                            href={show.ticketUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-sans text-xs font-semibold text-[#C41E3A] hover:underline flex items-center gap-1"
+                          >
+                            <Ticket className="h-3 w-3" /> Comprar
+                          </a>
+                        )}
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 </motion.div>
               );
-            })
-          )}
-        </div>
+            })}
+          </div>
+        )}
 
-        {/* <div className="mt-20 text-center">
-          <div className="bg-white rounded-xl border border-gray-200 p-12 shadow-sm">
-            <h3 className="text-2xl font-light text-black mb-4">Contratação de Shows</h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed">
-              Interessado em contratar OHomemSó para seu evento? Entre em contato para discutir disponibilidade e
-              condições.
-            </p>
+        <div className="mt-8 md:mt-12 flex justify-center">
+          <Link href="/agenda">
             <Button
               variant="outline"
-              className="font-medium tracking-wide bg-white border-2 border-black text-black hover:bg-black hover:text-white transition-all duration-200 px-8 py-3 rounded-lg"
-              onClick={() => (window.location.href = '/contato')}
+              className="font-serif tracking-wide border-foreground/20 text-foreground hover:bg-[#C41E3A] hover:text-white hover:border-[#C41E3A] transition-all duration-300"
             >
-              Entre em Contato
+              Ver Agenda Completa
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-          </div>
-        </div> */}
+          </Link>
+        </div>
       </div>
     </section>
   );

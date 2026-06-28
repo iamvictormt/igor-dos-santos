@@ -29,7 +29,7 @@ const albums = [
         audioUrl: '/audio-samples/Bem Vindo a Sua Vida.flac',
         composers: 'Igor Delfino / Márcio Ricardo',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/5nL0QWI8lyNEgAs09SI25p?si=5ff21f2f7fb44835',
+          spotify: 'https://open.spotify.com/track/5nL0QWI8lyNEgAs09SI25p?si=5ff21f2f7fb44835',
           apple: 'https://music.apple.com/br/song/bem-vindo-a-sua-vida/1390862121',
           youtube: 'https://youtu.be/VKGK59I-bps?si=Q64uZypSdsTYyT7W',
         },
@@ -40,7 +40,7 @@ const albums = [
         audioUrl: '/audio-samples/Auto Intitulada.flac',
         composers: 'Igor Delfino / Teco Martins',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/6VDHXAHeSBSP3Pe0jPW68i?si=01e933213d0f4160',
+          spotify: 'https://open.spotify.com/track/6VDHXAHeSBSP3Pe0jPW68i?si=01e933213d0f4160',
           apple: 'https://music.apple.com/br/song/auto-intitulada-feat-teco-martins/1390862123',
           youtube: 'https://youtu.be/xMrRriRhO_U?si=9JxUSefMiHgBWV1O',
         },
@@ -51,7 +51,7 @@ const albums = [
         audioUrl: '/audio-samples/Acaso.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/2ePJTnK6I06IQX5Fv9hs40?si=4703ef6bd5d94d73',
+          spotify: 'https://open.spotify.com/track/2ePJTnK6I06IQX5Fv9hs40?si=4703ef6bd5d94d73',
           apple: 'https://music.apple.com/br/song/acaso/1390862124',
           youtube: 'https://youtu.be/4sZgljD4Oms?si=v8W30qHO5bzuC6TP',
         },
@@ -62,7 +62,7 @@ const albums = [
         audioUrl: '/audio-samples/O Herói Não Resolvido.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/4tFlz4gwnC3137sIpbNGRj?si=997c483791bb458b',
+          spotify: 'https://open.spotify.com/track/4tFlz4gwnC3137sIpbNGRj?si=997c483791bb458b',
           apple: 'https://music.apple.com/br/song/o-her%C3%B4i-n%C3%A3o-resolvido/1390862125',
           youtube: 'https://youtu.be/1cmROgqxchg?si=elyVISLBMVt7i87j',
         },
@@ -91,7 +91,7 @@ const albums = [
         audioUrl: '/audio-samples/Talvez Nunca Aqui.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/4YnHeq5P0SM0SmE8AcQHly?si=0af02277c29a4ca2',
+          spotify: 'https://open.spotify.com/track/4YnHeq5P0SM0SmE8AcQHly?si=0af02277c29a4ca2',
           apple: 'https://music.apple.com/br/song/talvez-nunca-aqui/1448738983',
           youtube: 'https://youtu.be/CbQymIN_0Vw?si=mvnrrNNeaLLQVNJT',
         },
@@ -120,7 +120,7 @@ const albums = [
         audioUrl: '/audio-samples/Longe de Algum Lugar.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/7fALoQe5CcaU1Fpore1e73?si=2594fd6d02cf4ebb',
+          spotify: 'https://open.spotify.com/track/7fALoQe5CcaU1Fpore1e73?si=2594fd6d02cf4ebb',
           apple: 'https://music.apple.com/br/song/longe-de-algum-lugar/1500159656',
           youtube: 'https://youtu.be/rm91iYvTjpc?si=gF2bkE2FcvRQrWDA',
         },
@@ -131,7 +131,7 @@ const albums = [
         audioUrl: '/audio-samples/Avivar Gratovolte.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/6ZR6qPFA8iLGKNlP6C5Hbu?si=da1a46767a97432a',
+          spotify: 'https://open.spotify.com/track/6ZR6qPFA8iLGKNlP6C5Hbu?si=da1a46767a97432a',
           apple: 'https://music.apple.com/br/song/avivar/1500159657',
           youtube: 'https://youtu.be/ImYsxY7tbSM?si=Btd7a16EgEb6Ap1z',
         },
@@ -142,7 +142,7 @@ const albums = [
         audioUrl: '/audio-samples/Aonde Vai o Tempo.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/0ULIOcUoT223oNcprHCQOi?si=21be5f69126847e2',
+          spotify: 'https://open.spotify.com/track/0ULIOcUoT223oNcprHCQOi?si=21be5f69126847e2',
           apple: 'https://music.apple.com/br/song/aonde-vai-o-tempo/1500159658',
           youtube: 'https://youtu.be/G4dZtnoxkLE?si=uNUrs6eHrOj1B_gA',
         },
@@ -153,7 +153,7 @@ const albums = [
         audioUrl: '/audio-samples/Tudo o Que Eu Queria Te Dizer.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/3NQr9o5JnNYvFlDqouAsV0?si=22fe0dde33ab4e83',
+          spotify: 'https://open.spotify.com/track/3NQr9o5JnNYvFlDqouAsV0?si=22fe0dde33ab4e83',
           apple: 'https://music.apple.com/br/song/tudo-o-que-eu-queria-te-dizer/1500159659',
           youtube: 'https://youtu.be/RPsuMkZ-ho0?si=rF45h1hMjRQhUTqJ',
         },
@@ -181,7 +181,7 @@ const albums = [
         audioUrl: '/audio-samples/Avivar.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/79iZvFH7v0U3Ihdn1whTwQ?si=a5ce0f50e2744e84',
+          spotify: 'https://open.spotify.com/track/79iZvFH7v0U3Ihdn1whTwQ?si=a5ce0f50e2744e84',
           apple: 'https://music.apple.com/br/song/avivar/1532735884',
           youtube: 'https://youtu.be/ImYsxY7tbSM?si=Btd7a16EgEb6Ap1z',
         },
@@ -209,7 +209,7 @@ const albums = [
         audioUrl: '/audio-samples/Inicio de Outono.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/4kOKVpLprtQFQNYEJcVyaS?si=2d153ec52c3b4518',
+          spotify: 'https://open.spotify.com/track/4kOKVpLprtQFQNYEJcVyaS?si=2d153ec52c3b4518',
           apple: 'https://music.apple.com/br/song/inicio-de-outono/1540381749',
           youtube: 'https://youtu.be/Y6jRrusxY3E?si=Jp_HyyvsJ-SNOMFj',
         },
@@ -222,7 +222,7 @@ const albums = [
     year: '2021',
     type: 'Single',
     cover: '/amanha-novo-dia-cover.jpg',
-    description: 'Versão em tributo aos 55 anos da banda Made In Brazil, uma das mais antigas do país.',
+    description: 'Versão em tributo aos 55 anos da banda Made in Brazil, uma das mais antigas do país.',
     duration: '3:16',
     producer: "Gustavo 'Big' Simão",
     studio: 'Estúdio Choque DB',
@@ -236,7 +236,7 @@ const albums = [
         audioUrl: '/audio-samples/Amanhã É um Novo Dia.flac',
         composers: 'Antônio Manuel de Medeiros Junior / Oswaldo Vecchione Junior',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/1SPwhQM2CEfm7oBAEckx5f?si=b8159446dc3d44b6',
+          spotify: 'https://open.spotify.com/track/1SPwhQM2CEfm7oBAEckx5f?si=b8159446dc3d44b6',
           apple: 'https://music.apple.com/br/song/amanh%C3%A3-%C3%A9-um-novo-dia-cover/1593038041',
           youtube: 'https://youtu.be/nrLCteUhKnk?si=gVkfiWN00K7MIOOZ',
         },
@@ -263,7 +263,7 @@ const albums = [
         audioUrl: '/audio-samples/Trinta e Um.flac',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/3fICJtukGApzaSKo7KJp2q?si=483d074544194f89',
+          spotify: 'https://open.spotify.com/track/3fICJtukGApzaSKo7KJp2q?si=483d074544194f89',
           apple: 'https://music.apple.com/br/song/trinta-e-um-feat-janaina-fran%C3%A7a/1687177294',
           youtube: 'https://youtu.be/1YJnQ41PcVE?si=L_cvFm4cuOaTGx06',
         },
@@ -319,7 +319,7 @@ const albums = [
         audioUrl: '/audio-samples/Voar.mp3',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/05R8En6Qioewa5Hq3U8hta?si=1a03474c3b784277',
+          spotify: 'https://open.spotify.com/track/05R8En6Qioewa5Hq3U8hta?si=1a03474c3b784277',
           apple: 'https://music.apple.com/br/song/voar/1790093749',
           youtube: 'https://youtu.be/YD1hsoXfhM0?si=NonVvJ7fF15aNM31',
         },
@@ -347,7 +347,7 @@ const albums = [
         audioUrl: '/audio-samples/Grito Mudo.mp3',
         composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/0otgZMiII8QImebUdU29gM?si=0c05bebfb7844685',
+          spotify: 'https://open.spotify.com/track/0otgZMiII8QImebUdU29gM?si=0c05bebfb7844685',
           apple: 'https://music.apple.com/br/song/grito-mudo/1808352231',
           youtube: 'https://youtu.be/1L54FO3z8-s?si=JU1BSqG0rrYYcxuL',
         },
@@ -358,7 +358,7 @@ const albums = [
         audioUrl: '/audio-samples/Silencio Ensurdecedor.mp3',
         composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/5ixe11RDnsD01eFjkiO6Vh?si=58b9999deffa4b8f',
+          spotify: 'https://open.spotify.com/track/5ixe11RDnsD01eFjkiO6Vh?si=58b9999deffa4b8f',
           apple: 'https://music.apple.com/br/song/sil%C3%AAncio-ensudecedor/1808352232',
           youtube: 'https://youtu.be/cXOcWDQU1H8?si=NxUjR66Ib0o21hBA',
         },
@@ -385,7 +385,7 @@ const albums = [
         audioUrl: '/audio-samples/TQEQTD - VIVO20.wav',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/1fDJc4wJ7EvP2HGuMR1uXo?si=47da613e511b4c9b',
+          spotify: 'https://open.spotify.com/track/1fDJc4wJ7EvP2HGuMR1uXo?si=47da613e511b4c9b',
           apple: 'https://music.apple.com/br/song/tudo-o-que-eu-queria-te-dizer-ao-vivo/1817956731',
           youtube: 'https://youtu.be/0AwFbg8XMxY?si=0nkTz13aXfBX2u-l',
         },
@@ -406,7 +406,7 @@ const albums = [
     genre: 'Indie-Folk Rock',
     releaseDate: '26/06/2026',
     credits:
-      'Voz, Violão & Guitarra: Igor Delfino | Teclados na Faixa 1: Bruno Piazza | Eng. Som / Mix / Master: Faixa 1 – Gustavo “Big” Simão; Faixas 2 a 5 – Pedro Caio / Isac Gabs',
+      'Voz, Violão & Guitarra: Igor Delfino | Teclados na Faixa 1: Bruno Piazza | Eng. Som / Mix / Master: Faixa 1 – Gustavo "Big" Simão; Faixas 2 a 5 – Pedro Caio / Isac Gabs',
     tracklist: [
       {
         name: 'Tamanho de Um Rei',
@@ -531,28 +531,28 @@ function MinimalAudioPlayer({
   const progressPercentage = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="bg-background border rounded-lg p-4 space-y-3">
+    <div className="bg-card border-none rounded-none p-4 space-y-3">
       <audio ref={audioRef} src={track.audioUrl} crossOrigin="anonymous" preload="metadata" />
 
       <div className="flex items-center justify-between">
         <div className="flex-1 min-w-0">
-          <h4 className="font-medium text-sm truncate">{track.name}</h4>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+          <h4 className="font-serif text-base truncate">{track.name}</h4>
+          <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mt-1">
             <span>{formatTime(currentTime)}</span>
             <span>/</span>
             <span>{formatTime(duration)}</span>
           </div>
         </div>
 
-        <Button onClick={onPlayPause} size="sm" variant="ghost" className="rounded-full w-8 h-8 p-0 ml-3">
+        <Button onClick={onPlayPause} size="sm" variant="ghost" className="rounded-full w-8 h-8 p-0 ml-3 hover:text-[#C41E3A]">
           {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
         </Button>
       </div>
 
       <div className="w-full bg-muted rounded-full h-1">
         <div
-          className="bg-primary h-1 rounded-full transition-all duration-100"
-          style={{ width: `${progressPercentage}%` }}
+          className="h-1 rounded-full transition-all duration-100"
+          style={{ width: `${progressPercentage}%`, backgroundColor: '#C41E3A' }}
         />
       </div>
     </div>
@@ -565,25 +565,22 @@ export function DiscographyContent() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
   const globalAudioRef = useRef<HTMLAudioElement | null>(null);
+  const [isFeatured, setIsFeatured] = useState(true);
 
   const handleTrackClick = (trackIndex: number) => {
     if (currentTrack === trackIndex) {
-      // Se é a mesma faixa, apenas alternar play/pause
       setIsPlaying(!isPlaying);
     } else {
-      // Se é uma faixa diferente e há música tocando, pausar primeiro
       if (isPlaying && globalAudioRef.current) {
         setIsPlaying(false);
         globalAudioRef.current.pause();
         globalAudioRef.current.currentTime = 0;
 
-        // Aguardar 1 segundo antes de trocar e tocar a nova música
         setTimeout(() => {
           setCurrentTrack(trackIndex);
           setIsPlaying(true);
         }, 0);
       } else {
-        // Se não há música tocando, trocar imediatamente
         setCurrentTrack(trackIndex);
         setIsPlaying(true);
       }
@@ -615,6 +612,14 @@ export function DiscographyContent() {
   };
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const updateFeatured = () => setIsFeatured(window.innerWidth >= 768);
+    updateFeatured();
+    window.addEventListener('resize', updateFeatured);
+    return () => window.removeEventListener('resize', updateFeatured);
+  }, []);
+
+  useEffect(() => {
     const audioElements = document.querySelectorAll('audio');
     if (audioElements.length > 0) {
       globalAudioRef.current = audioElements[audioElements.length - 1] as HTMLAudioElement;
@@ -632,43 +637,136 @@ export function DiscographyContent() {
     }
   });
 
+  // Get the latest album based on release date
+  const latestAlbumSorted = [...albums].sort((a, b) => {
+    const dateA = new Date(a.releaseDate.split('/').reverse().join('-'));
+    const dateB = new Date(b.releaseDate.split('/').reverse().join('-'));
+    return dateB.getTime() - dateA.getTime();
+  })[0];
+
+  const featuredAlbum = latestAlbumSorted;
+  const gridAlbums = sortedAlbums.filter((a) => a.id !== featuredAlbum.id);
+
   return (
-    <section className="pt-32 pb-24 bg-gray-50">
+    <section className="pt-32 pb-24 bg-[#F8F6F1] dark:bg-background">
       <div className="max-w-7xl mx-auto px-8 lg:px-12">
         <div className="mb-20">
-          <div className="mb-8">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Discografia</p>
-            <h1 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
-              Meus
-              <br />
-              <span className="font-normal">Trabalhos</span>
-            </h1>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="inline-block px-3 py-1 text-xs font-mono tracking-[0.15em] uppercase bg-[#C41E3A] text-white">
+              Edição Nº 42
+            </span>
+            <span className="inline-block px-3 py-1 text-xs font-mono tracking-[0.15em] uppercase bg-[#C41E3A] text-white">
+              Discografia
+            </span>
           </div>
+          <h2 className="text-5xl lg:text-7xl font-serif font-light text-foreground leading-[0.95] tracking-tight">
+            Meus
+            <br />
+            <span className="font-normal italic">Trabalhos</span>
+          </h2>
         </div>
 
-        <div className="mb-8 flex justify-end">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
-              className="flex items-center gap-2 bg-black hover:bg-black/80 text-white hover:text-white font-light tracking-[0.1em] px-12 py-4 text-xs uppercase border-0 shadow-2xl transition-all duration-300"
+        <div className="mb-10">
+          <button
+            onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
+            className="flex items-center gap-2 px-6 py-3 text-xs font-serif tracking-[0.15em] uppercase text-foreground border-b-2 border-foreground hover:border-[#C41E3A] hover:text-[#C41E3A] transition-colors duration-300 bg-transparent"
+          >
+            <ArrowUpDown className="h-4 w-4" />
+            {sortOrder === 'newest' ? 'Mais Recentes' : 'Mais Antigos'}
+          </button>
+        </div>
+
+        {/* Featured Album */}
+        {featuredAlbum && (
+          <div className="mb-20">
+            <div
+              className="grid gap-8 lg:gap-12 items-start"
+              style={{
+                gridTemplateColumns: isFeatured ? 'repeat(2, 1fr)' : '1fr',
+              }}
             >
-              <ArrowUpDown className="mr-3 h-4 w-4" />
-              {sortOrder === 'newest' ? 'Mais Recentes' : 'Mais Antigos'}
-            </Button>
-          </motion.div>
-        </div>
+              {isFeatured && (
+                <div
+                  className="relative overflow-hidden cursor-pointer group border-none"
+                  onClick={() => handleAlbumSelect(featuredAlbum)}
+                >
+                  <div className="aspect-square w-full border-none overflow-hidden">
+                    <img
+                      src={featuredAlbum.cover || '/placeholder.svg'}
+                      alt={featuredAlbum.title}
+                      className="w-full h-full object-cover border-none group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+              )}
 
+              <div className="space-y-6 py-4 lg:py-8">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="inline-block px-3 py-1 text-xs font-mono tracking-[0.15em] uppercase bg-[#C41E3A] text-white">
+                    NOVO
+                  </span>
+                  <span className="text-sm font-mono text-muted-foreground">{featuredAlbum.year} · {featuredAlbum.type} · {featuredAlbum.genre}</span>
+                </div>
+
+                <h3 className="text-3xl md:text-4xl font-serif font-light text-foreground leading-tight group-hover:text-[#C41E3A] transition-colors duration-300 cursor-pointer"
+                    onClick={() => handleAlbumSelect(featuredAlbum)}>
+                  {featuredAlbum.title}
+                </h3>
+
+                <p className="font-sans text-base text-muted-foreground leading-relaxed line-clamp-3 lg:line-clamp-none">
+                  {featuredAlbum.description}
+                </p>
+
+                <div className="pt-4 space-y-3 text-sm font-mono text-foreground">
+                  <div className="flex gap-12">
+                    <span>
+                      <span className="block text-muted-foreground uppercase tracking-wider text-xs mb-1">Lançamento</span>
+                      {featuredAlbum.releaseDate}
+                    </span>
+                    <span>
+                      <span className="block text-muted-foreground uppercase tracking-wider text-xs mb-1">Duração</span>
+                      {featuredAlbum.duration}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block text-muted-foreground uppercase tracking-wider text-xs mb-1">Gravação</span>
+                    {featuredAlbum.studio}
+                  </div>
+                  <div>
+                    <span className="block text-muted-foreground uppercase tracking-wider text-xs mb-1">Produção</span>
+                    {featuredAlbum.producer}
+                  </div>
+                  <div>
+                    <span className="block text-muted-foreground uppercase tracking-wider text-xs mb-2">Créditos</span>
+                    <span className="text-foreground/80 text-xs leading-relaxed">{featuredAlbum.credits}</span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => handleAlbumSelect(featuredAlbum)}
+                  className="inline-block bg-[#C41E3A] text-white font-serif tracking-wide px-8 py-3 hover:bg-[#a81830] transition-colors duration-300"
+                >
+                  Ouvir Álbum
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Album Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {sortedAlbums.map((album, index) => (
-            <div key={album.id} className="group cursor-pointer" onClick={() => handleAlbumSelect(album)}>
-              <div className="relative mb-6">
-                <div className="aspect-square overflow-hidden bg-white shadow-lg">
+          {gridAlbums.map((album, index) => (
+            <div
+              key={album.id}
+              className="group cursor-pointer bg-card border-none rounded-none hover:border-b-2 hover:border-b-[#C41E3A] transition-all duration-300"
+              onClick={() => handleAlbumSelect(album)}
+            >
+              <div className="relative mb-5">
+                <div className="aspect-square overflow-hidden border-none">
                   <img
                     src={album.cover || '/placeholder.svg'}
                     alt={album.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover border-none group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
@@ -680,18 +778,15 @@ export function DiscographyContent() {
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <div className="flex items-baseline justify-between">
-                  <h3 className="text-xl font-light tracking-wide text-black group-hover:text-gray-600 transition-colors duration-300">
-                    {album.title}
-                  </h3>
-                  <span className="text-sm font-mono text-gray-500">{album.year}</span>
-                </div>
-                <div className="text-xs font-mono tracking-[0.1em] uppercase text-gray-400">{album.type}</div>
-                <p className="text-gray-600 leading-relaxed text-sm line-clamp-2">{album.description}</p>
-                <div className="text-xs font-mono tracking-[0.1em] uppercase text-gray-400 group-hover:text-black transition-colors duration-300">
-                  Clique para explorar →
-                </div>
+              <div className="space-y-2">
+                <span className="inline-block px-2 py-0.5 text-[10px] font-mono tracking-[0.15em] uppercase bg-[#C41E3A] text-white">
+                  {album.type}
+                </span>
+                <h3 className="text-lg font-serif font-light text-foreground group-hover:text-[#C41E3A] transition-colors duration-300">
+                  {album.title}
+                </h3>
+                <span className="block text-sm font-mono text-muted-foreground">{album.year}</span>
+                <p className="font-sans text-sm text-muted-foreground leading-relaxed line-clamp-2">{album.description}</p>
               </div>
             </div>
           ))}
@@ -701,14 +796,14 @@ export function DiscographyContent() {
           {selectedAlbum && (
             <Dialog open={!!selectedAlbum} onOpenChange={handleCloseModal}>
               <DialogContent
-                className="w-full max-w-none h-screen max-h-screen m-0 rounded-none overflow-hidden p-0 
-                            sm:w-[95vw] sm:max-w-7xl sm:h-[90vh] sm:max-h-[90vh] sm:rounded-lg sm:m-4"
+                className="w-full max-w-none h-screen max-h-screen m-0 rounded-none overflow-hidden p-0
+                            sm:w-[95vw] sm:max-w-7xl sm:h-[90vh] sm:max-h-[90vh] sm:rounded-lg sm:m-4 bg-[#F8F6F1] dark:bg-card"
               >
                 <Button
                   variant="ghost"
                   size="icon"
                   className="absolute top-2 right-2 z-50 bg-background/90 backdrop-blur-sm border
-                             sm:top-4 sm:right-4"
+                             hover:text-[#C41E3A] sm:top-4 sm:right-4"
                   onClick={handleCloseModal}
                 >
                   <X className="h-4 w-4" />
@@ -723,8 +818,11 @@ export function DiscographyContent() {
                     className="p-4 sm:p-8 min-h-full"
                   >
                     <DialogHeader className="mb-4 sm:mb-8">
-                      <DialogTitle className="text-xl sm:text-3xl font-bold pr-8">
-                        {selectedAlbum.title} ({selectedAlbum.year})
+                      <DialogTitle className="text-xl sm:text-3xl font-serif font-light pr-8">
+                        {selectedAlbum.title}
+                        <span className="ml-3 text-base sm:text-lg font-mono text-muted-foreground font-normal">
+                          ({selectedAlbum.year})
+                        </span>
                       </DialogTitle>
                     </DialogHeader>
 
@@ -733,7 +831,7 @@ export function DiscographyContent() {
                         <img
                           src={selectedAlbum.cover || '/placeholder.svg'}
                           alt={selectedAlbum.title}
-                          className="w-full max-w-xs sm:max-w-lg mx-auto aspect-square object-cover rounded-lg"
+                          className="w-full max-w-xs sm:max-w-lg mx-auto aspect-square object-cover border-none"
                         />
 
                         {selectedAlbum.tracklist.length > 0 && (
@@ -748,56 +846,56 @@ export function DiscographyContent() {
                       </div>
 
                       <div className="space-y-6 sm:space-y-8">
-                        <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
+                        <p className="font-sans text-muted-foreground leading-relaxed text-base sm:text-lg">
                           {selectedAlbum.description}
                         </p>
 
-                        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 sm:p-6">
-                          <h4 className="font-bold mb-3 sm:mb-4 flex items-center text-base sm:text-lg">
+                        <div className="bg-white/60 dark:bg-muted/30 border-none rounded-none p-4 sm:p-6">
+                          <h4 className="font-serif text-lg font-light mb-3 sm:mb-4 flex items-center">
                             <Disc className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                             Ficha Técnica
                           </h4>
-                          <div className="space-y-3 text-sm sm:text-base">
+                          <div className="space-y-3 text-sm sm:text-base font-mono">
                             <div className="flex items-start">
                               <Calendar className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Lançamento:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.releaseDate}</span>
+                                <span className="ml-2">{selectedAlbum.releaseDate}</span>
                               </div>
                             </div>
                             <div className="flex items-start">
                               <Clock className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Duração:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.duration}</span>
+                                <span className="ml-2">{selectedAlbum.duration}</span>
                               </div>
                             </div>
                             <div className="flex items-start">
                               <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Eng. de Som/Mix/Master:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.producer}</span>
+                                <span className="ml-2">{selectedAlbum.producer}</span>
                               </div>
                             </div>
                             <div className="flex items-start">
                               <Music className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Gênero:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.genre}</span>
+                                <span className="ml-2">{selectedAlbum.genre}</span>
                               </div>
                             </div>
                             <div className="flex items-start">
                               <Disc className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Estúdio:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.studio}</span>
+                                <span className="ml-2">{selectedAlbum.studio}</span>
                               </div>
                             </div>
                             <div className="flex items-start">
                               <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                               <div>
                                 <span className="text-muted-foreground">Créditos:</span>
-                                <span className="ml-2 font-medium text-sm leading-relaxed">
+                                <span className="ml-2 text-sm leading-relaxed">
                                   {selectedAlbum.credits}
                                 </span>
                               </div>
@@ -806,34 +904,34 @@ export function DiscographyContent() {
                         </div>
 
                         <div>
-                          <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">Faixas:</h4>
+                          <h4 className="font-serif text-lg font-light mb-2 sm:mb-3">Faixas:</h4>
                           <div className="space-y-1 sm:space-y-2">
                             {selectedAlbum.tracklist.map((track, index) => (
                               <div
                                 key={index}
-                                className={`flex justify-between items-center py-2 px-3 rounded cursor-pointer transition-colors text-sm ${
+                                className={`flex justify-between items-center py-2 px-3 cursor-pointer transition-colors text-sm border-none rounded-none ${
                                   currentTrack === index
-                                    ? 'bg-primary/10 border border-primary/20'
-                                    : 'bg-muted/30 hover:bg-muted/50'
+                                    ? 'bg-[#C41E3A]/10 border-l-2 border-l-[#C41E3A]'
+                                    : 'bg-transparent hover:bg-muted/20'
                                 }`}
                                 onClick={() => handleTrackClick(index)}
                               >
                                 <div className="flex items-center min-w-0 flex-1">
                                   <div className="mr-2 w-5 flex justify-center flex-shrink-0">
                                     {currentTrack === index && isPlaying ? (
-                                      <Pause className="h-3 w-3 text-primary" />
+                                      <Pause className="h-3 w-3 text-[#C41E3A]" />
                                     ) : (
-                                      <Play className="h-3 w-3 text-muted-foreground" />
+                                      <Play className="h-3 w-3 text-muted-foreground group-hover:text-[#C41E3A]" />
                                     )}
                                   </div>
                                   <div className="min-w-0 flex-1">
-                                    <div className="font-medium truncate">{track.name}</div>
+                                    <div className="font-serif truncate">{track.name}</div>
                                     {track.composers && (
-                                      <div className="text-xs text-muted-foreground truncate">{track.composers}</div>
+                                      <div className="text-xs font-mono text-muted-foreground truncate">{track.composers}</div>
                                     )}
                                   </div>
                                 </div>
-                                <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">
+                                <span className="text-xs font-mono text-muted-foreground ml-2 flex-shrink-0">
                                   {track.duration}
                                 </span>
                               </div>
@@ -842,7 +940,7 @@ export function DiscographyContent() {
                         </div>
 
                         <div>
-                          <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">Ouça em:</h4>
+                          <h4 className="font-serif text-lg font-light mb-2 sm:mb-3">Ouça em:</h4>
                           <div className="flex flex-col gap-2">
                             {selectedAlbum.tracklist[currentTrack || 0]?.streamingLinks && (
                               <>
@@ -851,7 +949,7 @@ export function DiscographyContent() {
                                     size="sm"
                                     variant="outline"
                                     asChild
-                                    className="w-full justify-start bg-transparent"
+                                    className="w-full justify-start bg-transparent border-none rounded-none hover:text-[#C41E3A]"
                                   >
                                     <a
                                       href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify}
@@ -868,7 +966,7 @@ export function DiscographyContent() {
                                     size="sm"
                                     variant="outline"
                                     asChild
-                                    className="w-full justify-start bg-transparent"
+                                    className="w-full justify-start bg-transparent border-none rounded-none hover:text-[#C41E3A]"
                                   >
                                     <a
                                       href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple}
@@ -885,7 +983,7 @@ export function DiscographyContent() {
                                     size="sm"
                                     variant="outline"
                                     asChild
-                                    className="w-full justify-start bg-transparent"
+                                    className="w-full justify-start bg-transparent border-none rounded-none hover:text-[#C41E3A]"
                                   >
                                     <a
                                       href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube}

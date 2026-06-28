@@ -2,6 +2,7 @@
 
 import { formatDatePtBr } from '@/lib/utils';
 import { NewsItem } from '@/types/news';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export function NewsSection() {
@@ -45,43 +46,140 @@ export function NewsSection() {
     fetchNews();
   }, []);
 
+  const hasMultipleItems = news.length >= 3;
+  const featureItem = hasMultipleItems ? news[0] : null;
+  const remainingItems = hasMultipleItems ? news.slice(1) : news;
+
   return (
-    <section className="py-32 px-6 bg-gray-50">
+    <section className="py-24 md:py-28 px-6 bg-[#0D0D0D] text-[#F8F6F1] dark:bg-[#0D0D0D] dark:text-white">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Últimas Notícias</p>
-          <h2 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">Novidades</h2>
+        {/* Editorial Section Header */}
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="section-number font-serif text-6xl font-extralight text-[#C41E3A]/30">02</span>
+            <span className="editorial-tag bg-[#C41E3A] text-white text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1">
+              Notícias
+            </span>
+          </div>
+          <h2 className="font-serif text-4xl font-light text-white tracking-tight">
+            Últimas Notícias
+          </h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {news.length === 0 ? (
-            <div className="bg-black text-white p-12 lg:p-16 col-span-3">
-              <div className="max-w-4xl">
-                <h2 className="text-2xl font-thin tracking-wide mb-8">Nenhuma notícia disponível no momento.</h2>
-              </div>
-            </div>
-          ) : (
-            news.map((item, index: number) => (
-              <article
-                key={index}
-                className="group bg-white p-8 hover:shadow-xl transition-all duration-500 border border-transparent hover:border-gray-200"
+        {/* Editorial Cards Grid */}
+        {news.length === 0 ? (
+          <div className="py-20 flex flex-col items-center justify-center">
+            <div className="w-16 h-[2px] bg-[#C41E3A] mb-8"></div>
+            <p className="font-serif italic text-white/50 text-lg text-center">
+              Nenhuma notícia disponível no momento.
+            </p>
+          </div>
+        ) : (
+          <>
+            {/* Feature Card — full-width horizontal layout */}
+            {featureItem && (
+              <motion.article
+                key={featureItem.id}
+                className="group flex flex-col md:flex-row bg-white/5 border-b border-white/10 hover:border-b-[#C41E3A] transition-all duration-500 mb-0"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
               >
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium tracking-wider text-gray-500 uppercase">{item.category}</span>
-                    <time className="text-sm text-gray-400">{formatDatePtBr(item.date)}</time>
+                {/* Left side — image placeholder */}
+                <div className="md:w-1/2 aspect-video bg-muted flex items-center justify-center">
+                  <span className="font-serif text-4xl font-light text-white/20 tracking-widest">
+                    OH
+                  </span>
+                </div>
+
+                {/* Right side — content */}
+                <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center space-y-6">
+                  <div className="flex items-center gap-3">
+                    <span className="editorial-tag bg-[#C41E3A] text-white text-[10px] font-semibold tracking-[0.15em] uppercase px-2 py-0.5">
+                      {featureItem.category}
+                    </span>
+                    <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-white/60">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C41E3A]" />
+                      {formatDatePtBr(featureItem.date)}
+                    </span>
                   </div>
 
-                  <h3 className="text-xl font-light text-black leading-tight group-hover:text-gray-600 transition-colors duration-300">
-                    {item.title}
+                  <h3 className="font-serif text-2xl md:text-4xl font-light text-white leading-snug hover:text-[#C41E3A] transition-colors duration-300">
+                    {featureItem.title}
                   </h3>
 
-                  <p className="text-gray-600 leading-relaxed">{item.excerpt}</p>
+                  <p className="font-sans text-base text-white/60 leading-relaxed">
+                    {featureItem.excerpt}
+                  </p>
+
+                  <a
+                    href="#"
+                    className="font-serif text-sm text-[#C41E3A] hover:underline inline-block"
+                  >
+                    Leia mais
+                  </a>
                 </div>
-              </article>
-            ))
-          )}
-        </div>
+              </motion.article>
+            )}
+
+            {/* Remaining cards — 2-column grid below */}
+            {remainingItems.length > 0 && (
+              <div className="grid md:grid-cols-2 gap-0">
+                {remainingItems.map((item, index) => (
+                  <motion.article
+                    key={item.id}
+                    className="group bg-white/5 p-8 border-b border-white/10 hover:border-b-[#C41E3A] transition-all duration-500"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.1 }}
+                  >
+                    <div className="space-y-5">
+                      {/* Category + Date row */}
+                      <div className="flex items-center gap-3">
+                        <span className="editorial-tag bg-[#C41E3A] text-white text-[10px] font-semibold tracking-[0.15em] uppercase px-2 py-0.5">
+                          {item.category}
+                        </span>
+                        <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-white/50">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#C41E3A]" />
+                          {formatDatePtBr(item.date)}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="font-serif text-lg font-light text-white leading-snug hover:text-[#C41E3A] transition-colors duration-300">
+                        {item.title}
+                      </h3>
+
+                      {/* Excerpt */}
+                      <p className="font-sans text-sm text-white/50 leading-relaxed">
+                        {item.excerpt}
+                      </p>
+
+                      {/* Leia mais link */}
+                      <a
+                        href="#"
+                        className="font-serif text-sm text-[#C41E3A] hover:underline inline-block"
+                      >
+                        Leia mais
+                      </a>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+            )}
+          </>
+        )}
+
+        {/* Ver Todas Button */}
+        {news.length > 0 && (
+          <div className="flex justify-center mt-16">
+            <button className="font-serif text-sm tracking-[0.2em] uppercase px-10 py-3 border border-white/30 text-white hover:bg-[#C41E3A] hover:text-white hover:border-[#C41E3A] transition-all duration-300">
+              Ver Todas
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

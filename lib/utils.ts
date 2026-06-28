@@ -6,7 +6,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const formatDatePtBr = (dateString: string): string => {
+  // Handle "15 Jan 2024" format (already formatted)
+  if (/^\d{1,2}\s+\w{3,}\s+\d{4}$/.test(dateString)) {
+    return dateString;
+  }
+
   const date = new Date(dateString);
+  if (isNaN(date.getTime())) return dateString;
+
   const formatted = new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
     month: 'short',
