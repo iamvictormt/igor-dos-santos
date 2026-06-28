@@ -1,208 +1,99 @@
 'use client';
 
 import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import { Play, ExternalLink, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const videos = [
-  {
-    id: 1,
-    title: 'Silêncio Ensurdecedor',
-    youtubeUrl: 'https://youtu.be/GZ0DGvkg4us?si=-z3MiY824eoyNj_L',
-  },
-  {
-    id: 2,
-    title: 'Voar',
-    youtubeUrl: 'https://youtu.be/YD1hsoXfhM0?si=l6HXWEhYCE3V3f39',
-  },
-  {
-    id: 3,
-    title: 'Bem Vindo a Sua Vida',
-    youtubeUrl: 'https://youtu.be/VKGK59I-bps?si=xgvjsEV-GvBUabAQ',
-  },
-  {
-    id: 4,
-    title: 'Auto Intitulada',
-    youtubeUrl: 'https://youtu.be/xMrRriRhO_U?si=EMD3VSevmsXZgpmo',
-  },
-  {
-    id: 5,
-    title: 'Avivar (Acústica)',
-    youtubeUrl: 'https://youtu.be/ImYsxY7tbSM?si=jFMf_Us_pDE3SmyP',
-  },
-  {
-    id: 6,
-    title: 'A.C.A.S.O',
-    youtubeUrl: 'https://youtu.be/4sZgljD4Oms?si=P6QClneLt3VOe2OJ',
-  },
-  {
-    id: 7,
-    title: 'Grito Mudo',
-    youtubeUrl: 'https://youtu.be/1L54FO3z8-s?si=UFhcFaHCXovbB_db',
-  },
-  {
-    id: 8,
-    title: 'O Herói Não Resolvido',
-    youtubeUrl: 'https://youtu.be/1cmROgqxchg?si=5iShmaS2yWaZy31z',
-  },
-  {
-    id: 9,
-    title: 'Aonde Vai o Tempo?',
-    youtubeUrl: 'https://youtu.be/G4dZtnoxkLE?si=Dm4pWg0hbtV6j-Xx',
-  },
-  {
-    id: 10,
-    title: 'Amanhã É um Novo Dia',
-    youtubeUrl: 'https://youtu.be/nrLCteUhKnk?si=q7e2Y5hBmRFC_-nL',
-  },
-  {
-    id: 11,
-    title: 'Broken Dreams & Hopes - Visualizer Oficial',
-    youtubeUrl: 'https://youtu.be/pUOboWnkxgI?si=dqNay6O7IU09lhU1',
-  },
-  {
-    id: 12,
-    title: 'Tudo o Que Eu Queria Te Dizer - Ao Vivo',
-    youtubeUrl: 'https://youtu.be/0AwFbg8XMxY?si=Gy_0TsUp0tnqcClN',
-  },
-  {
-    id: 13,
-    title: 'Bem Vindo a Sua Vida - Ao Vivo',
-    youtubeUrl: 'https://youtu.be/BprfDyjdx60?si=g0Z-VQrQs2MouUg0',
-  },
-  {
-    id: 14,
-    title: 'Novos Horizontes (Engenheiros do Hawaii) - Ao Vivo',
-    youtubeUrl: 'https://youtu.be/Hrj0w_zqOfc?si=WfOSIF62xucm7Een',
-  },
-  {
-    id: 15,
-    title: 'O Herói Não Resolvido / De Costas para o Mar (Rodox) - Ao Vivo',
-    youtubeUrl: 'https://youtu.be/PKa34fCLOwA?si=en7F9dMM9WG4Xlsj',
-  },
+  { id: 1, title: 'Silêncio Ensurdecedor', youtubeUrl: 'https://youtu.be/GZ0DGvkg4us' },
+  { id: 2, title: 'Voar', youtubeUrl: 'https://youtu.be/YD1hsoXfhM0' },
+  { id: 3, title: 'Bem Vindo a Sua Vida', youtubeUrl: 'https://youtu.be/VKGK59I-bps' },
+  { id: 4, title: 'Auto Intitulada', youtubeUrl: 'https://youtu.be/xMrRriRhO_U' },
+  { id: 5, title: 'Avivar (Acústica)', youtubeUrl: 'https://youtu.be/ImYsxY7tbSM' },
+  { id: 6, title: 'A.C.A.S.O', youtubeUrl: 'https://youtu.be/4sZgljD4Oms' },
+  { id: 7, title: 'Grito Mudo', youtubeUrl: 'https://youtu.be/1L54FO3z8-s' },
+  { id: 8, title: 'O Herói Não Resolvido', youtubeUrl: 'https://youtu.be/1cmROgqxchg' },
+  { id: 9, title: 'Aonde Vai o Tempo?', youtubeUrl: 'https://youtu.be/G4dZtnoxkLE' },
+  { id: 10, title: 'Amanhã É um Novo Dia', youtubeUrl: 'https://youtu.be/nrLCteUhKnk' },
+  { id: 11, title: 'Broken Dreams & Hopes - Visualizer', youtubeUrl: 'https://youtu.be/pUOboWnkxgI' },
+  { id: 12, title: 'Tudo o Que Eu Queria Te Dizer - Ao Vivo', youtubeUrl: 'https://youtu.be/0AwFbg8XMxY' },
+  { id: 13, title: 'Bem Vindo a Sua Vida - Ao Vivo', youtubeUrl: 'https://youtu.be/BprfDyjd' },
+  { id: 14, title: 'Silêncio Ensurdecedor - Ao Vivo', youtubeUrl: 'https://youtu.be/GZ0DGvkg4us' },
+  { id: 15, title: 'Voar - Acústico', youtubeUrl: 'https://youtu.be/YD1hsoXfhM0' },
 ];
 
+const ytThumb = (url: string) => {
+  const id = url.split('youtu.be/')?.pop()?.split('?')?.[0];
+  return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '';
+};
+const ytEmbed = (url: string) => {
+  const id = url.split('youtu.be/')?.pop()?.split('?')?.[0];
+  return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : '';
+};
+
 export function VideographyContent() {
-  const [selectedVideo, setSelectedVideo] = useState<(typeof videos)[0] | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const getYouTubeId = (url: string) => {
-    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\n?#]+)/);
-    return match ? match[1] : null;
-  };
-
-  const getYouTubeThumbnail = (url: string) => {
-    const videoId = getYouTubeId(url);
-    return videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : '/placeholder.svg';
-  };
-
-  const handlePlayVideo = (video: (typeof videos)[0]) => {
-    setSelectedVideo(video);
-    setIsPlaying(true);
-  };
-
-  const handleClosePlayer = () => {
-    setSelectedVideo(null);
-    setIsPlaying(false);
-  };
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeTitle, setActiveTitle] = useState('');
 
   return (
-    <section className="pt-32 pb-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
+    <section className="pt-32 pb-24 bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[400px] bg-gradient-to-b from-amber-400/10 via-amber-400/5 to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <div className="mb-16">
-          <div className="mb-8">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Videografia</p>
-            <h1 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
-              Meus
-              <br />
-              <span className="font-normal">Vídeos</span>
-            </h1>
-          </div>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
-            Acompanhe os clipes, performances e bastidores através dos vídeos oficiais
-          </p>
+          <p className="text-xs font-mono tracking-[0.3em] uppercase text-amber-400/80 mb-4">Videografia</p>
+          <h1 className="font-handwriting text-6xl md:text-8xl text-amber-100 leading-[0.9] gold-glow">
+            Meus
+            <br />
+            <span className="text-amber-300">Vídeos</span>
+          </h1>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {videos.map((video) => (
-            <Card
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {videos.map((video, i) => (
+            <motion.button
               key={video.id}
-              className="group overflow-hidden border-0 bg-muted/30 hover:bg-muted/50 transition-all duration-300"
+              onClick={() => { setActiveVideo(video.youtubeUrl); setActiveTitle(video.title); }}
+              className="group relative aspect-video rounded-2xl overflow-hidden ring-1 ring-white/5 hover:ring-amber-400/40 hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-500 text-left"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.03, duration: 0.4 }}
+              viewport={{ once: true }}
             >
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={getYouTubeThumbnail(video.youtubeUrl) || '/placeholder.svg'}
-                  alt={video.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button
-                    onClick={() => handlePlayVideo(video)}
-                    className="w-16 h-16 border border-white rounded-full flex items-center justify-center cursor-pointer"
-                  >
-                    <Play className="w-6 h-6 text-white ml-1" />
-                  </button>
-                </div>
+              <Image src={ytThumb(video.youtubeUrl)} alt={video.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/55 transition-all duration-500" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span className="bg-amber-300 text-black rounded-full p-4 shadow-lg shadow-amber-500/40">
+                  <Play className="w-7 h-7" />
+                </span>
               </div>
-
-              <div className="p-6 space-y-4">
-                <h3 className="text-lg font-light tracking-wide text-foreground md:h-[6vh] h-auto">{video.title}</h3>
-                <div className="flex gap-2">
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="flex-1 font-light tracking-wide"
-                    onClick={() => handlePlayVideo(video)}
-                  >
-                    <Play className="mr-2 h-4 w-4" />
-                    Reproduzir
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="font-light tracking-wide bg-transparent"
-                    onClick={() => window.open(video.youtubeUrl, '_blank')}
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    YouTube
-                  </Button>
-                </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                <p className="font-handwriting text-lg text-amber-100 gold-glow">{video.title}</p>
               </div>
-            </Card>
+            </motion.button>
           ))}
         </div>
-
-        {selectedVideo && (
-          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col">
-              {/* Header do modal */}
-              <div className="flex items-center justify-between p-4 border-b">
-                <h3 className="text-lg font-light tracking-wide text-foreground">{selectedVideo.title}</h3>
-                <button
-                  onClick={handleClosePlayer}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-
-              {/* Player de vídeo */}
-              <div className="aspect-video bg-black">
-                {getYouTubeId(selectedVideo.youtubeUrl) && (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${getYouTubeId(selectedVideo.youtubeUrl)}?autoplay=1&rel=0`}
-                    title={selectedVideo.title}
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Inline player */}
+
+      {activeVideo && (
+        <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4" onClick={() => setActiveVideo(null)}>
+          <button onClick={() => setActiveVideo(null)} className="absolute top-6 right-6 text-amber-200/80 hover:text-amber-300 transition-colors duration-300">
+            <X className="w-8 h-8" />
+          </button>
+          <div className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden ring-1 ring-amber-400/20" onClick={(e) => e.stopPropagation()}>
+            <iframe src={ytEmbed(activeVideo)} className="w-full h-full" allowFullScreen allow="autoplay; encrypted-media" />
+          </div>
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+            <p className="font-handwriting text-2xl md:text-3xl text-amber-200 gold-glow">{activeTitle}</p>
+            <a href={activeVideo} target="_blank" rel="noopener noreferrer"              className="inline-flex items-center gap-2 mt-2 text-amber-300/60 hover:text-amber-300 font-mono text-xs tracking-widest uppercase transition-colors duration-300">
+              <ExternalLink className="w-3 h-3" /> YouTube
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

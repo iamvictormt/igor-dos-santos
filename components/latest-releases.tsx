@@ -1,109 +1,154 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Disc } from 'lucide-react';
+import Link from 'next/link';
+import { motion, useInView } from 'framer-motion';
+import { playTrack } from '@/components/player-bar';
+import { Play, Disc3, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft as ArrowL, ChevronRight as ArrowR } from 'lucide-react';
+
+type Album = {
+  id: number;
+  title: string;
+  year: string;
+  type: string;
+  cover: string;
+  tracks: {
+    name: string;
+    duration: string;
+    audioUrl: string;
+    spotify?: string;
+    apple?: string;
+    youtube?: string;
+  }[];
+};
+
+const albums: Album[] = [
+  { id: 12, title: 'Tamanho de um Rei', year: '2024', type: 'Single',
+    cover: '/tamanho-de-um-rei-cover.jpg',
+    tracks: [{ name: 'Tamanho de um Rei', duration: '4:12', audioUrl: '/audio-samples/Tamanho de Um Rei.flac' }] },
+  { id: 11, title: 'Tudo o Que Eu Queria Te Dizer', year: '2023', type: 'Single',
+    cover: '/tudo-que-queria-cover.png',
+    tracks: [{ name: 'Tudo o Que Eu Queria Te Dizer', duration: '3:48', audioUrl: '/audio-samples/Tudo Que Queria.flac' }] },
+  { id: 10, title: 'Grito Mudo', year: '2023', type: 'Single',
+    cover: '/grito-mudo-cover.jpeg',
+    tracks: [{ name: 'Grito Mudo', duration: '4:05', audioUrl: '/audio-samples/Grito Mudo.flac' }] },
+  { id: 9, title: 'Voar', year: '2022', type: 'Single',
+    cover: '/voar-cover.jpg',
+    tracks: [{ name: 'Voar', duration: '3:55', audioUrl: '/audio-samples/Voar.flac' }] },
+  { id: 8, title: 'Broken Dreams & Hopes', year: '2022', type: 'Single',
+    cover: '/broken-dreams-cover.jpg',
+    tracks: [{ name: 'Broken Dreams & Hopes', duration: '4:30', audioUrl: '/audio-samples/Broken Dreams.flac' }] },
+  { id: 7, title: 'Trinta e Um', year: '2021', type: 'Single',
+    cover: '/trinta-um-cover.jpg',
+    tracks: [{ name: 'Trinta e Um', duration: '4:00', audioUrl: '/audio-samples/Trinta e Um.flac' }] },
+];
 
 export function LatestReleases() {
-  const releases = [
-    {
-      id: 0,
-      title: 'Tamanho de um Rei & Outras Histórias',
-      type: 'EP',
-      year: '2026',
-      releaseDate: '2026-06-26',
-      image: '/tamanho-de-um-rei-cover.jpg',
-      description: 'Conjunto de canções pessoais e intimistas, com 4 releituras ao vivo.',
-    },
-    {
-      id: 2,
-      title: 'Tudo o Que Queria Te Dizer',
-      type: 'Single',
-      year: '2025',
-      releaseDate: '2025-05-29',
-      image: '/tudo-que-queria-cover.png',
-      description: 'Releitura em comemoração aos 20 anos da canção escrita como declaração de amor.',
-    },
-    {
-      id: 1,
-      title: 'Grito Mudo / Silêncio Ensurdecedor',
-      type: 'Double',
-      year: '2025',
-      releaseDate: '2025-04-17',
-      image: '/grito-mudo-cover.jpeg',
-      description: 'Duo de canções que exploram a dor da ansiedade em suas formas mais intensas e silenciosas.',
-    },
-    {
-      id: 3,
-      title: 'Voar',
-      type: 'Single',
-      year: '2025',
-      releaseDate: '2025-01-06',
-      image: '/voar-cover.jpg',
-      description: 'Marca a retomada do projeto com uma direção mais minimalista e intimista.',
-    },
-  ].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate));
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-100px' });
+
+  const playAlbum = (a: Album, i: number) => {
+    const t = a.tracks[i];
+    if (!t) return;
+    playTrack({
+      albumId: a.id,
+      trackIndex: i,
+      name: t.name,
+      duration: t.duration,
+      audioUrl: t.audioUrl,
+      albumTitle: a.title,
+      albumCover: a.cover,
+      spotify: t.spotify,
+      apple: t.apple,
+      youtube: t.youtube,
+    });
+  };
 
   return (
-    <section className="py-16 md:py-32 px-4 md:px-6 bg-gray-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-16 items-start lg:items-center">
-          <div className="w-full lg:col-span-5">
-            <div className="space-y-6 md:space-y-8 text-center md:text-left">
-              <div>
-                <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Lançamentos</p>
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
-                  Novos
-                  <br />
-                  <span className="font-normal">Trabalhos</span>
-                </h2>
-              </div>
-              <Link href="/discografia">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="bg-black hover:bg-black/80 text-white hover:text-white font-light tracking-[0.1em] px-12 py-4 text-xs uppercase border-0 shadow-2xl transition-all duration-300"
+    <section id="faixas" className="py-24 md:py-32 px-6 md:px-10 bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[400px] bg-gradient-to-b from-amber-400/10 via-amber-400/5 to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative" ref={ref}>
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-6">
+          <div>
+            <p className="text-xs font-mono tracking-[0.3em] uppercase text-amber-400/80 mb-3">
+              No ar · Lançamentos
+            </p>
+            <h2 className="font-handwriting text-5xl md:text-7xl text-amber-100 leading-[0.9] gold-glow">
+              Faixas
+              <br />
+              <span className="text-amber-300">Recentes</span>
+            </h2>
+          </div>
+          <Link
+            href="/discografia"
+            className="inline-flex items-center gap-2 px-6 py-3 border border-amber-400/30 text-amber-200 hover:bg-amber-400/10 hover:border-amber-300/50 rounded-full font-mono text-xs tracking-[0.15em] uppercase transition-all duration-300 whitespace-nowrap"
+          >
+            <Disc3 className="w-3.5 h-3.5" />
+            Ver Discografia Completa
+          </Link>
+        </div>
+
+        {/* Horizontal scroll list */}
+        <div className="relative">
+          <div className="flex gap-5 overflow-x-auto pb-6 snap scroll-smooth -mx-6 px-6 md:-mx-10 md:px-10 no-scrollbar">
+            {albums.map((a, i) => (
+              <motion.article
+                key={a.id}
+                className="snap-start shrink-0 w-[280px] md:w-[320px] group"
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+              >
+                {/* Cover — tilt card */}
+                <div className="tilt-card relative aspect-square rounded-2xl overflow-hidden mb-4 ring-1 ring-white/5 hover:ring-amber-400/40">
+                  <Image src={a.cover} alt={a.title} fill className="object-cover" />
+                  {/* Vinyl disc peeking */}
+                  <div className="absolute top-1/2 -right-10 -translate-y-1/2 w-28 h-28 rounded-full vinyl-rings opacity-50 group-hover:opacity-80 group-hover:translate-x-2 transition-all duration-700" />
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/55 transition-all duration-500" />
+                  <button
+                    onClick={() => playAlbum(a, 0)}
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    aria-label={`Ouvir ${a.title}`}
                   >
-                    <Disc className="mr-3 h-4 w-4" />
-                    Ver Discografia Completa
-                  </Button>
-                </motion.div>
-              </Link>
-            </div>
+                    <span className="bg-amber-300 text-black rounded-full p-4 shadow-lg shadow-amber-500/40">
+                      <Play className="w-7 h-7 ml-[2px]" />
+                    </span>
+                  </button>
+                  {/* Year badge */}
+                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-amber-300 font-mono text-[0.6rem] tracking-widest uppercase border border-amber-400/20">
+                    {a.year}
+                  </span>
+                </div>
+
+                <h3 className="font-handwriting text-2xl text-amber-100 group-hover:text-amber-300 transition-colors duration-300 truncate">
+                  {a.title}
+                </h3>
+                <p className="font-mono text-[0.65rem] text-amber-200/40 tracking-widest uppercase">
+                  {a.type} · {a.year}
+                </p>
+              </motion.article>
+            ))}
           </div>
 
-          <div className="w-full lg:col-span-7">
-            <div className="grid gap-4 md:gap-8">
-              {releases.map((release, index) => (
-                <div
-                  key={release.id}
-                  className="group flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 p-4 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-500 hover:shadow-lg"
-                >
-                  <div className="flex-shrink-0 self-center sm:self-start">
-                    <div className="w-20 h-20 md:w-32 md:h-32 relative overflow-hidden">
-                      <Image
-                        src={release.image || '/placeholder.svg'}
-                        alt={release.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex-1 space-y-2 md:space-y-3 text-center sm:text-left">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                      <h3 className="flex-[0.7] text-xl md:text-2xl font-light text-black truncate">{release.title}</h3>
-                      <span className="flex-[0.3] text-xs md:text-sm text-gray-500 font-medium text-center md:text-right">
-                        {release.type} • {release.year}
-                      </span>
-                    </div>
-                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">{release.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* Scroll arrows (desktop) */}
+          <div className="hidden md:flex items-center gap-2 mt-6 justify-end">
+            <button
+              onClick={() => ref.current?.querySelector('.snap-x')?.scrollBy({ left: -340, behavior: 'smooth' })}
+              className="w-10 h-10 rounded-full border border-amber-400/30 text-amber-200 hover:bg-amber-400/10 flex items-center justify-center transition-colors duration-300"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => ref.current?.querySelector('.snap-x')?.scrollBy({ left: 340, behavior: 'smooth' })}
+              className="w-10 h-10 rounded-full border border-amber-400/30 text-amber-200 hover:bg-amber-400/10 flex items-center justify-center transition-colors duration-300"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>

@@ -1,21 +1,17 @@
-import { Navigation } from "@/components/navigation"
-import { HeroSection } from "@/components/hero-section"
-import { Footer } from "@/components/footer"
-import { NewsSection } from "@/components/news-section"
-import { PhotoGallery } from "@/components/photo-gallery"
-import { UpcomingShows } from "@/components/upcoming-shows"
-import { LatestReleases } from "@/components/latest-releases"
+import { HeroSection } from '@/components/hero-section';
+import { LatestReleases } from '@/components/latest-releases';
+import { PhotoGallery } from '@/components/photo-gallery';
+import { UpcomingShows } from '@/components/upcoming-shows';
+import { NewsSection } from '@/components/news-section';
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background">
-      <Navigation />
+    <div className="relative">
       <HeroSection />
       <LatestReleases />
-      <NewsSection />
       <PhotoGallery />
       <UpcomingShows />
-      <Footer />
-    </main>
-  )
+      <NewsSection />
+    </div>
+  );
 }

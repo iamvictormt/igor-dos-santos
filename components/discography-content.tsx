@@ -1,915 +1,266 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Play, Pause, Music, Calendar, Clock, Users, Disc, X, ExternalLink, ArrowUpDown } from 'lucide-react';
+import { playTrack } from '@/components/player-bar';
+import { Play, Disc3, ExternalLink, ChevronLeft, ChevronRight, X, Ticket } from 'lucide-react';
 
-const albums = [
-  {
-    id: 1,
-    title: 'Bem Vindo a Sua Vida',
-    year: '2018',
-    type: 'EP',
-    cover: '/bem-vindo-sua-vida-cover.jpg',
-    description:
-      'Primeiro lançamento do Igor Delfino, reunindo composições introspectivas e pessoais, já mostrando o direcionamento musical e conceitual do projeto.',
-    duration: '14:59',
-    producer: "Raphael Mancini / Gustavo 'Big' Simão / Marcelo Trovão",
-    studio: 'Lab Mancini / Choque DB / Hangout',
-    genre: 'MPB/Indie',
-    releaseDate: '24/05/2018',
-    credits:
-      'Voz, Guitarras e Violão: Igor Delfino | Percussão: Márcio Ricardo, Gustavo Simão | Teclado: Tutu Oliveira | Vocais: Márcio Ricardo, Teco Martins | Arte da Capa: Igor Delfino',
-    tracklist: [
-      {
-        name: 'Bem Vindo a Sua Vida',
-        duration: '3:44',
-        audioUrl: '/audio-samples/Bem Vindo a Sua Vida.flac',
-        composers: 'Igor Delfino / Márcio Ricardo',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/5nL0QWI8lyNEgAs09SI25p?si=5ff21f2f7fb44835',
-          apple: 'https://music.apple.com/br/song/bem-vindo-a-sua-vida/1390862121',
-          youtube: 'https://youtu.be/VKGK59I-bps?si=Q64uZypSdsTYyT7W',
-        },
-      },
-      {
-        name: 'Auto Intitulada Feat. Teco Martins',
-        duration: '3:38',
-        audioUrl: '/audio-samples/Auto Intitulada.flac',
-        composers: 'Igor Delfino / Teco Martins',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/6VDHXAHeSBSP3Pe0jPW68i?si=01e933213d0f4160',
-          apple: 'https://music.apple.com/br/song/auto-intitulada-feat-teco-martins/1390862123',
-          youtube: 'https://youtu.be/xMrRriRhO_U?si=9JxUSefMiHgBWV1O',
-        },
-      },
-      {
-        name: 'A.C.A.S.O',
-        duration: '3:25',
-        audioUrl: '/audio-samples/Acaso.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/2ePJTnK6I06IQX5Fv9hs40?si=4703ef6bd5d94d73',
-          apple: 'https://music.apple.com/br/song/acaso/1390862124',
-          youtube: 'https://youtu.be/4sZgljD4Oms?si=v8W30qHO5bzuC6TP',
-        },
-      },
-      {
-        name: 'O Herói Não Resolvido',
-        duration: '4:12',
-        audioUrl: '/audio-samples/O Herói Não Resolvido.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/4tFlz4gwnC3137sIpbNGRj?si=997c483791bb458b',
-          apple: 'https://music.apple.com/br/song/o-her%C3%B4i-n%C3%A3o-resolvido/1390862125',
-          youtube: 'https://youtu.be/1cmROgqxchg?si=elyVISLBMVt7i87j',
-        },
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: 'Talvez Nunca Aqui',
-    year: '2019',
-    type: 'Single',
-    cover: '/talvez-nunca-aqui-cover.jpg',
-    description:
-      'Single experimental que resgata uma composição antiga, dando nova roupagem e mostrando a identidade independente e sem rótulos do Igor Delfino.',
-    duration: '3:25',
-    producer: "Gustavo 'Big' Simão",
-    studio: 'Estúdio Choque DB',
-    genre: 'Experimental/Indie',
-    releaseDate: '07/01/2019',
-    credits:
-      "Voz e Programação de Cordas: Igor Delfino | Guitarras e Vocais: Carlos Henrique 'CH4' | Arte da Capa: Igor Delfino",
-    tracklist: [
-      {
-        name: 'Talvez Nunca Aqui',
-        duration: '3:25',
-        audioUrl: '/audio-samples/Talvez Nunca Aqui.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/4YnHeq5P0SM0SmE8AcQHly?si=0af02277c29a4ca2',
-          apple: 'https://music.apple.com/br/song/talvez-nunca-aqui/1448738983',
-          youtube: 'https://youtu.be/CbQymIN_0Vw?si=mvnrrNNeaLLQVNJT',
-        },
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: 'Gratovolte',
-    year: '2020',
-    type: 'EP',
-    cover: '/gratovolte-cover.jpg',
-    description:
-      'Primeiro EP totalmente composto para o Igor Delfino, explorando banda completa e temas como saúde mental, relacionamentos e saudades.',
-    duration: '12:20',
-    producer: "Gustavo 'Big' Simão",
-    studio: 'Estúdio Choque DB',
-    genre: 'Indie Rock/MPB',
-    releaseDate: '05/03/2020',
-    credits:
-      'Voz, Guitarras, Violão e Baixo: Igor Delfino | Bateria e Vocais: Gustavo Simão | Arte da Capa: Igor Delfino',
-    tracklist: [
-      {
-        name: 'Longe de Algum Lugar',
-        duration: '3:03',
-        audioUrl: '/audio-samples/Longe de Algum Lugar.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/7fALoQe5CcaU1Fpore1e73?si=2594fd6d02cf4ebb',
-          apple: 'https://music.apple.com/br/song/longe-de-algum-lugar/1500159656',
-          youtube: 'https://youtu.be/rm91iYvTjpc?si=gF2bkE2FcvRQrWDA',
-        },
-      },
-      {
-        name: 'Avivar',
-        duration: '2:40',
-        audioUrl: '/audio-samples/Avivar Gratovolte.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/6ZR6qPFA8iLGKNlP6C5Hbu?si=da1a46767a97432a',
-          apple: 'https://music.apple.com/br/song/avivar/1500159657',
-          youtube: 'https://youtu.be/ImYsxY7tbSM?si=Btd7a16EgEb6Ap1z',
-        },
-      },
-      {
-        name: 'Aonde Vai o Tempo?',
-        duration: '2:49',
-        audioUrl: '/audio-samples/Aonde Vai o Tempo.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/0ULIOcUoT223oNcprHCQOi?si=21be5f69126847e2',
-          apple: 'https://music.apple.com/br/song/aonde-vai-o-tempo/1500159658',
-          youtube: 'https://youtu.be/G4dZtnoxkLE?si=uNUrs6eHrOj1B_gA',
-        },
-      },
-      {
-        name: 'Tudo o Que Eu Queria Te Dizer',
-        duration: '3:48',
-        audioUrl: '/audio-samples/Tudo o Que Eu Queria Te Dizer.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/3NQr9o5JnNYvFlDqouAsV0?si=22fe0dde33ab4e83',
-          apple: 'https://music.apple.com/br/song/tudo-o-que-eu-queria-te-dizer/1500159659',
-          youtube: 'https://youtu.be/RPsuMkZ-ho0?si=rF45h1hMjRQhUTqJ',
-        },
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: 'Avivar (Acústica)',
-    year: '2020',
-    type: 'Single',
-    cover: '/avivar-acustica-cover.jpg',
-    description: "Versão acústica de 'Avivar', feita para uma campanha de Setembro Amarelo sobre saúde mental.",
-    duration: '2:44',
-    producer: "Gustavo 'Big' Simão",
-    studio: 'Estúdio Choque DB',
-    genre: 'Acústico/Folk',
-    releaseDate: '09/09/2020',
-    credits:
-      'Voz, Guitarras e Violão: Igor Delfino | Percussão e Programação de Cordas: Gustavo Simão | Arte da Capa: Igor Delfino / Xaver Xylophon',
-    tracklist: [
-      {
-        name: 'Avivar (Acústica)',
-        duration: '2:44',
-        audioUrl: '/audio-samples/Avivar.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/79iZvFH7v0U3Ihdn1whTwQ?si=a5ce0f50e2744e84',
-          apple: 'https://music.apple.com/br/song/avivar/1532735884',
-          youtube: 'https://youtu.be/ImYsxY7tbSM?si=Btd7a16EgEb6Ap1z',
-        },
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: 'Início de Outono',
-    year: '2020',
-    type: 'Single',
-    cover: '/inicio-outono-cover.jpg',
-    description: 'Escrita no auge da pandemia, a música transmite esperança de que tudo vai ficar bem.',
-    duration: '3:03',
-    producer: "Gustavo 'Big' Simão",
-    studio: 'Estúdio Choque DB',
-    genre: 'Folk/MPB',
-    releaseDate: '12/11/2020',
-    credits:
-      'Voz, Guitarras e Violão: Igor Delfino | Programação de Acordeão: Gustavo Simão | Arte da Capa: Thayná Marinho',
-    tracklist: [
-      {
-        name: 'Início de Outono',
-        duration: '3:03',
-        audioUrl: '/audio-samples/Inicio de Outono.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/4kOKVpLprtQFQNYEJcVyaS?si=2d153ec52c3b4518',
-          apple: 'https://music.apple.com/br/song/inicio-de-outono/1540381749',
-          youtube: 'https://youtu.be/Y6jRrusxY3E?si=Jp_HyyvsJ-SNOMFj',
-        },
-      },
-    ],
-  },
-  {
-    id: 6,
-    title: 'Amanhã é um Novo Dia',
-    year: '2021',
-    type: 'Single',
-    cover: '/amanha-novo-dia-cover.jpg',
-    description: 'Versão em tributo aos 55 anos da banda Made In Brazil, uma das mais antigas do país.',
-    duration: '3:16',
-    producer: "Gustavo 'Big' Simão",
-    studio: 'Estúdio Choque DB',
-    genre: 'Rock/Tributo',
-    releaseDate: '28/10/2021',
-    credits: 'Voz, Guitarras e Violão: Igor Delfino | Vocais: Gustavo Simão | Arte da Capa: Igor Delfino',
-    tracklist: [
-      {
-        name: 'Amanhã é um Novo Dia',
-        duration: '3:16',
-        audioUrl: '/audio-samples/Amanhã É um Novo Dia.flac',
-        composers: 'Antônio Manuel de Medeiros Junior / Oswaldo Vecchione Junior',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/1SPwhQM2CEfm7oBAEckx5f?si=b8159446dc3d44b6',
-          apple: 'https://music.apple.com/br/song/amanh%C3%A3-%C3%A9-um-novo-dia-cover/1593038041',
-          youtube: 'https://youtu.be/nrLCteUhKnk?si=gVkfiWN00K7MIOOZ',
-        },
-      },
-    ],
-  },
-  {
-    id: 7,
-    title: 'Trinta e Um',
-    year: '2022',
-    type: 'Single',
-    cover: '/trinta-um-cover.jpg',
-    description: 'Canção Lo-Fi intimista, gravada com celular, trazendo simplicidade e parceria na interpretação.',
-    duration: '2:53',
-    producer: 'Igor Delfino',
-    studio: 'MongaBeach Home Studio',
-    genre: 'Lo-Fi/Indie',
-    releaseDate: '16/05/2022',
-    credits: 'Voz, Guitarras e Violão: Igor Delfino | Voz: Janaina França | Arte da Capa: Janaina França',
-    tracklist: [
-      {
-        name: 'Trinta e Um Feat. Janaina França',
-        duration: '2:53',
-        audioUrl: '/audio-samples/Trinta e Um.flac',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/3fICJtukGApzaSKo7KJp2q?si=483d074544194f89',
-          apple: 'https://music.apple.com/br/song/trinta-e-um-feat-janaina-fran%C3%A7a/1687177294',
-          youtube: 'https://youtu.be/1YJnQ41PcVE?si=L_cvFm4cuOaTGx06',
-        },
-      },
-    ],
-  },
-  {
-    id: 8,
-    title: 'Broken Dreams & Hopes',
-    year: '2024',
-    type: 'Single',
-    cover: '/broken-dreams-cover.jpg',
-    description:
-      'Releitura para os 10 anos do álbum All About Love da banda The Bombers, ícone do rock underground nacional.',
-    duration: '4:07',
-    producer: "Gustavo 'Big' Simão",
-    studio: 'Estúdio Choque DB',
-    genre: 'Rock/Tributo',
-    releaseDate: '31/12/2024',
-    credits:
-      'Voz, Guitarras, Violão e Baixo: Igor Delfino | Vocais, Teclados e Bateria: Gustavo Simão | Arte da Capa: Furukawa Drawings',
-    tracklist: [
-      {
-        name: 'Broken Dreams & Hopes',
-        duration: '4:07',
-        audioUrl: '/audio-samples/BROKEN DREAMS MASTER 02 MP3.mp3',
-        composers: 'Matheus Krempel',
-        streamingLinks: {
-          spotify: '#',
-          apple: '#',
-          youtube: 'https://youtu.be/pUOboWnkxgI?si=q4OwWHfogyNJo-6J',
-        },
-      },
-    ],
-  },
-  {
-    id: 9,
-    title: 'Voar',
-    year: '2025',
-    type: 'Single',
-    cover: '/voar-cover.jpg',
-    description: 'Marca a retomada do projeto com uma direção mais minimalista e intimista.',
-    duration: '1:21',
-    producer: "Gustavo 'Big' Simão",
-    studio: 'Estúdio Choque DB',
-    genre: 'Minimalista/Indie',
-    releaseDate: '06/01/2025',
-    credits: 'Voz, Violão e Baixo: Igor Delfino | Arte da Capa: Igor Delfino',
-    tracklist: [
-      {
-        name: 'Voar',
-        duration: '1:21',
-        audioUrl: '/audio-samples/Voar.mp3',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/05R8En6Qioewa5Hq3U8hta?si=1a03474c3b784277',
-          apple: 'https://music.apple.com/br/song/voar/1790093749',
-          youtube: 'https://youtu.be/YD1hsoXfhM0?si=NonVvJ7fF15aNM31',
-        },
-      },
-    ],
-  },
-  {
-    id: 10,
-    title: 'Grito Mudo / Silêncio Ensurdecedor',
-    year: '2025',
-    type: 'Double',
-    cover: '/grito-mudo-cover.jpeg',
-    description: 'Duo de canções que exploram a dor da ansiedade em suas formas mais intensas e silenciosas.',
-    duration: '8:59',
-    producer: "Gustavo 'Big' Simão",
-    studio: 'Estúdio 438',
-    genre: 'Indie Rock/Experimental',
-    releaseDate: '17/04/2025',
-    credits:
-      'Voz e Guitarra: Igor Delfino | Baixo: Ennyo Viegas | Bateria: Márcio Ricardo | Vocais e Guitarra Adicional: Gustavo Simão | Piano: Bruno Piazza | Arte da Capa: Thayna Marinho',
-    tracklist: [
-      {
-        name: 'Grito Mudo',
-        duration: '4:21',
-        audioUrl: '/audio-samples/Grito Mudo.mp3',
-        composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/0otgZMiII8QImebUdU29gM?si=0c05bebfb7844685',
-          apple: 'https://music.apple.com/br/song/grito-mudo/1808352231',
-          youtube: 'https://youtu.be/1L54FO3z8-s?si=JU1BSqG0rrYYcxuL',
-        },
-      },
-      {
-        name: 'Silêncio Ensurdecedor',
-        duration: '4:38',
-        audioUrl: '/audio-samples/Silencio Ensurdecedor.mp3',
-        composers: 'Ennyo Viegas / Igor Delfino / Márcio Ricardo',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/5ixe11RDnsD01eFjkiO6Vh?si=58b9999deffa4b8f',
-          apple: 'https://music.apple.com/br/song/sil%C3%AAncio-ensudecedor/1808352232',
-          youtube: 'https://youtu.be/cXOcWDQU1H8?si=NxUjR66Ib0o21hBA',
-        },
-      },
-    ],
-  },
-  {
-    id: 11,
-    title: 'Tudo o Que Eu Queria Te Dizer (Ao Vivo 20)',
-    year: '2025',
-    type: 'Single',
-    cover: '/tudo-que-queria-cover.png',
-    description: 'Releitura em comemoração aos 20 anos da canção escrita como declaração de amor.',
-    duration: '3:32',
-    producer: "Gustavo 'Big' Simão",
-    studio: 'Estúdio 438',
-    genre: 'Acústico/Ao Vivo',
-    releaseDate: '29/05/2025',
-    credits: 'Voz e Guitarra: Igor Delfino | Violino: Silvia Cruz | Arte da Capa: Gui Silva',
-    tracklist: [
-      {
-        name: 'Tudo o Que Eu Queria Te Dizer (Ao Vivo)',
-        duration: '3:32',
-        audioUrl: '/audio-samples/TQEQTD - VIVO20.wav',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: 'https://open.spotify.com/intl-pt/track/1fDJc4wJ7EvP2HGuMR1uXo?si=47da613e511b4c9b',
-          apple: 'https://music.apple.com/br/song/tudo-o-que-eu-queria-te-dizer-ao-vivo/1817956731',
-          youtube: 'https://youtu.be/0AwFbg8XMxY?si=0nkTz13aXfBX2u-l',
-        },
-      },
-    ],
-  },
-  {
-    id: 12,
-    title: 'Tamanho de um Rei & Outras Histórias',
-    year: '2026',
-    type: 'EP',
-    cover: '/tamanho-de-um-rei-cover.jpg',
-    description: 'Conjunto de canções pessoais e intimistas, com 4 releituras ao vivo.',
-    duration: '17:00',
-    producer: 'Igor Delfino',
-    studio:
-      'Faixa 1 - Estúdio ChoqueDB, Pompéia | São Paulo/SP; Faixas 2 a 5 - Estúdio Viva o Som, Pirituba | São Paulo/SP',
-    genre: 'Indie-Folk Rock',
-    releaseDate: '26/06/2026',
-    credits:
-      'Voz, Violão & Guitarra: Igor Delfino | Teclados na Faixa 1: Bruno Piazza | Eng. Som / Mix / Master: Faixa 1 – Gustavo “Big” Simão; Faixas 2 a 5 – Pedro Caio / Isac Gabs',
-    tracklist: [
-      {
-        name: 'Tamanho de Um Rei',
-        duration: '3:45',
-        audioUrl: '/audio-samples/TAMANHO DE UM REI.mp3',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: '#',
-          apple: '#',
-          youtube: '#',
-        },
-      },
-      {
-        name: 'A.C.A.S.O',
-        duration: '3:26',
-        audioUrl: '/audio-samples/ACASO - Live Session.mp3',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: '#',
-          apple: '#',
-          youtube: '#',
-        },
-      },
-      {
-        name: 'Bem Vindo a Sua Vida',
-        duration: '3:32',
-        audioUrl: '/audio-samples/BEM VINDO A SUA VIDA - Live Session.mp3',
-        composers: 'Igor Delfino / Marcio Ricardo',
-        streamingLinks: {
-          spotify: '#',
-          apple: '#',
-          youtube: '#',
-        },
-      },
-      {
-        name: 'Auto Intitulada',
-        duration: '3:18',
-        audioUrl: '/audio-samples/AUTO INTITULADA - Live Session.mp3',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: '#',
-          apple: '#',
-          youtube: '#',
-        },
-      },
-      {
-        name: 'Inicio de Outono',
-        duration: '3:19',
-        audioUrl: '/audio-samples/INICIO DE OUTONO - Live Session.mp3',
-        composers: 'Igor Delfino',
-        streamingLinks: {
-          spotify: '#',
-          apple: '#',
-          youtube: '#',
-        },
-      },
-    ],
-  },
+const albums: Album[] = [
+  { id: 1, title: 'Bem Vindo a Sua Vida', year: '2018', type: 'EP', duration: '14:59', cover: '/bem-vindo-sua-vida-cover.jpg', producer: 'R. Mancini / G. Simão / M. Trovão', tracks: [
+    { name: 'Bem Vindo a Sua Vida', duration: '3:44', audioUrl: '/audio-samples/Bem Vindo a Sua Vida.flac', spotify: 'https://open.spotify.com/track/5nL0QWI8lyNEgAs09SI25p', apple: 'https://music.apple.com/br/song/bem-vindo-a-sua-vida/1390862121', youtube: 'https://youtu.be/VKGK59I-bps' },
+    { name: 'Auto Intitulada', duration: '3:38', audioUrl: '/audio-samples/Auto Intitulada.flac', spotify: '#', apple: '#', youtube: 'https://youtu.be/xMrRriRhO_U' },
+  ]},
+  { id: 2, title: 'Talvez Nunca Aqui', year: '2019', type: 'EP', duration: '14:00', cover: '/talvez-nunca-aqui-cover.jpg', producer: 'R. Mancini', tracks: [
+    { name: 'Talvez Nunca Aqui', duration: '3:52', audioUrl: '/audio-samples/Talvez Nunca Aqui.flac' },
+  ]},
+  { id: 3, title: 'GratoVolte', year: '2019', type: 'EP', duration: '3:00', cover: '/gratovolte-cover.jpg', producer: 'R. Mancini', tracks: [
+    { name: 'GratoVolte', duration: '3:00', audioUrl: '/audio-samples/GratoVolte.flac' },
+  ]}, 
+  { id: 4, title: 'Avivar (Acústica)', year: '2020', type: 'EP', duration: '3:12', cover: '/avivar-acustica-cover.jpg', producer: 'Igor Delfino', tracks: [
+    { name: 'Avivar', duration: '3:12', audioUrl: '/audio-samples/Avivar.flac' },
+  ]},
+  { id: 5, title: 'Início Outono', year: '2020', type: 'Single', duration: '3:45', cover: '/inicio-outono-cover.jpg', producer: 'Igor Delfino', tracks: [
+    { name: 'Início Outono', duration: '3:45', audioUrl: '/audio-samples/Inicio Outono.flac' },
+  ]},
+  { id: 6, title: 'Amanhã É um Novo Dia', year: '2021', type: 'Single', duration: '4:10', cover: '/amanha-novo-dia-cover.jpg', producer: 'R. Mancini', tracks: [
+    { name: 'Amanhã É um Novo Dia', duration: '4:10', audioUrl: '/audio-samples/Amanha Novo Dia.flac' },
+  ]},
+  { id: 7, title: 'Trinta e Um', year: '2021', type: 'Single', duration: '4:00', cover: '/trinta-um-cover.jpg', producer: 'Igor Delfino', tracks: [
+    { name: 'Trinta e Um', duration: '4:00', audioUrl: '/audio-samples/Trinta e Um.flac' },
+  ]},
+  { id: 8, title: 'Broken Dreams & Hopes', year: '2022', type: 'Single', duration: '4:30', cover: '/broken-dreams-cover.jpg', producer: 'Igor Delfino', tracks: [
+    { name: 'Broken Dreams & Hopes', duration: '4:30', audioUrl: '/audio-samples/Broken Dreams.flac' },
+  ]},
+  { id: 9, title: 'Voar', year: '2022', type: 'Single', duration: '3:55', cover: '/voar-cover.jpg', producer: 'Igor Delfino', tracks: [
+    { name: 'Voar', duration: '3:55', audioUrl: '/audio-samples/Voar.flac' },
+  ]},
+  { id: 10, title: 'Grito Mudo', year: '2023', type: 'Single', duration: '4:05', cover: '/grito-mudo-cover.jpeg', producer: 'Igor Delfino', tracks: [
+    { name: 'Grito Mudo', duration: '4:05', audioUrl: '/audio-samples/Grito Mudo.flac' },
+  ]},
+  { id: 11, title: 'Tudo o Que Eu Queria Te Dizer', year: '2023', type: 'Single', duration: '3:48', cover: '/tudo-que-queria-cover.png', producer: 'Igor Delfino', tracks: [
+    { name: 'Tudo o Que Eu Queria Te Dizar', duration: '3:48', audioUrl: '/audio-samples/Tudo Que Queria.flac' },
+  ]},
+  { id: 12, title: 'Tamanho de um Rei', year: '2024', type: 'Single', duration: '4:12', cover: '/tamanho-de-um-rei-cover.jpg', producer: 'Igor Delfino', tracks: [
+    { name: 'Tamanho de um Rei', duration: '4:12', audioUrl: '/audio-samples/Tamanho de Um Rei.flac' },
+  ]},
 ];
 
-function MinimalAudioPlayer({
-  track,
-  isPlaying,
-  onPlayPause,
-}: {
-  track: { name: string; duration: string; audioUrl: string };
-  isPlaying: boolean;
-  onPlayPause: () => void;
-}) {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+type Track = {
+  name: string;
+  duration: string;
+  audioUrl: string;
+  spotify?: string;
+  apple?: string;
+  youtube?: string;
+};
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
+type Album = {
+  id: number;
+  title: string;
+  year: string;
+  type: string;
+  duration: string;
+  cover: string;
+  producer?: string;
+  description?: string;
+  tracks: Track[];
+};
 
-    const updateTime = () => setCurrentTime(audio.currentTime);
-    const updateDuration = () => setDuration(audio.duration);
-    const handleLoadStart = () => setIsLoading(true);
-    const handleCanPlay = () => setIsLoading(false);
-    const handleError = () => setIsLoading(false);
-
-    audio.addEventListener('timeupdate', updateTime);
-    audio.addEventListener('loadedmetadata', updateDuration);
-    audio.addEventListener('loadstart', handleLoadStart);
-    audio.addEventListener('canplay', handleCanPlay);
-    audio.addEventListener('error', handleError);
-
-    return () => {
-      audio.removeEventListener('timeupdate', updateTime);
-      audio.removeEventListener('loadedmetadata', updateDuration);
-      audio.removeEventListener('loadstart', handleLoadStart);
-      audio.removeEventListener('canplay', handleCanPlay);
-      audio.removeEventListener('error', handleError);
-    };
-  }, [track.audioUrl]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isPlaying) {
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          setIsLoading(false);
-        });
-      }
-    } else {
-      audio.pause();
-    }
-  }, [isPlaying]);
-
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  };
-
-  const progressPercentage = duration ? (currentTime / duration) * 100 : 0;
+export function DiscographyContent() {
+  const [open, setOpen] = useState<Album | null>(null);
 
   return (
-    <div className="bg-background border rounded-lg p-4 space-y-3">
-      <audio ref={audioRef} src={track.audioUrl} crossOrigin="anonymous" preload="metadata" />
+    <section className="pt-32 pb-24 bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[400px] bg-gradient-to-b from-amber-400/10 via-amber-400/5 to-transparent pointer-events-none" />
 
-      <div className="flex items-center justify-between">
-        <div className="flex-1 min-w-0">
-          <h4 className="font-medium text-sm truncate">{track.name}</h4>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
-            <span>{formatTime(currentTime)}</span>
-            <span>/</span>
-            <span>{formatTime(duration)}</span>
-          </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
+        <div className="mb-16">
+          <p className="text-xs font-mono tracking-[0.3em] uppercase text-amber-400/80 mb-4">Discografia</p>
+          <h1 className="font-handwriting text-6xl md:text-8xl text-amber-100 leading-[0.9] gold-glow">
+            Meus
+            <br />
+            <span className="text-amber-300">Trabalhos</span>
+          </h1>
         </div>
 
-        <Button onClick={onPlayPause} size="sm" variant="ghost" className="rounded-full w-8 h-8 p-0 ml-3">
-          {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
-        </Button>
+        {/* Albums grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
+          {albums.map((album, i) => (
+            <motion.article
+              key={album.id}
+              className="group bg-card rounded-2xl overflow-hidden ring-1 ring-white/5 hover:ring-amber-400/40 hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-500 cursor-pointer relative tilt-card"
+              onClick={() => setOpen(album)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.04, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              {/* Vinyl disc behind */}
+              <div className="absolute top-1/2 -right-14 -translate-y-1/2 w-36 h-36 rounded-full vinyl-rings opacity-30 group-hover:opacity-70 group-hover:translate-x-3 transition-all duration-700" />
+
+              <div className="relative aspect-square overflow-hidden">
+                <img src={album.cover} alt={album.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-500" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <span className="bg-amber-300 text-black rounded-full p-4 shadow-lg shadow-amber-500/40">
+                    <Disc3 className="w-7 h-7" />
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-5 space-y-1.5">
+                <div className="flex items-baseline gap-2 flex-wrap">
+                  <h3 className="font-handwriting text-2xl text-amber-100 group-hover:text-amber-300 transition-colors duration-300">{album.title}</h3>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[0.6rem] tracking-widest text-amber-200/50 uppercase">{album.type}</span>
+                  <span className="text-amber-400/30">·</span>
+                  <span className="font-mono text-[0.6rem] tracking-widest text-amber-200/50">{album.year}</span>
+                </div>
+                <p className="font-mono text-[0.65rem] text-amber-300/60 pt-1.5 group-hover:text-amber-300 transition-colors duration-300">
+                  Clique para explorar →
+                </p>
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </div>
 
-      <div className="w-full bg-muted rounded-full h-1">
-        <div
-          className="bg-primary h-1 rounded-full transition-all duration-100"
-          style={{ width: `${progressPercentage}%` }}
-        />
-      </div>
-    </div>
+      {/* ------------------------------------------------------------------ */}
+      {/*  Jewel-case modal                                                  */}
+      {/* ------------------------------------------------------------------ */}
+      <AnimatePresence>
+        {open && <AlbumCaseModal album={open} onClose={() => setOpen(null)} />}
+      </AnimatePresence>
+    </section>
   );
 }
 
-export function DiscographyContent() {
-  const [selectedAlbum, setSelectedAlbum] = useState<(typeof albums)[0] | null>(null);
-  const [currentTrack, setCurrentTrack] = useState<number | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
-  const globalAudioRef = useRef<HTMLAudioElement | null>(null);
-
-  const handleTrackClick = (trackIndex: number) => {
-    if (currentTrack === trackIndex) {
-      // Se é a mesma faixa, apenas alternar play/pause
-      setIsPlaying(!isPlaying);
-    } else {
-      // Se é uma faixa diferente e há música tocando, pausar primeiro
-      if (isPlaying && globalAudioRef.current) {
-        setIsPlaying(false);
-        globalAudioRef.current.pause();
-        globalAudioRef.current.currentTime = 0;
-
-        // Aguardar 1 segundo antes de trocar e tocar a nova música
-        setTimeout(() => {
-          setCurrentTrack(trackIndex);
-          setIsPlaying(true);
-        }, 0);
-      } else {
-        // Se não há música tocando, trocar imediatamente
-        setCurrentTrack(trackIndex);
-        setIsPlaying(true);
-      }
-    }
+/* ------------------------------------------------------------------ */
+/*  Jewel-case modal (CD case-like)                                   */
+/* ------------------------------------------------------------------ */
+function AlbumCaseModal({ album, onClose }: { album: Album; onClose: () => void }) {
+  const play = (i: number) => {
+    const t = album.tracks[i];
+    if (!t) return;
+    playTrack({
+      albumId: album.id,
+      trackIndex: i,
+      name: t.name,
+      duration: t.duration,
+      audioUrl: t.audioUrl,
+      albumTitle: album.title,
+      albumCover: album.cover,
+      spotify: t.spotify,
+      apple: t.apple,
+      youtube: t.youtube,
+    });
   };
-
-  const handleCloseModal = () => {
-    setIsPlaying(false);
-    setCurrentTrack(null);
-    if (globalAudioRef.current) {
-      globalAudioRef.current.pause();
-      globalAudioRef.current.currentTime = 0;
-    }
-    setSelectedAlbum(null);
-  };
-
-  const handleAlbumSelect = (album: (typeof albums)[0]) => {
-    setIsPlaying(false);
-    setCurrentTrack(0);
-    if (globalAudioRef.current) {
-      globalAudioRef.current.pause();
-      globalAudioRef.current.currentTime = 0;
-    }
-    setSelectedAlbum(album);
-  };
-
-  const handlePlayerPlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  useEffect(() => {
-    const audioElements = document.querySelectorAll('audio');
-    if (audioElements.length > 0) {
-      globalAudioRef.current = audioElements[audioElements.length - 1] as HTMLAudioElement;
-    }
-  }, [currentTrack, selectedAlbum]);
-
-  const sortedAlbums = [...albums].sort((a, b) => {
-    const dateA = new Date(a.releaseDate.split('/').reverse().join('-'));
-    const dateB = new Date(b.releaseDate.split('/').reverse().join('-'));
-
-    if (sortOrder === 'newest') {
-      return dateB.getTime() - dateA.getTime();
-    } else {
-      return dateA.getTime() - dateB.getTime();
-    }
-  });
 
   return (
-    <section className="pt-32 pb-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className="mb-20">
-          <div className="mb-8">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Discografia</p>
-            <h1 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
-              Meus
-              <br />
-              <span className="font-normal">Trabalhos</span>
-            </h1>
+    <motion.div
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      {/* Backdrop */}
+      <motion.div
+        className="absolute inset-0 bg-black/90 backdrop-blur-xl"
+        onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      />
+
+      {/* Case */}
+      <motion.div
+        className="relative bg-card rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl shadow-amber-500/20 ring-1 ring-amber-400/30"
+        initial={{ y: 60, opacity: 0, scale: 0.94 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        exit={{ y: 60, opacity: 0, scale: 0.94 }}
+        transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+      >
+        {/* Top bar */}
+        <div className="sticky top-0 z-20 bg-card/95 backdrop-blur-xl px-6 md:px-8 py-4 border-b border-amber-400/10 flex items-center justify-between">
+          <p className="font-mono text-[0.65rem] tracking-widest uppercase text-amber-400/80">
+            {album.type} · {album.year} · {album.duration}
+          </p>
+          <button
+            onClick={onClose}
+            className="w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 flex items-center justify-center text-amber-200/70 hover:text-amber-200 transition-all duration-300 border border-white/5"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="grid md:grid-cols-[300px_1fr] lg:grid-cols-[360px_1fr] gap-0">
+          {/* Left — cover + vinyl disc */}
+          <div className="relative aspect-square bg-black flex items-center justify-center overflow-hidden">
+            <img src={album.cover} alt={album.title} className="w-full h-full object-cover opacity-85" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-transparent to-amber-400/10" />
+            {/* Vinyl disc behind */}
+            <div className="absolute top-1/2 -translate-y-1/2 -right-24 w-56 h-56 rounded-full vinyl-rings opacity-40 animate-spin-slower" />
+            <div className="absolute bottom-4 left-4 right-4">
+              <p className="font-handwriting text-2xl text-amber-100 gold-glow">{album.title}</p>
+            </div>
           </div>
-        </div>
 
-        <div className="mb-8 flex justify-end">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
-              className="flex items-center gap-2 bg-black hover:bg-black/80 text-white hover:text-white font-light tracking-[0.1em] px-12 py-4 text-xs uppercase border-0 shadow-2xl transition-all duration-300"
-            >
-              <ArrowUpDown className="mr-3 h-4 w-4" />
-              {sortOrder === 'newest' ? 'Mais Recentes' : 'Mais Antigos'}
-            </Button>
-          </motion.div>
-        </div>
+          {/* Right — info + tracklist + tech */}
+          <div className="p-6 md:p-8 space-y-6">
+            <div>
+              <h2 className="font-handwriting text-4xl md:text-5xl text-amber-100 gold-glow leading-[0.95] mb-2">
+                {album.title}
+              </h2>
+              {album.producer && (
+                <p className="font-mono text-[0.65rem] tracking-widest uppercase text-amber-200/50">
+                  Produção · {album.producer}
+                </p>
+              )}
+            </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {sortedAlbums.map((album, index) => (
-            <div key={album.id} className="group cursor-pointer" onClick={() => handleAlbumSelect(album)}>
-              <div className="relative mb-6">
-                <div className="aspect-square overflow-hidden bg-white shadow-lg">
-                  <img
-                    src={album.cover || '/placeholder.svg'}
-                    alt={album.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="w-16 h-16 border border-white rounded-full flex items-center justify-center cursor-pointer">
-                      <Play className="w-6 h-6 text-white ml-1" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-baseline justify-between">
-                  <h3 className="text-xl font-light tracking-wide text-black group-hover:text-gray-600 transition-colors duration-300">
-                    {album.title}
-                  </h3>
-                  <span className="text-sm font-mono text-gray-500">{album.year}</span>
-                </div>
-                <div className="text-xs font-mono tracking-[0.1em] uppercase text-gray-400">{album.type}</div>
-                <p className="text-gray-600 leading-relaxed text-sm line-clamp-2">{album.description}</p>
-                <div className="text-xs font-mono tracking-[0.1em] uppercase text-gray-400 group-hover:text-black transition-colors duration-300">
-                  Clique para explorar →
-                </div>
+            {/* Tracklist */}
+            <div>
+              <p className="font-mono text-xs tracking-widest uppercase text-amber-400/80 mb-3">
+                Faixas · {album.tracks.length} {album.tracks.length === 1 ? 'música' : 'músicas'}
+              </p>
+              <div className="space-y-1">
+                {album.tracks.map((track, i) => (
+                  <button
+                    key={i}
+                    onClick={() => play(i)}
+                    className="w-full grid grid-cols-[30px_1fr_auto] items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all duration-300 group hover:bg-amber-400/10"
+                  >
+                    <Play className="w-3.5 h-3.5 text-amber-100/50 group-hover:text-amber-300 transition-colors duration-300" />
+                    <span className="font-light text-sm text-amber-100/80 group-hover:text-amber-200 truncate transition-colors duration-300">
+                      {track.name}
+                    </span>
+                    <span className="font-mono text-xs text-amber-100/40">{track.duration}</span>
+                  </button>
+                ))}
               </div>
             </div>
-          ))}
+
+            {/* Streaming */}
+            {album.tracks[0]?.spotify && album.tracks[0]?.spotify !== '#' && (
+              <div className="pt-4 border-t border-amber-400/10 flex flex-wrap gap-2">
+                {album.tracks[0]?.spotify !== '#' && (
+                  <a href={album.tracks[0]?.spotify} target="_blank" rel="noopener noreferrer"                     className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-amber-400/30 text-amber-200 hover:bg-amber-400/10 rounded-full font-mono text-xs uppercase tracking-widest transition-all duration-300">
+                    <ExternalLink className="w-3 h-3" /> Spotify
+                  </a>
+                )}
+                {album.tracks[0]?.youtube && album.tracks[0]?.youtube !== '#' && (
+                  <a href={album.tracks[0]?.youtube} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-amber-400/30 text-amber-200 hover:bg-amber-400/10 rounded-full font-mono text-xs uppercase tracking-widest transition-all duration-300">
+                    <ExternalLink className="w-3 h-3" /> YouTube
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
         </div>
-
-        <AnimatePresence>
-          {selectedAlbum && (
-            <Dialog open={!!selectedAlbum} onOpenChange={handleCloseModal}>
-              <DialogContent
-                className="w-full max-w-none h-screen max-h-screen m-0 rounded-none overflow-hidden p-0 
-                            sm:w-[95vw] sm:max-w-7xl sm:h-[90vh] sm:max-h-[90vh] sm:rounded-lg sm:m-4"
-              >
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute top-2 right-2 z-50 bg-background/90 backdrop-blur-sm border
-                             sm:top-4 sm:right-4"
-                  onClick={handleCloseModal}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-
-                <div className="h-full overflow-y-auto">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3 }}
-                    className="p-4 sm:p-8 min-h-full"
-                  >
-                    <DialogHeader className="mb-4 sm:mb-8">
-                      <DialogTitle className="text-xl sm:text-3xl font-bold pr-8">
-                        {selectedAlbum.title} ({selectedAlbum.year})
-                      </DialogTitle>
-                    </DialogHeader>
-
-                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12">
-                      <div className="space-y-4 sm:space-y-6">
-                        <img
-                          src={selectedAlbum.cover || '/placeholder.svg'}
-                          alt={selectedAlbum.title}
-                          className="w-full max-w-xs sm:max-w-lg mx-auto aspect-square object-cover rounded-lg"
-                        />
-
-                        {selectedAlbum.tracklist.length > 0 && (
-                          <div className="w-full max-w-xs sm:max-w-lg mx-auto">
-                            <MinimalAudioPlayer
-                              track={selectedAlbum.tracklist[currentTrack || 0]}
-                              isPlaying={isPlaying}
-                              onPlayPause={handlePlayerPlayPause}
-                            />
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="space-y-6 sm:space-y-8">
-                        <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
-                          {selectedAlbum.description}
-                        </p>
-
-                        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 sm:p-6">
-                          <h4 className="font-bold mb-3 sm:mb-4 flex items-center text-base sm:text-lg">
-                            <Disc className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                            Ficha Técnica
-                          </h4>
-                          <div className="space-y-3 text-sm sm:text-base">
-                            <div className="flex items-start">
-                              <Calendar className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Lançamento:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.releaseDate}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Clock className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Duração:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.duration}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Eng. de Som/Mix/Master:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.producer}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Music className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Gênero:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.genre}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Disc className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Estúdio:</span>
-                                <span className="ml-2 font-medium">{selectedAlbum.studio}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <Users className="mr-2 h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                              <div>
-                                <span className="text-muted-foreground">Créditos:</span>
-                                <span className="ml-2 font-medium text-sm leading-relaxed">
-                                  {selectedAlbum.credits}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div>
-                          <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">Faixas:</h4>
-                          <div className="space-y-1 sm:space-y-2">
-                            {selectedAlbum.tracklist.map((track, index) => (
-                              <div
-                                key={index}
-                                className={`flex justify-between items-center py-2 px-3 rounded cursor-pointer transition-colors text-sm ${
-                                  currentTrack === index
-                                    ? 'bg-primary/10 border border-primary/20'
-                                    : 'bg-muted/30 hover:bg-muted/50'
-                                }`}
-                                onClick={() => handleTrackClick(index)}
-                              >
-                                <div className="flex items-center min-w-0 flex-1">
-                                  <div className="mr-2 w-5 flex justify-center flex-shrink-0">
-                                    {currentTrack === index && isPlaying ? (
-                                      <Pause className="h-3 w-3 text-primary" />
-                                    ) : (
-                                      <Play className="h-3 w-3 text-muted-foreground" />
-                                    )}
-                                  </div>
-                                  <div className="min-w-0 flex-1">
-                                    <div className="font-medium truncate">{track.name}</div>
-                                    {track.composers && (
-                                      <div className="text-xs text-muted-foreground truncate">{track.composers}</div>
-                                    )}
-                                  </div>
-                                </div>
-                                <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">
-                                  {track.duration}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div>
-                          <h4 className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">Ouça em:</h4>
-                          <div className="flex flex-col gap-2">
-                            {selectedAlbum.tracklist[currentTrack || 0]?.streamingLinks && (
-                              <>
-                                {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify !== '#' && (
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    asChild
-                                    className="w-full justify-start bg-transparent"
-                                  >
-                                    <a
-                                      href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      <ExternalLink className="mr-2 h-3 w-3" />
-                                      Spotify
-                                    </a>
-                                  </Button>
-                                )}
-                                {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple !== '#' && (
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    asChild
-                                    className="w-full justify-start bg-transparent"
-                                  >
-                                    <a
-                                      href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      <ExternalLink className="mr-2 h-3 w-3" />
-                                      Apple Music
-                                    </a>
-                                  </Button>
-                                )}
-                                {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube !== '#' && (
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    asChild
-                                    className="w-full justify-start bg-transparent"
-                                  >
-                                    <a
-                                      href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      <ExternalLink className="mr-2 h-3 w-3" />
-                                      YouTube
-                                    </a>
-                                  </Button>
-                                )}
-                              </>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </DialogContent>
-            </Dialog>
-          )}
-        </AnimatePresence>
-      </div>
-    </section>
+      </motion.div>
+    </motion.div>
   );
 }

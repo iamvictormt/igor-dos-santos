@@ -3,85 +3,66 @@
 import { formatDatePtBr } from '@/lib/utils';
 import { NewsItem } from '@/types/news';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Newspaper } from 'lucide-react';
 
 export function NewsSection() {
-  const [news, setNews] = useState<NewsItem[]>([
-    {
-      id: 1,
-      date: '15 Jan 2024',
-      title: 'EM BREVE',
-      excerpt: 'Em 2026, aguardem..',
-      category: 'Turnê',
-    },
-    {
-      id: 2,
-      date: '15 Jan 2024',
-      title: 'EM BREVE',
-      excerpt: 'Em 2026, aguardem..',
-      category: 'Turnê',
-    },
-    {
-      id: 3,
-      date: '15 Jan 2024',
-      title: 'EM BREVE',
-      excerpt: 'Em 2026, aguardem..',
-      category: 'Turnê',
-    },
-  ]);
+  const [news, setNews] = useState<NewsItem[]>([]);
 
   useEffect(() => {
-    async function fetchNews() {
-      try {
-        const res = await fetch('/api/news');
-        if (!res.ok) throw new Error('Erro ao buscar notícias');
-        const data: NewsItem[] = await res.json();
-        if(data)
-          setNews(data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    fetchNews();
+    fetch('/api/news')
+      .then((r) => r.json())
+      .then((d: NewsItem[]) => setNews(d))
+      .catch(() => {});
   }, []);
 
   return (
-    <section className="py-32 px-6 bg-gray-50">
+    <section id="novidades" className="py-24 md:py-32 px-6 md:px-10 bg-card relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Últimas Notícias</p>
-          <h2 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">Novidades</h2>
+        <div className="text-center mb-16">
+          <p className="text-xs font-mono tracking-[0.3em] uppercase text-amber-400/80 mb-4">
+            Últimas
+          </p>
+          <h2 className="font-handwriting text-5xl md:text-7xl text-amber-100 leading-[0.9] gold-glow">
+            Novidades
+          </h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {news.length === 0 ? (
-            <div className="bg-black text-white p-12 lg:p-16 col-span-3">
-              <div className="max-w-4xl">
-                <h2 className="text-2xl font-thin tracking-wide mb-8">Nenhuma notícia disponível no momento.</h2>
-              </div>
+        {news.length === 0 ? (
+          <div className="bg-background border border-amber-400/20 rounded-2xl p-12 text-center">
+            <div className="max-w-md mx-auto">
+              <Newspaper className="w-10 h-10 mx-auto mb-4 text-amber-300/50" />
+              <h3 className="font-handwriting text-3xl text-amber-200 mb-2">Nenhuma novidade por agora</h3>
+              <p className="font-light text-amber-100/50 text-sm">
+                Quando algo novo acontecer, você encontra aqui.
+              </p>
             </div>
-          ) : (
-            news.map((item, index: number) => (
-              <article
-                key={index}
-                className="group bg-white p-8 hover:shadow-xl transition-all duration-500 border border-transparent hover:border-gray-200"
+          </div>
+        ) : (
+          <div className="grid lg:grid-cols-3 gap-5">
+            {news.map((item, i) => (
+              <motion.article
+                key={item.id ?? i}
+                className="group bg-background p-7 rounded-2xl border border-border hover:border-amber-400/40 hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-500"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
               >
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium tracking-wider text-gray-500 uppercase">{item.category}</span>
-                    <time className="text-sm text-gray-400">{formatDatePtBr(item.date)}</time>
-                  </div>
-
-                  <h3 className="text-xl font-light text-black leading-tight group-hover:text-gray-600 transition-colors duration-300">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-gray-600 leading-relaxed">{item.excerpt}</p>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-[0.65rem] tracking-widest uppercase px-3 py-1 border border-amber-400/30 rounded-full text-amber-300/80 bg-amber-400/5">
+                    {item.category}
+                  </span>
+                  <time className="font-mono text-xs text-amber-100/40">{formatDatePtBr(item.date)}</time>
                 </div>
-              </article>
-            ))
-          )}
-        </div>
+                <h3 className="font-handwriting text-2xl md:text-3xl text-amber-100 group-hover:text-amber-300 transition-colors duration-300 mb-3">
+                  {item.title}
+                </h3>
+                <p className="font-light text-amber-100/50 leading-relaxed">{item.excerpt}</p>
+              </motion.article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

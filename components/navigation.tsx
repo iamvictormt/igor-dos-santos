@@ -1,204 +1,181 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
 
 const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Biografia", href: "/biografia" },
-  { name: "Discografia", href: "/discografia" },
-  { name: "Videografia", href: "/videografia" },
-  { name: "Agenda", href: "/agenda" },
-  { name: "Contato", href: "/contato" },
-]
+  { name: 'Home', href: '/' },
+  { name: 'Biografia', href: '/biografia' },
+  { name: 'Discografia', href: '/discografia' },
+  { name: 'Videografia', href: '/videografia' },
+  { name: 'Agenda', href: '/agenda' },
+  { name: 'Contato', href: '/contato' },
+];
 
 export function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [mounted, setMounted] = useState(false)
-  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  const isHomePage = pathname === "/"
-  const shouldUseDarkTheme = !isHomePage || scrolled
+  const isHomePage = pathname === '/';
+  const shouldUseLightNav = !isHomePage || scrolled; // scrolled/home = solid warm bg
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100)
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    if (typeof window !== 'undefined') {
+      setScrolled(window.scrollY > 60);
+      window.addEventListener('scroll', handleScroll, { passive: true });
     }
-
-    if (typeof window !== "undefined") {
-      setScrolled(window.scrollY > 100)
-      window.addEventListener("scroll", handleScroll)
-    }
-
     return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("scroll", handleScroll)
-      }
-    }
-  }, [])
+      if (typeof window !== 'undefined') window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
-  if (!mounted) {
-    return null
-  }
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  if (!mounted) return null;
 
   return (
-    <motion.nav
-      className={`fixed top-0 w-full z-50 transition-all duration-700 ${
-        shouldUseDarkTheme
-          ? "bg-white/95 backdrop-blur-xl border-none shadow-lg"
-          : "bg-black/60 backdrop-blur-xl"
-      }`}
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className="flex justify-between items-center h-24">
-          {/* Logo with Professional Typography */}
-          <Link href="/" className="group">
+    <>
+      <motion.nav
+        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+          shouldUseLightNav
+            ? 'bg-background/95 backdrop-blur-xl border-b border-amber-400/20 shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
+            : 'bg-black/30 backdrop-blur-md border-b border-white/5'
+        }`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
             <motion.div
-              className="flex flex-col"
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div
-                className={`font-handwriting text-2xl transition-all duration-300 ${
-                  shouldUseDarkTheme ? "text-black" : "text-white"
-                }`}
+              <Link
+                href="/"
+                className="font-handwriting text-2xl md:text-3xl text-amber-200 hover:text-amber-300 transition-colors duration-300 gold-glow"
               >
                 OHomemSó
-              </div>
-
+              </Link>
             </motion.div>
-          </Link>
 
-          {/* Desktop Navigation with Sophisticated Spacing */}
-          <div className="hidden lg:flex items-center space-x-16">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
-              >
-                <Link
-                  href={item.href}
-                  className={`relative group text-xs font-light tracking-[0.15em] uppercase transition-all duration-300 ${
-                    shouldUseDarkTheme
-                      ? pathname === item.href
-                        ? "text-black"
-                        : "text-gray-600 hover:text-black"
-                      : pathname === item.href
-                        ? "text-gray-200"
-                        : "text-gray-300 hover:text-gray-200"
-                  }`}
-                >
-                  {item.name}
-                  {/* Elegant Active Indicator */}
-                  {pathname === item.href && (
-                    <motion.div
-                      className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 rotate-45 ${
-                        shouldUseDarkTheme ? "bg-black" : "bg-gray-200"
-                      }`}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                  {/* Hover Effect */}
-                  <motion.div
-                    className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 h-px ${
-                      shouldUseDarkTheme ? "bg-black/30" : "bg-gray-200/30"
-                    }`}
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`lg:hidden p-2 transition-all duration-300 ${
-                shouldUseDarkTheme ? "text-black hover:bg-gray-100" : "text-gray-200 hover:bg-white/10"
-              }`}
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <div className="relative w-5 h-5">
-                <motion.span
-                  className={`absolute top-1 left-0 w-5 h-px ${shouldUseDarkTheme ? "bg-black" : "bg-gray-200"}`}
-                  animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.span
-                  className={`absolute top-2 left-0 w-5 h-px ${shouldUseDarkTheme ? "bg-black" : "bg-gray-200"}`}
-                  animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.span
-                  className={`absolute top-3 left-0 w-5 h-px ${shouldUseDarkTheme ? "bg-black" : "bg-gray-200"}`}
-                  animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-            </Button>
-          </motion.div>
-        </div>
-
-        {/* Mobile Menu with Professional Design */}
-        <AnimatePresence>
-          {isOpen && (
+            {/* Desktop nav */}
             <motion.div
-              className="lg:hidden bg-white/98 backdrop-blur-xl border-t border-gray-100 shadow-xl"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              className="hidden md:flex items-center gap-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="px-8 py-8 space-y-6">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.3 }}
-                  >
-                    <Link
-                      href={item.href}
-                      className={`block text-sm font-light tracking-[0.1em] uppercase transition-all duration-300 ${
-                        pathname === item.href
-                          ? "text-black border-l-2 border-black pl-4"
-                          : "text-gray-600 hover:text-black hover:pl-2"
+              {navItems.map((item, i) => {
+                const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+                return (
+                  <Link key={item.href} href={item.href} className="relative px-4 py-2 group">
+                    <motion.span
+                      className={`relative z-10 font-mono text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
+                        isActive ? 'text-amber-300' : 'text-amber-100/70 hover:text-amber-200'
                       }`}
-                      onClick={() => setIsOpen(false)}
+                      initial={{ y: -10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.05 * i, duration: 0.4 }}
                     >
                       {item.name}
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
+                    </motion.span>
+                    {isActive && (
+                      <motion.span
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-amber-400 rounded-full"
+                        layoutId="nav-indicator"
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.nav>
-  )
+
+            {/* Mobile hamburger */}
+            <motion.button
+              className="md:hidden text-amber-200 p-2"
+              onClick={() => setIsOpen((v) => !v)}
+              aria-label="Menu"
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+            </motion.button>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile menu overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed inset-20 top-20 z-40 bg-background/98 backdrop-blur-2xl flex flex-col"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex-1 flex items-center justify-center">
+              <div className="space-y-4">
+                {navItems.map((item, i) => {
+                  const isActive =
+                    pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+                  return (
+                    <motion.div
+                      key={item.href}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: 20, opacity: 0 }}
+                      transition={{ delay: i * 0.06, duration: 0.3 }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`block text-center font-handwriting text-3xl py-2 transition-colors duration-300 ${
+                          isActive
+                            ? 'text-amber-300 gold-glow'
+                            : 'text-amber-100/80 hover:text-amber-200'
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="pb-10 text-center">
+              <span className="font-mono text-xs text-amber-100/40 tracking-widest uppercase">
+                músicas • shows • contato
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }

@@ -7,4 +7,5 @@ export interface Show {
   city: string;
   time: string; // ex: "20:00"
   ticketUrl: string;
+  description?: string;
 }
