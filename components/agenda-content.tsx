@@ -1,11 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { MapPin, Clock, ExternalLink, Calendar } from 'lucide-react';
-import type { Show } from '@/types/show';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { MapPin, Clock, ExternalLink, Calendar } from "lucide-react";
+import type { Show } from "@/types/show";
+import { motion } from "framer-motion";
 
 export function AgendaContent() {
   const [shows, setShows] = useState<Show[]>([]);
@@ -13,156 +12,81 @@ export function AgendaContent() {
   const getTicketStatus = (showDate: string, ticketUrl: string) => {
     const currentDate = new Date();
     const eventDate = new Date(showDate);
-    const timeDiff = eventDate.getTime() - currentDate.getTime();
-    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    const daysDiff = Math.ceil((eventDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24));
 
-    if ((ticketUrl === '#' || !ticketUrl || ticketUrl.trim() === '') && daysDiff > 0) {
-      return 'Em Breve';
-    } else if (daysDiff <= 7 && daysDiff > 0) {
-      return 'Últimos Ingressos';
-    } else if (daysDiff > 0) {
-      return 'Ingressos Disponíveis';
-    } else {
-      return 'Encerrado';
-    }
+    if ((ticketUrl === "#" || !ticketUrl || ticketUrl.trim() === "") && daysDiff > 0) return "Em breve";
+    if (daysDiff <= 7 && daysDiff > 0) return "Últimos ingressos";
+    if (daysDiff > 0) return "Ingressos disponíveis";
+    return "Encerrado";
   };
 
   useEffect(() => {
-    fetch('/api/shows')
+    fetch("/api/shows")
       .then((res) => res.json())
       .then((data) => setShows(data))
-      .catch((err) => console.error('Erro ao buscar shows:', err));
+      .catch((err) => console.error("Erro ao buscar shows:", err));
   }, []);
 
   return (
-    <section className="pt-32 pb-24 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className="mb-20">
-          <div className="mb-8">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">PRÓXIMOS SHOWS</p>
-            <h1 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
-              Agenda <br /> <span className="font-normal">Musical</span>
-            </h1>
-          </div>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
-            Acompanhe os próximos shows e apresentações ao vivo
+    <section className="studio-wall min-h-screen pt-32 pb-24">
+      <div className="relative z-10 mx-auto max-w-7xl px-8 lg:px-12">
+        <div className="metal-sign mb-16 max-w-3xl p-8">
+          <p className="type-label mb-4 text-[10px]">Próximos shows</p>
+          <h1 className="stamp-title text-5xl leading-[0.9] lg:text-6xl">
+            Agenda
+            <br />
+            musical
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed">
+            Acompanhe os próximos shows e apresentações ao vivo.
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-5">
           {shows.length === 0 ? (
-            <div className="bg-black text-white p-12 lg:p-16">
-              <div className="max-w-4xl">
-                <h2 className="text-2xl font-thin tracking-wide mb-8">Em breve...</h2>
-              </div>
+            <div className="paper-panel p-10">
+              <h2 className="stamp-title text-3xl text-stone-950">Em breve...</h2>
             </div>
           ) : (
-            shows?.map((show, index) => {
-              const ticketStatus = getTicketStatus(show.date, show.ticketUrl || '#');
+            shows.map((show, index) => {
+              const ticketStatus = getTicketStatus(show.date, show.ticketUrl || "#");
+              const showDate = new Date(show.date);
 
               return (
-                <motion.div
+                <motion.article
                   key={show.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  className="paper-panel grid gap-6 p-5 md:grid-cols-[140px_1fr_auto] md:items-center md:p-7"
+                  initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.06 }}
                 >
-                  <Card className="border-0 bg-white hover:bg-gray-50/50 transition-all duration-500 shadow-lg hover:shadow-xl rounded-2xl overflow-hidden group">
-                    <div className="p-10 grid md:grid-cols-12 gap-8 items-center">
-                      <div className="md:col-span-2">
-                        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 text-center border border-gray-100 group-hover:shadow-md transition-all duration-300">
-                          <div className="flex items-center justify-center mb-3">
-                            <Calendar className="h-5 w-5 text-gray-400" />
-                          </div>
-                          <div className="text-4xl font-extralight text-black mb-2 tracking-tight">
-                            {new Date(show.date).getDate()}
-                          </div>
-                          <div className="text-sm font-semibold tracking-[0.15em] text-gray-600 mb-1">
-                            {new Date(show.date).toLocaleDateString('pt-BR', { month: 'short' }).toUpperCase()}
-                          </div>
-                          <div className="text-xs text-gray-400 font-light">{new Date(show.date).getFullYear()}</div>
-                        </div>
-                      </div>
+                  <div className="border border-stone-800/40 bg-[#2b211b] p-4 text-center text-[#f1ddb1]">
+                    <Calendar className="mx-auto mb-2 h-5 w-5" />
+                    <div className="stamp-title text-5xl leading-none">{showDate.getDate()}</div>
+                    <div className="type-label text-[10px]">{showDate.toLocaleDateString("pt-BR", { month: "short" })}</div>
+                    <div className="font-mono text-xs">{showDate.getFullYear()}</div>
+                  </div>
 
-                      <div className="md:col-span-7 space-y-5">
-                        <h3 className="text-3xl font-extralight tracking-wide text-black leading-tight group-hover:text-gray-800 transition-colors duration-300">
-                          {show.title}
-                        </h3>
-                        <div className="grid md:grid-cols-2 gap-6">
-                          <div className="flex items-start space-x-4">
-                            <div className="bg-gray-100 rounded-xl p-3 mt-1">
-                              <MapPin className="h-5 w-5 text-gray-600" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="font-semibold text-gray-900 text-lg leading-tight">{show.venue}</div>
-                              <div className="text-gray-600 mt-1">{show.city}</div>
-                            </div>
-                          </div>
-
-                          <div className="flex items-start space-x-4">
-                            <div className="bg-gray-100 rounded-xl p-3 mt-1">
-                              <Clock className="h-5 w-5 text-gray-600" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="font-semibold text-gray-900 text-lg leading-tight">Horário de início</div>
-                              <div className="text-gray-600 mt-1">{show.time}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="md:col-span-3 flex flex-col items-end gap-4">
-                        <span
-                          className={`text-xs font-semibold px-4 py-2 rounded-full tracking-[0.1em] uppercase shadow-sm border ${
-                            ticketStatus === 'Ingressos Disponíveis'
-                              ? 'bg-green-50 text-green-700 border-green-200'
-                              : ticketStatus === 'Últimos Ingressos'
-                              ? 'bg-amber-50 text-amber-700 border-amber-200'
-                              : ticketStatus === 'Em Breve'
-                              ? 'bg-gray-50 text-gray-600 border-gray-200'
-                              : 'bg-red-50 text-red-700 border-red-200'
-                          }`}
-                        >
-                          {ticketStatus}
-                        </span>
-
-                        {ticketStatus === 'Ingressos Disponíveis' || ticketStatus === 'Últimos Ingressos' ? (
-                          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full">
-                            <Button
-                              variant="outline"
-                              className="w-full bg-black hover:bg-gray-800 text-white hover:text-white font-medium tracking-[0.15em] px-8 py-4 text-xs uppercase border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
-                              onClick={() => window.open(show.ticketUrl, '_blank')}
-                            >
-                              <ExternalLink className="mr-2 h-4 w-4" />
-                              Ingressos
-                            </Button>
-                          </motion.div>
-                        ) : null}
-                      </div>
+                  <div>
+                    <span className="type-label mb-3 inline-block bg-[#8f4b2e] px-2 py-1 text-[10px] text-[#fff0c9]">{ticketStatus}</span>
+                    <h3 className="stamp-title text-3xl leading-none text-stone-950 md:text-4xl">{show.title}</h3>
+                    <div className="mt-4 grid gap-3 text-sm text-stone-700 md:grid-cols-2">
+                      <p className="flex gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0" />{show.venue} / {show.city}</p>
+                      <p className="flex gap-2"><Clock className="mt-0.5 h-4 w-4 shrink-0" />{show.time}</p>
                     </div>
-                  </Card>
-                </motion.div>
+                  </div>
+
+                  {(ticketStatus === "Ingressos disponíveis" || ticketStatus === "Últimos ingressos") && (
+                    <Button className="ink-button rounded-none px-6 type-label text-[11px] hover:bg-stone-800" onClick={() => window.open(show.ticketUrl, "_blank")}>
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Ingressos
+                    </Button>
+                  )}
+                </motion.article>
               );
             })
           )}
         </div>
-
-        {/* <div className="mt-20 text-center">
-          <div className="bg-white rounded-xl border border-gray-200 p-12 shadow-sm">
-            <h3 className="text-2xl font-light text-black mb-4">Contratação de Shows</h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed">
-              Interessado em contratar OHomemSó para seu evento? Entre em contato para discutir disponibilidade e
-              condições.
-            </p>
-            <Button
-              variant="outline"
-              className="font-medium tracking-wide bg-white border-2 border-black text-black hover:bg-black hover:text-white transition-all duration-200 px-8 py-3 rounded-lg"
-              onClick={() => (window.location.href = '/contato')}
-            >
-              Entre em Contato
-            </Button>
-          </div>
-        </div> */}
       </div>
     </section>
   );

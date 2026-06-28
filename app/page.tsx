@@ -8,7 +8,7 @@ import { LatestReleases } from "@/components/latest-releases"
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="home-wall min-h-screen">
       <Navigation />
       <HeroSection />
       <LatestReleases />

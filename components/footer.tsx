@@ -1,41 +1,20 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-100 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Bottom bar */}
-        <motion.div
-          className="border-t border-gray-100 py-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
-            <motion.p
-              className="text-gray-500 text-xs"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              © {new Date().getFullYear()} OHomemSó. Todos os direitos reservados.
-            </motion.p>
-            <motion.p
-              className="text-gray-400 text-xs"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              Desenvolvido com paixão pela música
-            </motion.p>
-          </div>
-        </motion.div>
-      </div>
+    <footer className="border-t border-[#c5a172]/25 bg-[#1b110c] px-4 py-8 text-[#d2b98d] md:px-8">
+      <motion.div
+        className="mx-auto flex max-w-7xl flex-col gap-3 border border-[#c5a172]/25 p-5 md:flex-row md:items-center md:justify-between"
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <p className="type-label text-[10px]">© {new Date().getFullYear()} OHomemSó. Todos os direitos reservados.</p>
+        <p className="font-handwriting text-2xl text-[#f2deb0]">Desenvolvido com paixão pela música</p>
+      </motion.div>
     </footer>
   );
 }

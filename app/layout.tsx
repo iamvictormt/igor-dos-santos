@@ -2,16 +2,17 @@ import type React from 'react';
 import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
-import { Nothing_You_Could_Do } from 'next/font/google';
+import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 import { Suspense } from 'react';
 import { PageTransition } from '@/components/page-transition';
 import './globals.css';
 
-const nothingYouCouldDo = Nothing_You_Could_Do({
+const handflair = localFont({
+  src: '../public/fonts/Handflair.otf',
+  variable: '--font-handflair',
   weight: '400',
-  subsets: ['latin'],
-  variable: '--font-nothing-you-could-do',
+  style: 'normal',
   display: 'swap',
 });
 
@@ -33,7 +34,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className={`font-handwriting ${GeistSans.variable} ${GeistMono.variable} ${nothingYouCouldDo.variable}`}>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} ${handflair.variable}`}>
         <Suspense fallback={null}>
           <PageTransition>{children}</PageTransition>
         </Suspense>

@@ -531,7 +531,7 @@ function MinimalAudioPlayer({
   const progressPercentage = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="bg-background border rounded-lg p-4 space-y-3">
+    <div className="paper-panel space-y-3 p-4">
       <audio ref={audioRef} src={track.audioUrl} crossOrigin="anonymous" preload="metadata" />
 
       <div className="flex items-center justify-between">
@@ -549,9 +549,9 @@ function MinimalAudioPlayer({
         </Button>
       </div>
 
-      <div className="w-full bg-muted rounded-full h-1">
+      <div className="h-1 w-full bg-stone-900/20">
         <div
-          className="bg-primary h-1 rounded-full transition-all duration-100"
+          className="h-1 bg-[#8f4b2e] transition-all duration-100"
           style={{ width: `${progressPercentage}%` }}
         />
       </div>
@@ -633,12 +633,12 @@ export function DiscographyContent() {
   });
 
   return (
-    <section className="pt-32 pb-24 bg-gray-50">
+    <section className="studio-wall min-h-screen pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className="mb-20">
+        <div className="paper-panel mb-16 max-w-3xl rotate-[-1deg] p-8">
           <div className="mb-8">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray-500 uppercase mb-4">Discografia</p>
-            <h1 className="text-5xl lg:text-6xl font-light text-black leading-[0.9] tracking-tight">
+            <p className="type-label mb-4 text-[10px] text-stone-700">Discografia</p>
+            <h1 className="stamp-title text-5xl leading-[0.9] text-stone-950 lg:text-6xl">
               Meus
               <br />
               <span className="font-normal">Trabalhos</span>
@@ -652,7 +652,7 @@ export function DiscographyContent() {
               variant="outline"
               size="lg"
               onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
-              className="flex items-center gap-2 bg-black hover:bg-black/80 text-white hover:text-white font-light tracking-[0.1em] px-12 py-4 text-xs uppercase border-0 shadow-2xl transition-all duration-300"
+              className="ink-button flex items-center gap-2 rounded-none px-10 py-4 type-label text-[11px] hover:bg-stone-800"
             >
               <ArrowUpDown className="mr-3 h-4 w-4" />
               {sortOrder === 'newest' ? 'Mais Recentes' : 'Mais Antigos'}
@@ -662,9 +662,9 @@ export function DiscographyContent() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {sortedAlbums.map((album, index) => (
-            <div key={album.id} className="group cursor-pointer" onClick={() => handleAlbumSelect(album)}>
+            <div key={album.id} className="paper-panel group cursor-pointer p-4" onClick={() => handleAlbumSelect(album)}>
               <div className="relative mb-6">
-                <div className="aspect-square overflow-hidden bg-white shadow-lg">
+                <div className="aspect-square overflow-hidden border border-stone-800/30 bg-white shadow-lg">
                   <img
                     src={album.cover || '/placeholder.svg'}
                     alt={album.title}
@@ -680,16 +680,16 @@ export function DiscographyContent() {
                 </div>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-3 pt-2">
                 <div className="flex items-baseline justify-between">
-                  <h3 className="text-xl font-light tracking-wide text-black group-hover:text-gray-600 transition-colors duration-300">
+                  <h3 className="stamp-title text-2xl leading-none text-stone-950 transition-colors duration-300 group-hover:text-[#8f4b2e]">
                     {album.title}
                   </h3>
-                  <span className="text-sm font-mono text-gray-500">{album.year}</span>
+                  <span className="font-mono text-sm text-stone-600">{album.year}</span>
                 </div>
-                <div className="text-xs font-mono tracking-[0.1em] uppercase text-gray-400">{album.type}</div>
-                <p className="text-gray-600 leading-relaxed text-sm line-clamp-2">{album.description}</p>
-                <div className="text-xs font-mono tracking-[0.1em] uppercase text-gray-400 group-hover:text-black transition-colors duration-300">
+                <div className="type-label text-[10px] text-stone-600">{album.type}</div>
+                <p className="line-clamp-2 text-sm leading-relaxed text-stone-700">{album.description}</p>
+                <div className="type-label text-[10px] text-stone-600 transition-colors duration-300 group-hover:text-stone-950">
                   Clique para explorar →
                 </div>
               </div>
@@ -701,13 +701,12 @@ export function DiscographyContent() {
           {selectedAlbum && (
             <Dialog open={!!selectedAlbum} onOpenChange={handleCloseModal}>
               <DialogContent
-                className="w-full max-w-none h-screen max-h-screen m-0 rounded-none overflow-hidden p-0 
-                            sm:w-[95vw] sm:max-w-7xl sm:h-[90vh] sm:max-h-[90vh] sm:rounded-lg sm:m-4"
+                className="h-screen max-h-screen w-full max-w-none overflow-hidden rounded-none border-0 bg-[#efe0b8] p-0 text-stone-950 sm:m-4 sm:h-[90vh] sm:max-h-[90vh] sm:w-[95vw] sm:max-w-7xl"
               >
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute top-2 right-2 z-50 bg-background/90 backdrop-blur-sm border
+                  className="absolute top-2 right-2 z-50 rounded-none border bg-[#efe0b8]/90 backdrop-blur-sm
                              sm:top-4 sm:right-4"
                   onClick={handleCloseModal}
                 >
@@ -752,7 +751,7 @@ export function DiscographyContent() {
                           {selectedAlbum.description}
                         </p>
 
-                        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 sm:p-6">
+                        <div className="paper-panel p-4 sm:p-6">
                           <h4 className="font-bold mb-3 sm:mb-4 flex items-center text-base sm:text-lg">
                             <Disc className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                             Ficha Técnica
