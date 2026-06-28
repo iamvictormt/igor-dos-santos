@@ -3,5 +3,5 @@ export interface NewsItem {
   date: string; // ex: "2024-01-15"
   title: string;
   excerpt: string;
-  category: 'Turnê' | 'Conquista' | 'Evento';
+  category: 'Turnê' | 'Conquista' | 'Evento' | 'Lançamento' | 'Agenda' | 'Bastidor';
 }

@@ -32,7 +32,7 @@ const photos = [
     id: 4,
     src: "/praticando-luzes.jpg",
     alt: "Sessão de prática com luzes de estúdio",
-    span: "lg:col-span-1 lg:row-span-2",
+    span: "lg:col-span-1 lg:row-span-1",
     caption: "ensaio",
   },
   {
@@ -77,7 +77,7 @@ export function PhotoGallery() {
             </div>
           </div>
 
-          <div className="grid auto-rows-[14rem] grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[16rem]">
+          <div className="grid auto-rows-[16rem] grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[20rem]">
             {photos.map((photo, index) => (
               <motion.button
                 key={photo.id}
@@ -95,7 +95,7 @@ export function PhotoGallery() {
                   alt={photo.alt}
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/18 transition-colors duration-500 group-hover:bg-black/38" />
                 <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4">

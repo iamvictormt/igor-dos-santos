@@ -9,29 +9,32 @@ import { useEffect, useState } from "react"
 const fallbackNews: NewsItem[] = [
   {
     id: 1,
-    date: "2026-01-15",
-    title: "Novos registros em preparação",
-    excerpt: "O repertório recente segue em construção entre versões ao vivo, canções antigas revisitadas e material inédito.",
-    category: "Evento",
+    date: "2026-06-28",
+    title: "Novo single já disponível",
+    excerpt: "O último lançamento está no ar, trazendo a atmosfera e o arranjo que definem o momento do projeto.",
+    category: "Lançamento",
   },
   {
     id: 2,
-    date: "2026-01-15",
-    title: "Agenda de 2026 em breve",
-    excerpt: "As próximas apresentações serão atualizadas por aqui assim que as datas forem confirmadas.",
-    category: "Turnê",
+    date: "2026-06-15",
+    title: "Agenda de shows em breve",
+    excerpt: "Datas e locais estão sendo confirmados; fique de olho para acompanhar os próximos encontros ao vivo.",
+    category: "Agenda",
   },
   {
     id: 3,
-    date: "2026-01-15",
-    title: "Videografia em expansão",
-    excerpt: "Clipes, sessions e registros ao vivo entram no arquivo visual do projeto.",
-    category: "Conquista",
+    date: "2026-04-28",
+    title: "Bastidores em movimento",
+    excerpt: "Gravações e ensaios seguem em andamento, com novas ideias sendo experimentadas para os próximos passos.",
+    category: "Bastidor",
   },
 ]
 
+const sortNewsByDate = (items: NewsItem[]) =>
+  [...items].sort((a, b) => b.date.localeCompare(a.date))
+
 export function NewsSection() {
-  const [news, setNews] = useState<NewsItem[]>(fallbackNews)
+  const [news, setNews] = useState<NewsItem[]>(sortNewsByDate(fallbackNews))
 
   useEffect(() => {
     async function fetchNews() {
@@ -39,7 +42,7 @@ export function NewsSection() {
         const res = await fetch("/api/news")
         if (!res.ok) throw new Error("Erro ao buscar notícias")
         const data: NewsItem[] = await res.json()
-        if (data?.length) setNews(data)
+        if (data?.length) setNews(sortNewsByDate(data))
       } catch (err) {
         console.error(err)
       }
@@ -51,7 +54,7 @@ export function NewsSection() {
   return (
     <section className="section-pad bg-[color:var(--surface-warm)]">
       <div className="section-shell">
-        <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+        <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -66,10 +69,6 @@ export function NewsSection() {
             </h2>
             <p className="handwritten-note mt-5 text-4xl text-accent md:text-5xl">
               rabiscos do caminho
-            </p>
-            <p className="section-copy mt-6 max-w-lg">
-              Atualizações curtas sobre lançamentos, shows e registros do projeto, como uma página arrancada do caderno
-              de ensaio.
             </p>
           </motion.div>
 

@@ -6,7 +6,33 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Play, Pause, Music, Calendar, Clock, Users, Disc, X, ExternalLink, ArrowUpDown } from 'lucide-react';
 
-const albums = [
+interface Album {
+  id: number;
+  title: string;
+  year: string;
+  type: string;
+  cover: string;
+  description: string;
+  duration: string;
+  producer: string;
+  studio: string;
+  genre: string;
+  releaseDate: string;
+  credits: string;
+  tracklist: {
+    name: string;
+    duration: string;
+    audioUrl: string;
+    composers: string;
+    streamingLinks: {
+      spotify: string;
+      apple: string;
+      youtube: string;
+      amazon?: string;
+    };
+  }[];
+}
+const albums: Album[] = [
   {
     id: 1,
     title: 'Bem Vindo a Sua Vida',
@@ -399,7 +425,7 @@ const albums = [
     type: 'EP',
     cover: '/tamanho-de-um-rei-cover.jpg',
     description: 'Conjunto de canções pessoais e intimistas, com 4 releituras ao vivo.',
-    duration: '17:20      ',
+    duration: '17:30',
     producer: 'Igor Delfino',
     studio:
       'Faixa 1 - Estúdio ChoqueDB, Pompéia | São Paulo/SP; Faixas 2 a 5 - Estúdio Viva o Som, Pirituba | São Paulo/SP',
@@ -410,57 +436,67 @@ const albums = [
     tracklist: [
       {
         name: 'Tamanho de Um Rei',
-        duration: '3:45',
+        duration: '3:40',
         audioUrl: '/audio-samples/TAMANHO DE UM REI.mp3',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: '#',
+          spotify: 'https://open.spotify.com/intl-pt/track/3ef0EfoL41PJxgYOPBmTkR?si=9fd0c3208a144e7e',
           apple: '#',
-          youtube: '#',
+          youtube: 'https://youtube.com/playlist?list=OLAK5uy_n8LyWmM4O64ShLtHCiAIrKEO8QiqkNUrY&si=CWDI4zBUxVHU2mZe',
+          amazon:
+            'https://music.amazon.com.br/albums/B0H6QZG8PM?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=BR&ref=dm_sh_KKjh8xNrufN6lAw7FqvfuoLoD&trackAsin=B0H6QZP78Z',
         },
       },
       {
         name: 'A.C.A.S.O',
-        duration: '3:26',
+        duration: '3:15',
         audioUrl: '/audio-samples/ACASO - Live Session.mp3',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: '#',
+          spotify: 'https://open.spotify.com/intl-pt/track/7bQRwCTE637MUxF0WIQY2X?si=08f0caaeaeec4661',
           apple: '#',
-          youtube: '#',
+          youtube: 'https://www.youtube.com/watch?v=CnDgnlLAO1g&list=OLAK5uy_n8LyWmM4O64ShLtHCiAIrKEO8QiqkNUrY&index=2',
+          amazon:
+            'https://music.amazon.com.br/albums/B0H6QZG8PM?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=BR&ref=dm_sh_0SKTr6fniz8LOHF3O66GMmGaf&trackAsin=B0H6QZNM5G',
         },
       },
       {
         name: 'Bem Vindo a Sua Vida',
-        duration: '3:32',
+        duration: '3:53',
         audioUrl: '/audio-samples/BEM VINDO A SUA VIDA - Live Session.mp3',
         composers: 'Igor Delfino / Marcio Ricardo',
         streamingLinks: {
-          spotify: '#',
+          spotify: 'https://open.spotify.com/intl-pt/track/43mIkd98Cj82yM8hPhn61f?si=aa36e727aa8b42c0',
           apple: '#',
-          youtube: '#',
+          youtube: 'https://www.youtube.com/watch?v=ECR8s_fFWlA&list=OLAK5uy_n8LyWmM4O64ShLtHCiAIrKEO8QiqkNUrY&index=3',
+          amazon:
+            'https://music.amazon.com.br/albums/B0H6QZG8PM?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=BR&ref=dm_sh_Lfx9d3H09FjBS3w3q65quaxnJ&trackAsin=B0H6R72V81',
         },
       },
       {
         name: 'Auto Intitulada',
-        duration: '3:18',
+        duration: '3:45',
         audioUrl: '/audio-samples/AUTO INTITULADA - Live Session.mp3',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: '#',
+          spotify: 'https://open.spotify.com/intl-pt/track/1cy25qYefhbP0QgeWsgNZx?si=7189bceb62f541bb',
           apple: '#',
-          youtube: '#',
+          youtube: 'https://www.youtube.com/watch?v=ofGp9T1AboQ&list=OLAK5uy_n8LyWmM4O64ShLtHCiAIrKEO8QiqkNUrY&index=4',
+          amazon:
+            'https://music.amazon.com.br/albums/B0H6QZG8PM?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=BR&ref=dm_sh_sM5oPi0ssdqgyDwrBNz7ScbWE&trackAsin=B0H6R3L4NF',
         },
       },
       {
         name: 'Inicio de Outono',
-        duration: '3:19',
+        duration: '2:57',
         audioUrl: '/audio-samples/INICIO DE OUTONO - Live Session.mp3',
         composers: 'Igor Delfino',
         streamingLinks: {
-          spotify: '#',
+          spotify: 'https://open.spotify.com/intl-pt/track/6ZEy3u5Gy0Fz4izYiwNj4S?si=f3804cfd4fcd4b4e',
           apple: '#',
-          youtube: '#',
+          youtube: 'https://www.youtube.com/watch?v=XT6kMlHhem8&list=OLAK5uy_n8LyWmM4O64ShLtHCiAIrKEO8QiqkNUrY&index=5',
+          amazon:
+            'https://music.amazon.com.br/albums/B0H6QZG8PM?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=BR&ref=dm_sh_z9lmyepvrtjwMWwJBvRXVxC0E&trackAsin=B0H6QX885Z',
         },
       },
     ],
@@ -639,12 +675,8 @@ export function DiscographyContent() {
         <div className="grid gap-12 border-b border-border pb-14">
           <div>
             <p className="section-eyebrow">Discografia</p>
-            <h1 className="section-heading mt-4">
-              Obras gravadas
-            </h1>
-            <p className="handwritten-note mt-5 text-4xl text-accent md:text-5xl">
-              cada capa guarda uma fase
-            </p>
+            <h1 className="section-heading mt-4">Obras gravadas</h1>
+            <p className="handwritten-note mt-5 text-4xl text-accent md:text-5xl">cada capa guarda uma fase</p>
           </div>
         </div>
 
@@ -763,28 +795,24 @@ export function DiscographyContent() {
 
                       <div className="mt-9 grid gap-3 border-y border-border py-5 sm:grid-cols-2">
                         <div className="flex gap-3">
-                          <Calendar className="mt-1 h-4 w-4 text-accent" />
                           <div>
                             <p className="meta-line">Lançamento</p>
                             <p className="mt-1 text-sm text-foreground">{selectedAlbum.releaseDate}</p>
                           </div>
                         </div>
                         <div className="flex gap-3">
-                          <Clock className="mt-1 h-4 w-4 text-accent" />
                           <div>
                             <p className="meta-line">Duração</p>
                             <p className="mt-1 text-sm text-foreground">{selectedAlbum.duration}</p>
                           </div>
                         </div>
                         <div className="flex gap-3">
-                          <Music className="mt-1 h-4 w-4 text-accent" />
                           <div>
                             <p className="meta-line">Gênero</p>
                             <p className="mt-1 text-sm text-foreground">{selectedAlbum.genre}</p>
                           </div>
                         </div>
                         <div className="flex gap-3">
-                          <Disc className="mt-1 h-4 w-4 text-accent" />
                           <div>
                             <p className="meta-line">Estúdio</p>
                             <p className="mt-1 text-sm text-foreground">{selectedAlbum.studio}</p>
@@ -826,7 +854,9 @@ export function DiscographyContent() {
                               <span className="min-w-0">
                                 <span className="block truncate text-sm font-medium text-foreground">{track.name}</span>
                                 {track.composers && (
-                                  <span className="mt-1 block truncate text-xs text-muted-foreground">{track.composers}</span>
+                                  <span className="mt-1 block truncate text-xs text-muted-foreground">
+                                    {track.composers}
+                                  </span>
                                 )}
                               </span>
                               <span className="font-mono text-xs text-muted-foreground">{track.duration}</span>
@@ -835,37 +865,52 @@ export function DiscographyContent() {
                         </div>
                       </div>
 
-                      {selectedAlbum.tracklist[currentTrack || 0]?.streamingLinks && (
-                        <div className="mt-9">
-                          <p className="meta-line">Ouça em</p>
-                          <div className="mt-4 flex flex-wrap gap-2">
-                            {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify !== '#' && (
-                              <Button size="sm" variant="outline" asChild className="bg-transparent">
-                                <a href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.spotify} target="_blank" rel="noopener noreferrer">
-                                  <ExternalLink className="mr-2 h-3 w-3" />
-                                  Spotify
-                                </a>
-                              </Button>
-                            )}
-                            {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple !== '#' && (
-                              <Button size="sm" variant="outline" asChild className="bg-transparent">
-                                <a href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.apple} target="_blank" rel="noopener noreferrer">
-                                  <ExternalLink className="mr-2 h-3 w-3" />
-                                  Apple Music
-                                </a>
-                              </Button>
-                            )}
-                            {selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube !== '#' && (
-                              <Button size="sm" variant="outline" asChild className="bg-transparent">
-                                <a href={selectedAlbum.tracklist[currentTrack || 0].streamingLinks.youtube} target="_blank" rel="noopener noreferrer">
-                                  <ExternalLink className="mr-2 h-3 w-3" />
-                                  YouTube
-                                </a>
-                              </Button>
-                            )}
+                      {(() => {
+                        const track = selectedAlbum.tracklist[currentTrack || 0];
+                        const streamingLinks = track?.streamingLinks;
+                        const hasValidStreamingLink =
+                          streamingLinks && Object.values(streamingLinks).some((url) => url && url !== '#');
+
+                        return hasValidStreamingLink ? (
+                          <div className="mt-9">
+                            <p className="meta-line">Ouça em</p>
+                            <div className="mt-4 flex flex-wrap gap-2">
+                              {streamingLinks.spotify !== '#' && (
+                                <Button size="sm" variant="outline" asChild className="bg-transparent">
+                                  <a href={streamingLinks.spotify} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="mr-2 h-3 w-3" />
+                                    Spotify
+                                  </a>
+                                </Button>
+                              )}
+                              {streamingLinks.apple !== '#' && (
+                                <Button size="sm" variant="outline" asChild className="bg-transparent">
+                                  <a href={streamingLinks.apple} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="mr-2 h-3 w-3" />
+                                    Apple Music
+                                  </a>
+                                </Button>
+                              )}
+                              {streamingLinks.youtube !== '#' && (
+                                <Button size="sm" variant="outline" asChild className="bg-transparent">
+                                  <a href={streamingLinks.youtube} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="mr-2 h-3 w-3" />
+                                    YouTube
+                                  </a>
+                                </Button>
+                              )}
+                              {streamingLinks.amazon !== '#' && (
+                                <Button size="sm" variant="outline" asChild className="bg-transparent">
+                                  <a href={streamingLinks.amazon} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="mr-2 h-3 w-3" />
+                                    Amazon Music
+                                  </a>
+                                </Button>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        ) : null;
+                      })()}
                     </div>
                   </motion.div>
                 </div>
