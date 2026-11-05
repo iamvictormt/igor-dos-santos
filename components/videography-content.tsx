@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Play, ExternalLink, X } from 'lucide-react';
 
 const videos = [
+  { id: 16, title: 'Tamanho de Um Rei', youtubeUrl: 'https://youtu.be/ZyLjXfduHEQ?si=N34duMah5VnkJZyx' },
   { id: 1, title: "Outras Histórias", youtubeUrl: "https://youtu.be/uLmp1D1tFfE?is=OFgPcrRXkil82tJ0" },
   { id: 2, title: 'Silêncio Ensurdecedor', youtubeUrl: 'https://youtu.be/GZ0DGvkg4us?si=-z3MiY824eoyNj_L' },
   { id: 3, title: 'Voar', youtubeUrl: 'https://youtu.be/YD1hsoXfhM0?si=l6HXWEhYCE3V3f39' },
