@@ -6,13 +6,14 @@ import { Button } from '@/components/ui/button';
 import { MapPin, Clock, ExternalLink, Calendar } from 'lucide-react';
 import type { Show } from '@/types/show';
 import { motion } from 'framer-motion';
+import { parseCalendarDate } from '@/lib/utils';
 
 export function AgendaContent() {
   const [shows, setShows] = useState<Show[]>([]);
 
   const getTicketStatus = (showDate: string, ticketUrl: string) => {
     const currentDate = new Date();
-    const eventDate = new Date(showDate);
+    const eventDate = parseCalendarDate(showDate);
     const timeDiff = eventDate.getTime() - currentDate.getTime();
     const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
@@ -59,6 +60,7 @@ export function AgendaContent() {
           ) : (
             shows?.map((show, index) => {
               const ticketStatus = getTicketStatus(show.date, show.ticketUrl || '#');
+              const eventDate = parseCalendarDate(show.date);
 
               return (
                 <motion.div
@@ -75,12 +77,12 @@ export function AgendaContent() {
                             <Calendar className="h-5 w-5 text-gray-400" />
                           </div>
                           <div className="text-4xl font-extralight text-black mb-2 tracking-tight">
-                            {new Date(show.date).getDate()}
+                            {eventDate.getDate()}
                           </div>
                           <div className="text-sm font-semibold tracking-[0.15em] text-gray-600 mb-1">
-                            {new Date(show.date).toLocaleDateString('pt-BR', { month: 'short' }).toUpperCase()}
+                            {eventDate.toLocaleDateString('pt-BR', { month: 'short' }).toUpperCase()}
                           </div>
-                          <div className="text-xs text-gray-400 font-light">{new Date(show.date).getFullYear()}</div>
+                          <div className="text-xs text-gray-400 font-light">{eventDate.getFullYear()}</div>
                         </div>
                       </div>
 

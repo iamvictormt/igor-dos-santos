@@ -5,8 +5,19 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const parseCalendarDate = (dateString: string): Date => {
+  const dateOnlyMatch = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateString);
+
+  if (!dateOnlyMatch) {
+    return new Date(dateString);
+  }
+
+  const [, year, month, day] = dateOnlyMatch;
+  return new Date(Number(year), Number(month) - 1, Number(day));
+};
+
 export const formatDatePtBr = (dateString: string): string => {
-  const date = new Date(dateString);
+  const date = parseCalendarDate(dateString);
   const formatted = new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
     month: 'short',
@@ -17,7 +28,7 @@ export const formatDatePtBr = (dateString: string): string => {
 };
 
 export const getDayAndMonth = (dateString: string) => {
-  const date = new Date(dateString);
+  const date = parseCalendarDate(dateString);
 
   const day = date.getDate();
   const month = date.toLocaleString('pt-BR', { month: 'short' });

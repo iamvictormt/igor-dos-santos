@@ -1,56 +1,58 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, ExternalLink, X } from 'lucide-react';
-
-const videos = [
-  { id: 16, title: 'Tamanho de Um Rei', youtubeUrl: 'https://youtu.be/ZyLjXfduHEQ?si=N34duMah5VnkJZyx' },
-  { id: 1, title: "Outras Histórias", youtubeUrl: "https://youtu.be/uLmp1D1tFfE?is=OFgPcrRXkil82tJ0" },
-  { id: 2, title: 'Silêncio Ensurdecedor', youtubeUrl: 'https://youtu.be/GZ0DGvkg4us?si=-z3MiY824eoyNj_L' },
-  { id: 3, title: 'Voar', youtubeUrl: 'https://youtu.be/YD1hsoXfhM0?si=l6HXWEhYCE3V3f39' },
-  { id: 4, title: 'Bem Vindo a Sua Vida', youtubeUrl: 'https://youtu.be/VKGK59I-bps?si=xgvjsEV-GvBUabAQ' },
-  { id: 5, title: 'Auto Intitulada', youtubeUrl: 'https://youtu.be/xMrRriRhO_U?si=EMD3VSevmsXZgpmo' },
-  { id: 6, title: 'Avivar (Acústica)', youtubeUrl: 'https://youtu.be/ImYsxY7tbSM?si=jFMf_Us_pDE3SmyP' },
-  { id: 7, title: 'A.C.A.S.O', youtubeUrl: 'https://youtu.be/4sZgljD4Oms?si=P6QClneLt3VOe2OJ' },
-  { id: 8, title: 'Grito Mudo', youtubeUrl: 'https://youtu.be/1L54FO3z8-s?si=UFhcFaHCXovbB_db' },
-  { id: 9, title: 'O Herói Não Resolvido', youtubeUrl: 'https://youtu.be/1cmROgqxchg?si=5iShmaS2yWaZy31z' },
-  { id: 10, title: 'Aonde Vai o Tempo?', youtubeUrl: 'https://youtu.be/G4dZtnoxkLE?si=Dm4pWg0hbtV6j-Xx' },
-  { id: 11, title: 'Amanhã É um Novo Dia', youtubeUrl: 'https://youtu.be/nrLCteUhKnk?si=q7e2Y5hBmRFC_-nL' },
-  {
-    id: 12,
-    title: 'Broken Dreams & Hopes - Visualizer Oficial',
-    youtubeUrl: 'https://youtu.be/pUOboWnkxgI?si=dqNay6O7IU09lhU1',
-  },
-  {
-    id: 13,
-    title: 'Tudo o Que Eu Queria Te Dizer - Ao Vivo',
-    youtubeUrl: 'https://youtu.be/0AwFbg8XMxY?si=Gy_0TsUp0tnqcClN',
-  },
-  { id: 14, title: 'Bem Vindo a Sua Vida - Ao Vivo', youtubeUrl: 'https://youtu.be/BprfDyjdx60?si=g0Z-VQrQs2MouUg0' },
-  {
-    id: 15,
-    title: 'Novos Horizontes (Engenheiros do Hawaii) - Ao Vivo',
-    youtubeUrl: 'https://youtu.be/Hrj0w_zqOfc?si=WfOSIF62xucm7Een',
-  },
-];
+import { getYouTubeId, videos, type Video } from '@/lib/videography';
 
 export function VideographyContent() {
-  const [selectedVideo, setSelectedVideo] = useState<(typeof videos)[0] | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  // Keep the currently private clip marked while the first live status check runs.
+  const [privateVideoIds, setPrivateVideoIds] = useState<Set<string>>(() => new Set(['ZyLjXfduHEQ']));
 
-  const getYouTubeId = (url: string) => {
-    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\n?#]+)/);
-    return match ? match[1] : null;
-  };
+  useEffect(() => {
+    let isActive = true;
+
+    const refreshVideoStatuses = async () => {
+      try {
+        const response = await fetch('/api/youtube-status', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Não foi possível consultar o status dos vídeos.');
+
+        const statuses = (await response.json()) as Record<string, 'private' | 'available' | 'unknown'>;
+        if (!isActive) return;
+
+        setPrivateVideoIds((currentIds) => {
+          const nextIds = new Set(currentIds);
+
+          for (const [videoId, status] of Object.entries(statuses)) {
+            if (status === 'private') nextIds.add(videoId);
+            if (status === 'available') nextIds.delete(videoId);
+          }
+
+          return nextIds;
+        });
+      } catch (error) {
+        console.error('Erro ao atualizar disponibilidade dos vídeos:', error);
+      }
+    };
+
+    refreshVideoStatuses();
+    const intervalId = window.setInterval(refreshVideoStatuses, 60_000);
+
+    return () => {
+      isActive = false;
+      window.clearInterval(intervalId);
+    };
+  }, []);
 
   const getYouTubeThumbnail = (url: string) => {
     const videoId = getYouTubeId(url);
     return videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : '/placeholder.svg';
   };
 
-  const handlePlayVideo = (video: (typeof videos)[0]) => {
+  const handlePlayVideo = (video: Video) => {
     setSelectedVideo(video);
     setIsPlaying(true);
   };
@@ -78,52 +80,70 @@ export function VideographyContent() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {videos.map((video) => (
-            <Card
-              key={video.id}
-              className="group overflow-hidden border-0 bg-muted/30 hover:bg-muted/50 transition-all duration-300"
-            >
+          {videos.map((video) => {
+            const videoId = getYouTubeId(video.youtubeUrl);
+            const isUpcoming = videoId !== null && privateVideoIds.has(videoId);
+
+            return (
+              <Card
+                key={video.id}
+                className="group overflow-hidden border-0 bg-muted/30 hover:bg-muted/50 transition-all duration-300"
+              >
               <div className="relative aspect-video overflow-hidden">
                 <img
-                  src={getYouTubeThumbnail(video.youtubeUrl) || '/placeholder.svg'}
-                  alt={video.title}
+                  src={isUpcoming ? '/indisponivel.webp' : getYouTubeThumbnail(video.youtubeUrl)}
+                  alt={`${video.title}${isUpcoming ? ' — estreia em breve' : ''}`}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button
-                    onClick={() => handlePlayVideo(video)}
-                    className="w-16 h-16 border border-white rounded-full flex items-center justify-center cursor-pointer"
-                  >
-                    <Play className="w-6 h-6 text-white ml-1" />
-                  </button>
-                </div>
+                {isUpcoming ? (
+                  <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
+                    <span className="bg-white px-5 py-2 text-sm font-medium text-black">Estreia em breve</span>
+                  </div>
+                ) : (
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button
+                      onClick={() => handlePlayVideo(video)}
+                      className="w-16 h-16 border border-white rounded-full flex items-center justify-center cursor-pointer"
+                      aria-label={`Reproduzir ${video.title}`}
+                    >
+                      <Play className="w-6 h-6 text-white ml-1" />
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="p-6 space-y-4">
                 <h3 className="text-lg font-light tracking-wide text-foreground md:h-[6vh] h-auto">{video.title}</h3>
-                <div className="flex gap-2">
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="flex-1 font-light tracking-wide"
-                    onClick={() => handlePlayVideo(video)}
-                  >
-                    <Play className="mr-2 h-4 w-4" />
-                    Reproduzir
+                {isUpcoming ? (
+                  <Button variant="default" size="sm" className="w-full font-light tracking-wide" disabled>
+                    Estreia em breve
                   </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="font-light tracking-wide bg-transparent"
-                    onClick={() => window.open(video.youtubeUrl, '_blank')}
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    YouTube
-                  </Button>
-                </div>
+                ) : (
+                  <div className="flex gap-2">
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="flex-1 font-light tracking-wide"
+                      onClick={() => handlePlayVideo(video)}
+                    >
+                      <Play className="mr-2 h-4 w-4" />
+                      Reproduzir
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="font-light tracking-wide bg-transparent"
+                      onClick={() => window.open(video.youtubeUrl, '_blank')}
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      YouTube
+                    </Button>
+                  </div>
+                )}
               </div>
-            </Card>
-          ))}
+              </Card>
+            );
+          })}
         </div>
 
         {selectedVideo && (
